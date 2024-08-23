@@ -1,4 +1,4 @@
-export const handlerRegisterForm = (e, setForm) => {
+export const handlerRegisterLoginForm = (e, setForm) => {
   console.log('e.target.name', e.target.name)
   setForm(prevState => (
     {
