@@ -1,5 +1,5 @@
 import { registerValues } from "../../../assets/other-assets/errors-values"
-import { hasNumbers, isValidEmailFormat, isValidName } from "./extraValidations"
+import { hasEmailSpecialCharacters, hasNumbers, isValidEmailFormat, isValidName } from "./extraValidations"
 
 export const registerValidations = (form, setErrors) => {
   const errors = {}
@@ -26,6 +26,7 @@ export const registerValidations = (form, setErrors) => {
     if (form.email.trim().length < email.min) errors.email = `El email debe tener al menos ${email.min} caracteres`
     if (form.email.trim().length > email.max) errors.email = `El email debe tener menos de ${email.max} caracteres`
     if (!isValidEmailFormat(form.email)) errors.email = 'Formato de email incorrecto'
+    if (hasEmailSpecialCharacters(form.email)) errors.email = 'No puede tener caracteres especiales, solo @ y .'
   }
 
   if (form.password === '') errors.password = null

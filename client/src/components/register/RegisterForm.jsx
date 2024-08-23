@@ -1,5 +1,5 @@
 import { registerValues } from '../../assets/other-assets/errors-values'
-import ErrorForms from '../../components/ErrorsForms/ErrorForms'
+import ErrorForms from '../ErrorsForms/ErrorForms'
 import { handlerRegisterForm } from '../../utils/functions/handlerRegisterForm'
 import { useRegisterForm } from '../../utils/hooks/useRegisterForm'
 

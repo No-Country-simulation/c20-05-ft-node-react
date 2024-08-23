@@ -1,6 +1,5 @@
-import RegisterForm from "./RegisterForm"
-import RegisterWelcome from "./RegisterWelcome"
-
+import RegisterForm from "../../components/register/RegisterForm"
+import RegisterWelcome from "../../components/register/RegisterWelcome"
 const Register = () => {
   return (
     <main className="flex flex-col gap-4">
