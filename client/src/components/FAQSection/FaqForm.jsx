@@ -1,18 +1,11 @@
-import { useEffect, useState } from 'react'
-import { INITIAL_SATATE_INPUTS } from '../../assets/other-assets/faq-resources'
 import { handleChange } from '../../utils/functions/handlerChangeFaqForm'
-import { faqFormValidations } from '../../utils/functions/validations/faqFormValidations'
 import ErrorForms from '../ErrorsForms/ErrorForms'
 import { faqFormErrorsValues } from '../../assets/other-assets/errors-values'
+import { useFaqForm } from '../../utils/hooks/useFaqForm'
 
 const FaqForm = () => {
-  const [form, setForm] = useState(INITIAL_SATATE_INPUTS)
-  const [errors, setErrors] = useState(null)
+  const { form, setForm, errors } = useFaqForm()
   const { name, email, question } = faqFormErrorsValues
-
-  useEffect(() => {
-    faqFormValidations(form, setErrors)
-  }, [form])
 
   return (
     <div className="min-w-[400px] bg-gray-400 flex flex-col gap-4 p-4">
