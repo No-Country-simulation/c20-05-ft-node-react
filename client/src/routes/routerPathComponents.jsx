@@ -23,6 +23,6 @@ const routerPathComponents = [
         path: "*",
         element: <NotFound />
     }
-]
+]  
 
 export default routerPathComponents
