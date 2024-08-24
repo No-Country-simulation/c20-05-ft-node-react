@@ -1,14 +1,16 @@
-import { registerValues } from '../../../assets/other-assets/errors-values'
+import { FORM_ERROR_VALUES } from '../../../assets/other-assets/errors-values'
 import ErrorForms from '../../ErrorsForms/ErrorForms'
 import { handlerRegisterLoginForm } from '../../../utils/functions/handlerRegisterLoginForm'
 import { useRegisterForm } from '../../../utils/hooks/useRegisterForm'
+import { handlerSubmitForm } from '../../../utils/functions/handlerSubmitForm'
+import { API_PATH_REGISTER } from '../../../routes/routes'
 
 const RegisterForm = () => {
   const { form, setForm, errors } = useRegisterForm()
-  const { name, surname, email, password, repeatPassword } = registerValues
+  const { name, surname, email, password, repeatPassword } = FORM_ERROR_VALUES
 
   return (
-    <form className="flex flex-col gap-4 flex-1 px-4 [&>input]:border-2 [&>input]:border-gray-300 [&>input]:rounded-md [&>input]:p-2">
+    <form onSubmit={(e) => handlerSubmitForm(e, form, API_PATH_REGISTER, errors)} className="flex flex-col gap-4 flex-1 px-4 [&>input]:border-2 [&>input]:border-gray-300 [&>input]:rounded-md [&>input]:p-2">
       <div className="flex items-center gap-4 [&>div>input]:border-2 [&>div>input]:border-gray-300 [&>div>input]:rounded-md [&>div>input]:p-2">
         <div className="flex flex-col flex-1 gap-4">
           <label htmlFor="name-register">Nombre</label>

@@ -1,9 +1,9 @@
-import { registerValues } from "../../../assets/other-assets/errors-values"
-import { hasEmailSpecialCharacters, hasNumbers, isValidEmailFormat, isValidName } from "./extraValidations"
+import { FORM_ERROR_VALUES } from "../../../assets/other-assets/errors-values"
+import { hasEmailSpecialCharacters, hasNumbers, hasSpaces, isValidEmailFormat, isValidName } from "./extraValidations"
 
 export const registerValidations = (form, setErrors) => {
   const errors = {}
-  const { name, surname, email, password, repeatPassword } = registerValues
+  const { name, surname, email, password, repeatPassword } = FORM_ERROR_VALUES
 
   if (form.name === '') errors.name = null
   else {
@@ -11,6 +11,7 @@ export const registerValidations = (form, setErrors) => {
     if (form.name.trim().length > name.max) errors.name = `El nombre debe tener menos de ${name.max} caracteres`
     if (hasNumbers(form.name)) errors.name = 'El nombre no puede contener números'
     if (!isValidName(form.name)) errors.name = 'El nombre no puede contener caracteres especiales'
+    if (hasSpaces(form.name)) errors.name = 'El nombre no puede tener espacios'
   }
 
   if (form.surname === '') errors.surname = null
@@ -19,6 +20,7 @@ export const registerValidations = (form, setErrors) => {
     if (form.surname.trim().length > surname.max) errors.surname = `El apellido debe tener menos de ${surname.max} caracteres`
     if (hasNumbers(form.surname)) errors.surname = 'El apellido no puede contener números'
     if (!isValidName(form.surname)) errors.surname = 'El apellido no puede contener caracteres especiales'
+    if (hasSpaces(form.surname)) errors.surname = 'El apellido no puede tener espacios'
   }
 
   if (form.email === '') errors.email = null
@@ -26,7 +28,7 @@ export const registerValidations = (form, setErrors) => {
     if (form.email.trim().length < email.min) errors.email = `El email debe tener al menos ${email.min} caracteres`
     if (form.email.trim().length > email.max) errors.email = `El email debe tener menos de ${email.max} caracteres`
     if (!isValidEmailFormat(form.email)) errors.email = 'Formato de email incorrecto'
-    if (hasEmailSpecialCharacters(form.email)) errors.email = 'No puede tener caracteres especiales, solo @ y .'
+    if (hasEmailSpecialCharacters(form.email)) errors.email = 'No puede tener caracteres especiales, solo @ . _ -'
   }
 
   if (form.password === '') errors.password = null

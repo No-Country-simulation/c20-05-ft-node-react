@@ -1,4 +1,4 @@
-export const registerValues = {
+export const FORM_ERROR_VALUES = {
   name: {
     min: 3,
     max: 50
@@ -9,7 +9,11 @@ export const registerValues = {
   },
   email: {
     min: 6,
-    max: 50
+    max: 100
+  },
+  question: {
+    min: 10,
+    max: 600
   },
   password: {
     min: 6,
