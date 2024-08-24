@@ -1,0 +1,1 @@
+export const API_PATH_SEND_QUESTION = '/api/question'
