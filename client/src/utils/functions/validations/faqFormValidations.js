@@ -1,5 +1,5 @@
 import { faqFormErrorsValues } from '../../../assets/other-assets/errors-values'
-import { hasNumbers, isValidName, isValidEmailFormat, hasEmailSpecialCharacters } from './extraValidations'
+import { hasNumbers, isValidName, isValidEmailFormat, hasEmailSpecialCharacters, hasTwoOrMoreSpaces } from './extraValidations'
 
 export const faqFormValidations = (form, setErrors) => {
   const errors = {}
@@ -11,6 +11,7 @@ export const faqFormValidations = (form, setErrors) => {
     if (form.name.trim().length > name.max) errors.name = `El nombre debe tener menos de ${name.max} caracteres`
     if (hasNumbers(form.name)) errors.name = 'El nombre no puede contener números'
     if (!isValidName(form.name)) errors.name = 'El nombre no puede contener caracteres especiales'
+    if (hasTwoOrMoreSpaces(form.name)) errors.name = 'No puede tener dos o más espacios seguidos'
   }
 
   if (form.email === '') errors.email = null
