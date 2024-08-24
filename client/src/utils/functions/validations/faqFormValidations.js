@@ -1,9 +1,9 @@
-import { faqFormErrorsValues } from '../../../assets/other-assets/errors-values'
+import { FORM_ERROR_VALUES } from '../../../assets/other-assets/errors-values'
 import { hasNumbers, isValidName, isValidEmailFormat, hasEmailSpecialCharacters, hasTwoOrMoreSpaces } from './extraValidations'
 
 export const faqFormValidations = (form, setErrors) => {
   const errors = {}
-  const { name, email, question } = faqFormErrorsValues
+  const { name, email, question } = FORM_ERROR_VALUES
 
   if (form.name === '') errors.name = null
   else {
@@ -19,7 +19,7 @@ export const faqFormValidations = (form, setErrors) => {
     if (form.email.trim().length < email.min) errors.email = `El email debe tener al menos ${email.min} caracteres`
     if (form.email.trim().length > email.max) errors.email = `El email debe tener menos de ${email.max} caracteres`
     if (!isValidEmailFormat(form.email)) errors.email = 'Formato de email incorrecto'
-    if (hasEmailSpecialCharacters(form.email)) errors.email = 'No puede tener caracteres especiales, solo @ y .'
+    if (hasEmailSpecialCharacters(form.email)) errors.email = 'No puede tener caracteres especiales, solo @ . _ -'
   }
 
   if (form.question === '') errors.question = null

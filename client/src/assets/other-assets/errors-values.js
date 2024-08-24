@@ -1,5 +1,9 @@
-export const faqFormErrorsValues = {
+export const FORM_ERROR_VALUES = {
   name: {
+    min: 3,
+    max: 50
+  },
+  surname: {
     min: 3,
     max: 50
   },
@@ -10,5 +14,13 @@ export const faqFormErrorsValues = {
   question: {
     min: 10,
     max: 600
+  },
+  password: {
+    min: 6,
+    max: 30
+  },
+  repeatPassword: {
+    min: 6,
+    max: 30
   }
 }

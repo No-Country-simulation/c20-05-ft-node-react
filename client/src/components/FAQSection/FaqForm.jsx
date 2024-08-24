@@ -1,13 +1,13 @@
 import { handleChange } from '../../utils/functions/handlerChangeFaqForm'
 import ErrorForms from '../ErrorsForms/ErrorForms'
-import { faqFormErrorsValues } from '../../assets/other-assets/errors-values'
+import { FORM_ERROR_VALUES } from '../../assets/other-assets/errors-values'
 import { useFaqForm } from '../../utils/hooks/useFaqForm'
 import { API_PATH_SEND_QUESTION } from '../../routes/routes'
 import { handlerSubmitForm } from '../../utils/functions/handlerSubmitForm'
 
 const FaqForm = () => {
   const { form, setForm, errors } = useFaqForm()
-  const { name, email, question } = faqFormErrorsValues
+  const { name, email, question } = FORM_ERROR_VALUES
 
   return (
     <div className="min-w-[400px] bg-gray-400 flex flex-col gap-4 p-4">
