@@ -3,7 +3,7 @@ import ReviewsHome from '../../components/SectionReviewsHome/ReviewsHome'
 
 const Home = () => {
   return (
-    <div className='text-blue-700 text-7xl bg-gray-600 text-center'>
+    <div className='h-max text-blue-700 text-7xl bg-gray-600 text-center'>
       {/* se montara la NavBar */}
       <header>
 
@@ -15,7 +15,7 @@ const Home = () => {
       </div>
 
       {/* se montara la seccion Reviews */}
-      <div>
+      <div className='min-h-max w-screen'>
         <ReviewsHome />
       </div>
 
