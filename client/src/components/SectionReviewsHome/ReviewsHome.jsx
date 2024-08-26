@@ -1,8 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import CardReviewHome from '../CardReviewHome/CardReviewHome';
-import { reviewsData } from '../../assets/other-assets/mockReviews';
+import { reviewsData } from '../../assets/other-assets/mockReviews';//Mock para mostrar Componente hasta tener diseño y datos
+import { loadReviews } from '../../utils/functions/validations/loadReviews';
 
 const ReviewsHome = () => {
+
+
+    const [dataReviews, setDataReviews] = useState([])
+    const [errorReviews, setErrorReviews] = useState(null)
+    useEffect(() => {
+        //Handler de llamada a la Api a la espera, con sus estados correspondientes para setear data o error para renderizado condicional
+        loadReviews(setDataReviews, setErrorReviews)
+    }, [])
+
+
+
+    //SIMULACION PARA DISEÑO, NADA FUNCIONAL
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
 
