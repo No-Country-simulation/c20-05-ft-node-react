@@ -4,6 +4,7 @@ import NotFound from '../views/NotFound/NotFound'
 import Faq from '../components/FAQSection/Faq'
 import Register from '../views/Register/Register'
 import Login from '../views/Login/Login'
+import ReduxTest from '../views/ReduxTest'
 const routerPathComponents = [
     {
         path: "/home",
@@ -20,6 +21,10 @@ const routerPathComponents = [
     {
         path: "/login",
         element: <Login />
+    },
+    {
+        path: "/redux",
+        element: <ReduxTest />
     },
     {
         path: "*",
