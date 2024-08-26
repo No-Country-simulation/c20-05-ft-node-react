@@ -1,9 +1,10 @@
 import React from 'react'
 import ReviewsHome from '../../components/SectionReviewsHome/ReviewsHome'
+import JoinUsSection from '../../components/JoinUsSection/JoinUsSection'
 
 const Home = () => {
   return (
-    <div className='h-max text-blue-700 text-7xl bg-gray-600 text-center'>
+    <div className='h-max  text-center overflow-hidden'>
       {/* se montara la NavBar */}
       <header>
 
@@ -26,7 +27,7 @@ const Home = () => {
 
       {/* se montara la seccion Unirse a la plataforma*/}
       <div>
-
+        <JoinUsSection/>  
       </div>
 
       {/* se montara Footer */}

@@ -37,7 +37,7 @@ const ReviewsHome = () => {
 
     return (
         <div className="h-screen flex flex-col md:flex-row">
-            <div className="flex-1 flex flex-col items-center justify-center p-6 bg-gray-100">
+            <div className="flex-1 flex flex-col items-center justify-center p-2 bg-gray-100">
                 <div className="relative flex flex-col items-center w-full h-full bg-white shadow-lg rounded-lg overflow-hidden">
                     <div className="flex-1 flex items-center justify-center p-8">
                         <div className="text-center max-w-xs md:max-w-lg">
@@ -56,7 +56,7 @@ const ReviewsHome = () => {
                 </div>
             </div>
 
-            <div className="flex-1 flex flex-col items-center justify-center p-6 bg-gray-100">
+            <div className="flex-1 flex flex-col items-center justify-center p-2 bg-gray-100">
                 <div className="relative flex flex-col items-center w-full h-full bg-white shadow-lg rounded-lg overflow-hidden">
                     <div className="relative flex items-center justify-center w-full h-full overflow-hidden">
                         {reviewsData.map((review, index) => (
