@@ -3,7 +3,9 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "src/app.js",
+	"type": "module",
 	"scripts": {
+		"start": "nodemon app.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
@@ -23,6 +25,7 @@
 		"mongoose-paginate-v2": "^1.8.3",
 		"multer": "^1.4.5-lts.1",
 		"nodemailer": "^6.9.14",
+		"nodemon": "^3.1.4",
 		"passport": "^0.7.0",
 		"socket.io": "^4.7.5",
 		"swagger-jsdoc": "^6.2.8",
