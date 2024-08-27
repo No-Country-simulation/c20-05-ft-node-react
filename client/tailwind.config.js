@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         "gray-light": "#D9D9D9",
+        "gray-darkCalendar": "#353535"
       },
     },
   },

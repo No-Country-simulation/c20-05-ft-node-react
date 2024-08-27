@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { INITIAL_SATATE_LOGIN_INPUTS } from '../../assets/other-assets/form-resources'
+import { INITIAL_SATATE_LOGIN_INPUTS } from '../../assets/other-assets/constants/form-resources'
 import { loginValidations } from '../functions/validations/loginValidations'
 
 export const useLoginForm = () => {
