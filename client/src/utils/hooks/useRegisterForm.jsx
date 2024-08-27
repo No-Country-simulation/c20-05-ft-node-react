@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { INITIAL_SATATE_REGISTER_INPUTS } from '../../assets/other-assets/form-resources'
+import { INITIAL_SATATE_REGISTER_INPUTS } from '../../assets/other-assets/constants/form-resources'
 import { registerValidations } from '../functions/validations/registerValidations'
 
 export const useRegisterForm = () => {
