@@ -1,57 +1,40 @@
-import React from 'react';
-import FaStar from '../../assets/svg/star.svg';
-
+import CheckVerified from '../CheckVerified/CheckVerified';
+import petsIcon from '../../assets/svg/pets.svg'
 const CardReviewHome = ({ review }) => {
-    const { caretakerName, caretakerPhoto, reviewDescription, rating, userName, userPhoto } = review;
-
-    // Función para renderizar estrellas con Tailwind CSS
-    const renderStars = (rating) => {
-        return [...Array(5)].map((_, index) => (
-            <img
-                key={index}
-                src={FaStar}
-                alt={`Star ${index + 1}`}
-                className={`w-4 h-4 ${index < rating ? 'text-yellow-500' : 'text-gray-300'}`}
-                style={{ filter: index < rating ? 'grayscale(0)' : 'grayscale(100%)' }}
-            />
-        ));
-    };
+    const { caretakerName, caretakerPhoto, reviewDescription, userName, userPhoto, petName } = review;
 
     return (
-        <div className="bg-white rounded-lg shadow-md p-4 flex flex-col sm: mb-4 max-w-sm mx-4 h-60">
-            {/* Foto del cuidador */}
-            <div className="flex-shrink-0 flex justify- items-center gap-2">
-                <img
-                    src={caretakerPhoto}
-                    alt={`Foto de ${caretakerName}`}
-                    className="object-cover rounded-full shadow-md"
-                    style={{ width: '100px', height: '100px' }} // Tamaño más pequeño
-                />
-                <h3 className="text-lg font-semibold text-gray-800">{caretakerName}</h3>
-            </div>
-
-            {/* Información de la reseña */}
-            <div className="sm:ml-4 flex-grow">
-                <p className="text-sm text-gray-600 mt-1">{reviewDescription}</p>
-
-                {/* Valoración y usuario */}
-                <div className="mt-2 flex items-center justify-between">
-                    <div className="flex items-center">
-                        {/* Valoración en estrellas */}
-                        <div className="flex">
-                            {renderStars(rating)}
-                        </div>
+        <div className="bg-white rounded-lg shadow-md p-2 flex flex-col w-80 h-52" >
+            <div className='flex gap-2 mt-4 '>
+                <div className='flex flex-col-reverse relative'>
+                    <div className='absolute bottom-0 right-2'>
+                        <CheckVerified />
                     </div>
-
-                    {/* Usuario que dejó la reseña */}
-                    <div className="flex items-center">
-                        <img
-                            src={userPhoto}
-                            alt={`Foto de ${userName}`}
-                            className="object-cover rounded-full border-2 border-gray-300 mr-1"
-                            style={{ width: '40px', height: '40px' }} // Imagen de usuario más pequeña
-                        />
-                        <span className="text-xs font-medium text-gray-700">{userName}</span>
+                    <img
+                        src={caretakerPhoto}
+                        alt={`Foto de ${caretakerName}`}
+                        className="rounded-full object-cover"
+                        style={{ width: '62px', height: '62px' }}
+                    />
+                </div>
+                <div className="flex flex-col items-start">
+                    <h3 className="text-sm font-semibold text-gray-900 leading-5">{caretakerName}</h3>
+                    <p className='text-sm text-gray-400'>Paseadora de perros</p>
+                </div>
+            </div>
+            <div className='mt-5 h-full flex flex-col justify-between'>
+                <p className="text-sm leading-4 text-left text-gray-900 line-clamp-3 ">{reviewDescription}</p>
+                <div className="flex justify-end items-center">
+                    <img
+                        src={userPhoto}
+                        alt={`Foto de ${userName}`}
+                        className="object-cover rounded-full mr-1"
+                        style={{ width: '34px', height: '34px' }}
+                    />
+                    <div className='flex text-xs font-light text-gray-700 gap-[2px]'>
+                        <p>{userName}</p>
+                        (<p>{petName}</p>
+                        <img className='w-3' src={petsIcon} alt="mascotas Iconos" />)
                     </div>
                 </div>
             </div>
