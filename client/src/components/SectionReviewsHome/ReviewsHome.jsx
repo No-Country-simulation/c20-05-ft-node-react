@@ -3,7 +3,7 @@ import CardReviewHome from '../CardReviewHome/CardReviewHome';
 import { loadReviews } from '../../utils/functions/validations/loadReviews';
 import { loadMoreReviews } from '../../utils/functions/shorMoreReviews';
 import { getMarginClasses } from '../../utils/functions/marginClasesByContainerReviews';
-import { reviewsData } from '../../assets/other-assets/mockReviews'; // Mock para mostrar Componente hasta tener diseño y datos
+import { reviewsData } from '../../assets/other-assets/mocks/mockReviews'; // Mock para mostrar Componente hasta tener diseño y datos
 
 const ReviewsHome = () => {
     const [dataReviews, setDataReviews] = useState([]);
