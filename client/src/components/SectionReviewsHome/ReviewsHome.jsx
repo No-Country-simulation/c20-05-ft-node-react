@@ -1,113 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import CardReviewHome from '../CardReviewHome/CardReviewHome';
-import { reviewsData } from '../../assets/other-assets/mockReviews';//Mock para mostrar Componente hasta tener diseño y datos
 import { loadReviews } from '../../utils/functions/validations/loadReviews';
+import { loadMoreReviews } from '../../utils/functions/shorMoreReviews';
+import { getMarginClasses } from '../../utils/functions/marginClasesByContainerReviews';
+import { reviewsData } from '../../assets/other-assets/mockReviews'; // Mock para mostrar Componente hasta tener diseño y datos
 
 const ReviewsHome = () => {
-
-
-    const [dataReviews, setDataReviews] = useState([])
-    const [errorReviews, setErrorReviews] = useState(null)
-    useEffect(() => {
-        //Handler de llamada a la Api a la espera, con sus estados correspondientes para setear data o error para renderizado condicional
-        loadReviews(setDataReviews, setErrorReviews)
-    }, [])
-
-
-
-    //SIMULACION PARA DISEÑO, NADA FUNCIONAL
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isPaused, setIsPaused] = useState(false);
-
-
-    const handleNext = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % reviewsData.length);
-    };
-
-    const handlePrev = () => {
-        setCurrentIndex((prevIndex) => (prevIndex - 1 + reviewsData.length) % reviewsData.length);
-    };
+    const [dataReviews, setDataReviews] = useState([]);
+    const [errorReviews, setErrorReviews] = useState(null);
+    const [startIndex, setStartIndex] = useState(0);
 
     useEffect(() => {
-        if (!isPaused) {
-            const interval = setInterval(handleNext, 3000);
-            return () => clearInterval(interval);
-        }
-    }, [isPaused]);
+        // Handler de llamada a la API para obtener reseñas
+        loadReviews(setDataReviews, setErrorReviews);
+    }, []);
+
+    const reviewsToShow = reviewsData.slice(startIndex, startIndex + 6);
 
     return (
-        <div className="h-screen flex flex-col md:flex-row">
-            <div className="flex-1 flex flex-col items-center justify-center p-2 bg-gray-100">
-                <div className="relative flex flex-col items-center w-full h-full bg-white shadow-lg rounded-lg overflow-hidden">
-                    <div className="flex-1 flex items-center justify-center p-8">
-                        <div className="text-center max-w-xs md:max-w-lg">
-                            <h1 className="text-2xl font-bold mb-4 md:text-2xl">¡La combinación perfecta para tu peludo amigo! 🐾</h1>
-                            <p className="text-lg  leading-relaxed">
-                                Muchos dueños de mascotas han confiado en nosotros para encontrar al cuidador ideal para sus perritos.
-                                <br />
-                                <br />
-                                5 estrellas para nuestros cuidadores, puedes estar seguro de que tu compañero está en las mejores manos.
-                                <br />
-                                <br />
-                                ¡Descubre por qué somos la opción preferida para el cuidado de tu mascota!
-                            </p>
+        <div className="h-max p-2 pb-8 sm:h-screen sm:py-16 sm:px-16 relative" id='reviews'>
+            <div className='bg-gray-light h-full rounded-2xl flex flex-wrap justify-center items-center gap-8 p-4 mx-4 sm:mx-0 lg:p-0 overflow-hidden overflow-y-scroll sm:cursor-pointer md:cursor-auto scrollbar-hide'>
+                {reviewsToShow.map((review, index) => {
+                    const marginClasses = getMarginClasses(index);
+                    return (
+                        <div className={`flex-shrink-0 ${marginClasses}`} key={index}>
+                            <CardReviewHome review={review} />
                         </div>
-                    </div>
-                </div>
+                    );
+                })}
             </div>
-
-            <div className="flex-1 flex flex-col items-center justify-center p-2 bg-gray-100">
-                <div className="relative flex flex-col items-center w-full h-full bg-white shadow-lg rounded-lg overflow-hidden">
-                    <div className="relative flex items-center justify-center w-full h-full overflow-hidden">
-                        {reviewsData.map((review, index) => (
-                            <div
-                                key={index}
-                                className={`absolute transition-transform duration-1000 ease-in-out ${index === currentIndex ? 'opacity-100 z-20 scale-100' : 'opacity-60 z-10 scale-90'
-                                    }`}
-                                style={{
-                                    transform: `translateX(${(index - currentIndex) * 100}%)`,
-                                }}
-                            >
-                                <CardReviewHome review={review} />
-                            </div>
-                        ))}
-                    </div>
-                    <div className="absolute bottom-16 flex space-x-2">
-                        {reviewsData.map((_, index) => (
-                            <span
-                                key={index}
-                                className={`w-2 h-2 rounded-full ${index === currentIndex ? 'bg-blue-500' : 'bg-gray-300'}`}
-                                aria-label={`Review ${index + 1} ${index === currentIndex ? 'current' : ''}`}
-                            />
-                        ))}
-                    </div>
-
-                    <div className="absolute bottom-4 flex space-x-4">
-                        <button
-                            className="text-lg bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full shadow-md"
-                            onClick={() => {
-                                setIsPaused(true);
-                                handlePrev();
-                            }}
-                            onMouseLeave={() => setIsPaused(false)}
-                            aria-label="Previous review"
-                        >
-                            Anterior
-                        </button>
-                        <button
-                            className="text-lg bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full shadow-md"
-                            onClick={() => {
-                                setIsPaused(true);
-                                handleNext();
-                            }}
-                            onMouseLeave={() => setIsPaused(false)}
-                            aria-label="Next review"
-                        >
-                            Siguiente
-                        </button>
-                    </div>
+            {reviewsData.length > startIndex + 6 && (
+                <div className="flex justify-center absolute bottom-1 right-1">
+                    <button
+                        onClick={() => loadMoreReviews(setStartIndex)}
+                        className="p-2 text-xs font-semibold hover:scale-105 transition-transform duration-300 ease-in-out"
+                    >
+                        <a href="#reviews">
+                            Cargar más reseñas {'>>'}
+                        </a>
+                    </button>
                 </div>
-            </div>
+            )}
         </div>
     );
 };

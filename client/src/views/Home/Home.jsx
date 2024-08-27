@@ -4,7 +4,7 @@ import JoinUsSection from '../../components/JoinUsSection/JoinUsSection'
 
 const Home = () => {
   return (
-    <div className='h-max  text-center overflow-hidden'>
+    <div className='h-max  text-center'>
       {/* se montara la NavBar */}
       <header>
 
@@ -16,7 +16,7 @@ const Home = () => {
       </div>
 
       {/* se montara la seccion Reviews */}
-      <div className='min-h-max w-screen'>
+      <div className='min-h-max '>
         <ReviewsHome />
       </div>
 
