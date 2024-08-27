@@ -5,6 +5,8 @@ import Faq from '../components/FAQSection/Faq'
 import Register from '../views/Register/Register'
 import Login from '../views/Login/Login'
 import ReduxTest from '../views/ReduxTest'
+import ApiHandler from '../views/ApiHandler'
+
 const routerPathComponents = [
     {
         path: "/home",
@@ -25,6 +27,10 @@ const routerPathComponents = [
     {
         path: "/redux",
         element: <ReduxTest />
+    },
+    {
+        path: "/apiHandler",
+        element: <ApiHandler />
     },
     {
         path: "*",
