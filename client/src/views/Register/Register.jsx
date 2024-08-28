@@ -1,11 +1,16 @@
 import RegisterForm from "../../components/register-login/register/RegisterForm"
-import RegisterLoginWelcome from "../../components/register-login/RegisterLoginWelcome"
+import RegisterLoginFooter from "../../components/register-login/RegisterLoginFooter"
+import RegisterLoginHeader from "../../components/register-login/RegisterLoginHeader"
+
 const Register = () => {
   return (
     <main className="flex flex-col gap-4">
-      <div className="flex max-md:flex-col gap-4">
-        <RegisterLoginWelcome section='register' />
-        <RegisterForm />
+      <div className="flex flex-col gap-8">
+        <RegisterLoginHeader section='register' />
+        <div className="max-w-[800px] w-full mx-auto px-6">
+          <RegisterForm />
+          <RegisterLoginFooter section='register' />
+        </div>
       </div>
     </main>
   )
