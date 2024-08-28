@@ -4,13 +4,14 @@ import { handlerRegisterLoginForm } from '../../../utils/functions/handlerRegist
 import { useLoginForm } from '../../../utils/hooks/useLoginForm'
 import { handlerSubmitForm } from '../../../utils/functions/handlerSubmitForm'
 import { API_PATH_LOGIN } from '../../../routes/routes'
+import ButtonSubmit from '../../Global/ButtonSubmit'
 
 const LoginForm = () => {
   const { form, setForm, errors } = useLoginForm()
   const { email, password } = FORM_ERROR_VALUES
 
   return (
-    <form onSubmit={(e) => handlerSubmitForm(e, form, API_PATH_LOGIN, errors)} className="flex flex-col gap-4 flex-1 px-4 [&>input]:border-2 [&>input]:border-gray-300 [&>input]:rounded-md [&>input]:p-2">
+    <form onSubmit={(e) => handlerSubmitForm(e, form, API_PATH_LOGIN, errors)} className="flex flex-col gap-2 [&>label]:mt-2 [&>label]:font-medium [&>input]:p-2 [&>input]:border-2 [&>input]:border-gray-300 [&>input]:rounded-lg">
       <label htmlFor="email-login">Correo electrónico</label>
       <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='email-login' name='email' autoComplete='username' type="email" placeholder="Ej: marialopez@gmail.com" minLength={email.min} maxLength={email.max} value={form.email} />
       {
@@ -23,9 +24,9 @@ const LoginForm = () => {
       }
       <label htmlFor="checkbox-login" className='flex gap-2 items-center'>
         <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} type="checkbox" name="remember" id="checkbox-login" className='[&+span]:checked:font-semibold' />
-        <span>Recuérdame</span>
+        <span className='font-normal'>Recuérdame</span>
       </label>
-      <button type="submit" className="bg-blue-500 text-white rounded-lg py-2 disabled:opacity-30" disabled={errors && Object.keys(errors).length !== 0}>Iniciar sesión</button>
+      <ButtonSubmit disabled={errors && Object.keys(errors).length !== 0}>Iniciar sesión</ButtonSubmit>
     </form>
   )
 }

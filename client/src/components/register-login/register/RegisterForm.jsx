@@ -4,19 +4,20 @@ import { handlerRegisterLoginForm } from '../../../utils/functions/handlerRegist
 import { useRegisterForm } from '../../../utils/hooks/useRegisterForm'
 import { handlerSubmitForm } from '../../../utils/functions/handlerSubmitForm'
 import { API_PATH_REGISTER } from '../../../routes/routes'
+import ButtonSubmit from '../../Global/ButtonSubmit'
 
 const RegisterForm = () => {
   const { form, setForm, errors } = useRegisterForm()
   const { name, surname, email, password, repeatPassword } = FORM_ERROR_VALUES
 
   return (
-    <form onSubmit={(e) => handlerSubmitForm(e, form, API_PATH_REGISTER, errors)} className="flex flex-col gap-4 flex-1 px-4 [&>input]:border-2 [&>input]:border-gray-300 [&>input]:rounded-md [&>input]:p-2">
-      <div className="flex items-center gap-4 [&>div>input]:border-2 [&>div>input]:border-gray-300 [&>div>input]:rounded-md [&>div>input]:p-2">
-        <div className="flex flex-col flex-1 gap-4">
+    <form onSubmit={(e) => handlerSubmitForm(e, form, API_PATH_REGISTER, errors)} className="flex flex-col gap-2 [&>label]:mt-2 [&>label]:font-medium [&>input]:p-2 [&>input]:border-2 [&>input]:border-gray-300 [&>input]:rounded-lg">
+      <div className="flex max-sm:flex-col w-full items-center gap-4 [&>div>label]:mt-2 [&>div>label]:font-medium [&>div>input]:p-2 [&>div>input]:border-2 [&>div>input]:border-gray-300 [&>div>input]:rounded-lg">
+        <div className="flex flex-col w-full gap-2">
           <label htmlFor="name-register">Nombre</label>
           <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='name-register' name='name' type="text" placeholder="Ej: María" minLength={name.min} maxLength={name.max} value={form.name} />
         </div>
-        <div className="flex flex-col flex-1 gap-4">
+        <div className="flex flex-col w-full gap-2">
           <label htmlFor="surname-register">Apellido</label>
           <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='surname-register' name='surname' type="text" placeholder="Ej: López" minLength={surname.min} maxLength={surname.max} value={form.surname} />
         </div>
@@ -42,7 +43,7 @@ const RegisterForm = () => {
       {
         errors && (<ErrorForms msgError={errors.repeatPassword} />)
       }
-      <button type="submit" className="bg-blue-500 text-white rounded-lg py-2 disabled:opacity-30" disabled={errors && Object.keys(errors).length !== 0}>Registrarse</button>
+      <ButtonSubmit disabled={errors && Object.keys(errors).length !== 0}>Registrarse</ButtonSubmit>
     </form>
   )
 }
