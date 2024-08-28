@@ -6,6 +6,7 @@ import Login from '../views/Login/Login'
 import ReduxTest from '../views/ReduxTest'
 import ApiHandler from '../views/ApiHandler'
 import CalendarComponent from '../components/Calendar/Calendar'
+import Map from '../views/Home/Map/Map'
 
 const routerPathComponents = [
     {
@@ -35,6 +36,10 @@ const routerPathComponents = [
     {
         path: "/apiHandler",
         element: <ApiHandler />
+    },
+    {
+        path: "/map",
+        element: <Map />
     },
     {
         path: "*",
