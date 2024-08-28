@@ -3,7 +3,7 @@ import FaqAccordion from "./FaqAccordion";
 
 const FaqContainerAccordion = () => {
   return (
-    <div className="flex-1">
+    <div className="flex flex-col gap-2 flex-1">
       {FAQ.map((faq, index) => (
         <FaqAccordion key={index} id={index} icon={faq.icon} question={faq.question} answer={faq.answer} />
       ))}
