@@ -5,7 +5,7 @@ import CaretakerOrPetContainer from '../../components/CaretakerOrPetContainer/Ca
 
 const Home = () => {
   return (
-    <div className='h-max'>
+    <div className='h-max px-4 md:px-20'>
       {/* se montara la NavBar */}
       <header>
 
