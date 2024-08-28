@@ -1,10 +1,11 @@
 import React from 'react'
 import ReviewsHome from '../../components/SectionReviewsHome/ReviewsHome'
 import JoinUsSection from '../../components/JoinUsSection/JoinUsSection'
+import CaretakerOrPetContainer from '../../components/CaretakerOrPetContainer/CaretakerOrPetContainer'
 
 const Home = () => {
   return (
-    <div className='h-max  text-center'>
+    <div className='h-max'>
       {/* se montara la NavBar */}
       <header>
 
@@ -12,6 +13,7 @@ const Home = () => {
 
       {/* se montara la seccion Hero*/}
       <div>
+        <CaretakerOrPetContainer />
 
       </div>
 
@@ -27,7 +29,7 @@ const Home = () => {
 
       {/* se montara la seccion Unirse a la plataforma*/}
       <div>
-        <JoinUsSection/>  
+        <JoinUsSection />
       </div>
 
       {/* se montara Footer */}
