@@ -2,13 +2,15 @@ import React from 'react'
 import ReviewsHome from '../../components/SectionReviewsHome/ReviewsHome'
 import JoinUsSection from '../../components/JoinUsSection/JoinUsSection'
 import CaretakerOrPetContainer from '../../components/CaretakerOrPetContainer/CaretakerOrPetContainer'
-
+import NavBar from '../../components/NavBar/NavBar'
+import Footer from '../../components/Footer/Footer'
+import Faq from '../../components/FAQSection/Faq'
 const Home = () => {
   return (
-    <div className='h-max px-4 md:px-20'>
+    <div className='h-max flex flex-col gap-4 px-4 md:px-20'>
       {/* se montara la NavBar */}
-      <header>
-
+      <header className='-mx-4 md:-mx-20' >
+        <NavBar />
       </header>
 
       {/* se montara la seccion Hero*/}
@@ -24,6 +26,7 @@ const Home = () => {
 
       {/* se montara la seccion FAQ */}
       <div>
+        <Faq />
 
       </div>
 
@@ -33,8 +36,8 @@ const Home = () => {
       </div>
 
       {/* se montara Footer */}
-      <footer>
-
+      <footer className='-mx-4 md:-mx-20'>
+        <Footer />
       </footer>
     </div>
   )

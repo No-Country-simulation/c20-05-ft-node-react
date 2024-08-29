@@ -14,7 +14,7 @@ const SlideBar = () =>{
     return(
         <>
         <div className="flex items-center">
-            <button id="btn-perfil" className="border-none bg-transparent" onClick={handleToggleProfileMenu}>
+            <button id="btn-perfil" className="border-none bg-cyan-600  rounded-full" onClick={handleToggleProfileMenu}>
               <img
                 className="size-7"
                 src={icon1NavBar}
