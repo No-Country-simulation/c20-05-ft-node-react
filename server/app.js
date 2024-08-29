@@ -2,6 +2,7 @@ import express from "express";
 import MongoSingleton from "./src/config/mongoDB.js";
 import { entorno } from "./src/config/config.js";
 import { Server } from "socket.io";
+import routerApp from './src/routes/index.js'; // Importa las rutas desde index.js
 
 const PORT = entorno.port;
 const app = express();
