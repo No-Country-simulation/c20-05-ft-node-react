@@ -6,7 +6,10 @@ import Login from '../views/Login/Login'
 import ReduxTest from '../views/ReduxTest'
 import ApiHandler from '../views/ApiHandler'
 import CalendarComponent from '../components/Calendar/Calendar'
-import Map from '../views/Home/Map/Map'
+
+import NavBar from '../components/NavBar/navbar'
+import Footer from '../components/Footer/Footer'
+import PinValidationEmail from '../components/PinValidationEmail/PinValidationEmail'
 
 const routerPathComponents = [
     {
@@ -38,13 +41,21 @@ const routerPathComponents = [
         element: <ApiHandler />
     },
     {
-        path: "/map",
-        element: <Map />
+        path: "/navbar",
+        element: <NavBar />
+    },
+    {
+        path:"/pinValidationEmail",
+        element:<PinValidationEmail/>
+    },
+    {
+        path:"/footer",
+        element:<Footer/>
     },
     {
         path: "*",
         element: <NotFound />
-    }
+    },
 ]
 
-export default routerPathComponents
+export default routerPathComponents;
