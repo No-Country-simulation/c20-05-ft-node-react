@@ -4,7 +4,7 @@ import { mockCaretakers } from '../../assets/other-assets/mocks/mockCaretakerHom
 
 const CaretakerOrPetContainer = () => {
     return (
-        <div className='h-max flex gap-8 flex-wrap items-center justify-center px-6 py-4 sm:px-24 sm:py-8'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 py-4 sm:py-8 justify-items-center items-center'>
             {mockCaretakers.map((caretaker, index) => (
                 <CardCaretakerHome
                     key={index}

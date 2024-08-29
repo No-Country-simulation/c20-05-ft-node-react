@@ -6,13 +6,12 @@ import cors from "cors";
 import routerApp from "./src/routes/userRouter.js";
 const PORT = entorno.port;
 const app = express();
-// cors
-app.use(cors({ origin: "*" }));
 
 app.use(express.json())
 app.use(routerApp)
+app.use(cors({ origin: "*" }));
 
 const server = app.listen(PORT, () => {
-	console.log(`Servidor en ejecución en http://localhost:${PORT}`);
+  console.log(`Servidor en ejecución en http://localhost:${PORT}`);
 });
 MongoSingleton.getInstance();

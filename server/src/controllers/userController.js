@@ -5,22 +5,27 @@ import { createHash, generateToken, isValidPassword } from '../utils/utils.js'
 // @route   POST /api/v1/createuser
 // @access  Public
 export const createUser = async (req, res) => {
+
 	const email = req.body.email
 	const password = req.body.password
 	const user = await UserModel.findOne({ email })
-	if (user) {
+	try {
+		if (user) {
+			res.status(400)
+			.json({message: "usuario existente"})
+		}
+		const hashedPassword = createHash(password)
+		req.body.password = hashedPassword
+		const userCreated = await UserModel.create(req.body)
+		if (userCreated) {
+			res.status(201).json(userCreated)
+		}
+	} catch (error) {
 		res.status(400)
-		throw new Error('User already exists')
+		.json({message: "'Invalid user data'"})
+		console.log(error)
 	}
-	const hashedPassword = createHash(password)
-	req.body.password = hashedPassword
-	const userCreated = await UserModel.create(req.body)
-	if (userCreated) {
-		res.status(201).json(userCreated)
-	} else {
-		res.status(400)
-		throw new Error('Invalid user data')
-	}
+	
 }
 
 // @desc    Auth user & get token
