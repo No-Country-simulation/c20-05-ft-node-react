@@ -1,7 +1,29 @@
 import ownerWhitDog from '../../assets/images/owner-whit-dog.webp';
 import dogsWalking from '../../assets/images/dogs-walking.webp';
+import { useEffect } from 'react';
+import { reviewsHome } from '../../utils/api/bestReviewsHome';
+import axios from 'axios';
 
 const JoinUsSection = () => {
+    useEffect(() => {
+        const response = axios.post("http://localhost:8080/api/v1/createuser",
+            {
+                first_name: "paolo1suarezch",
+                last_name: "suarez1chavez",
+                email: "paosuachsaaf@gmail.com",
+                address: "calle falsa 246",
+                phone: 12345678,
+                city: "cordoba",
+                zipCode: 4564,
+                role: "owner",
+                password: "suapao234",
+            })
+        response.then(res=> {
+            console.log(res)
+        })
+
+        console.log(response)
+    }, [])
     return (
         <div className='h-max flex flex-col gap-4 justify-center items-center sm:h-screen 
         [&_div]:rounded-lg [&_div]:h-full [&_div]:gap-8 [&_div]:bg-white [&_img]:h-96 [&_img]:rounded-md [&_div]:justify-center  [&_section]:flex [&_section]:items-center [&_section]:flex-col [&_section]:gap-5 [&_button]:sn:w-1/3 overflow-hidden p-2'>
