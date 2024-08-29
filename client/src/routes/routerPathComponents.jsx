@@ -10,6 +10,7 @@ import CalendarComponent from '../components/Calendar/Calendar'
 import NavBar from '../components/NavBar/navbar'
 import Footer from '../components/Footer/Footer'
 import PinValidationEmail from '../components/PinValidationEmail/PinValidationEmail'
+import ProfileCreatedSuccessfully from '../components/ProfileCreatedSuccessfully/ProfileCreatedSuccessfully'
 
 const routerPathComponents = [
     {
@@ -52,6 +53,11 @@ const routerPathComponents = [
         path:"/footer",
         element:<Footer/>
     },
+    {
+        path:"/perfilcreadoconexito",
+        element:<ProfileCreatedSuccessfully/>
+    },
+
     {
         path: "*",
         element: <NotFound />
