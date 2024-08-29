@@ -13,8 +13,8 @@ const RegisterForm = () => {
   return (
     <form onSubmit={(e) => handlerSubmitForm(e, form, API_PATH_REGISTER, errors)} className="flex flex-col gap-8">
       <div className="flex flex-col w-full gap-4">
-        <h2 className='font-medium text-lg'>Nombre y Apellido</h2>
-        <div className='flex max-md:flex-col gap-4 w-full [&>div>label]:mt-2 [&>div>label]:font-medium [&>div>input]:p-2 [&>div>input]:border-[1px] [&>div>input]:border-gray-300 [&>div>label]:hidden [&>div>input]:rounded-lg'>
+        <h2 className='font-medium text-lg'>Nombre y apellido</h2>
+        <div className='flex max-md:flex-col gap-4 w-full [&>div>label]:mt-2 [&>div>label]:font-medium [&>div>input]:p-2 [&>div>input]:border-[1px] [&>div>input]:border-gray-light [&>div>label]:hidden [&>div>input]:rounded-lg'>
           <div className="flex flex-col w-full gap-2">
             <label htmlFor="name-register">Nombre</label>
             <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='name-register' name='name' type="text" placeholder="Nombre" minLength={name.min} maxLength={name.max} value={form.name} />
