@@ -9,4 +9,5 @@ const app = express();
 const server = app.listen(PORT, () => {
 	console.log(`Servidor en ejecución en http://localhost:${PORT}`);
 });
+
 MongoSingleton.getInstance();
