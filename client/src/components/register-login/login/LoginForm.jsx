@@ -11,9 +11,10 @@ const LoginForm = () => {
   const { email, password } = FORM_ERROR_VALUES
 
   return (
-    <form onSubmit={(e) => handlerSubmitForm(e, form, API_PATH_LOGIN, errors)} className="flex flex-col gap-2 [&>label]:mt-2 [&>label]:font-medium [&>input]:p-2 [&>input]:border-2 [&>input]:border-gray-300 [&>input]:rounded-lg">
+    <form onSubmit={(e) => handlerSubmitForm(e, form, API_PATH_LOGIN, errors)} className="flex flex-col gap-4 [&>label]:hidden [&>input]:p-2 [&>input]:border-2 [&>input]:border-gray-300 [&>input]:rounded-lg">
+      <h2 className='font-medium text-lg'>Correo y contraseña</h2>
       <label htmlFor="email-login">Correo electrónico</label>
-      <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='email-login' name='email' autoComplete='username' type="email" placeholder="Ej: marialopez@gmail.com" minLength={email.min} maxLength={email.max} value={form.email} />
+      <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='email-login' name='email' autoComplete='username' type="email" placeholder="Correo electrónico" minLength={email.min} maxLength={email.max} value={form.email} />
       {
         errors && (<ErrorForms msgError={errors.email} />)
       }

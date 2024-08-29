@@ -11,39 +11,46 @@ const RegisterForm = () => {
   const { name, surname, email, password, repeatPassword } = FORM_ERROR_VALUES
 
   return (
-    <form onSubmit={(e) => handlerSubmitForm(e, form, API_PATH_REGISTER, errors)} className="flex flex-col gap-2 [&>label]:mt-2 [&>label]:font-medium [&>input]:p-2 [&>input]:border-2 [&>input]:border-gray-300 [&>input]:rounded-lg">
-      <div className="flex max-sm:flex-col w-full items-center gap-4 [&>div>label]:mt-2 [&>div>label]:font-medium [&>div>input]:p-2 [&>div>input]:border-2 [&>div>input]:border-gray-300 [&>div>input]:rounded-lg">
-        <div className="flex flex-col w-full gap-2">
-          <label htmlFor="name-register">Nombre</label>
-          <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='name-register' name='name' type="text" placeholder="Ej: María" minLength={name.min} maxLength={name.max} value={form.name} />
+    <form onSubmit={(e) => handlerSubmitForm(e, form, API_PATH_REGISTER, errors)} className="flex flex-col gap-8">
+      <div className="flex flex-col w-full gap-4">
+        <h2 className='font-medium text-lg'>Nombre y apellido</h2>
+        <div className='flex max-md:flex-col gap-4 w-full [&>div>label]:mt-2 [&>div>label]:font-medium [&>div>input]:p-2 [&>div>input]:border-[1px] [&>div>input]:border-gray-light [&>div>label]:hidden [&>div>input]:rounded-lg'>
+          <div className="flex flex-col w-full gap-2">
+            <label htmlFor="name-register">Nombre</label>
+            <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='name-register' name='name' type="text" placeholder="Nombre" minLength={name.min} maxLength={name.max} value={form.name} />
+            {
+              errors && (<ErrorForms msgError={errors.name} />)
+            }
+          </div>
+          <div className="flex flex-col w-full gap-2">
+            <label htmlFor="surname-register">Apellido</label>
+            <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='surname-register' name='surname' type="text" placeholder="Apellido" minLength={surname.min} maxLength={surname.max} value={form.surname} />
+            {
+              errors && (<ErrorForms msgError={errors.surname} />)
+            }
+          </div>
         </div>
-        <div className="flex flex-col w-full gap-2">
-          <label htmlFor="surname-register">Apellido</label>
-          <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='surname-register' name='surname' type="text" placeholder="Ej: López" minLength={surname.min} maxLength={surname.max} value={form.surname} />
-        </div>
+        <p className='text-sm text-secondary-text'>Asegúrate que tu nombre coincida con el que figura en tu DNI. (Luego podrás elegir tu nombre preferido).</p>
       </div>
-      {
-        errors && (<ErrorForms msgError={errors.name} />)
-      }
-      {
-        errors && (<ErrorForms msgError={errors.surname} />)
-      }
-      <label htmlFor="email-register">Correo electrónico</label>
-      <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='email-register' name='email' autoComplete='username' type="email" placeholder="Ej: marialopez@gmail.com" minLength={email.min} maxLength={email.max} value={form.email} />
-      {
-        errors && (<ErrorForms msgError={errors.email} />)
-      }
-      <label htmlFor="password-register">Contraseña</label>
-      <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='password-register' name='password' autoComplete="new-password" type="password" placeholder="Contraseña" minLength={password.min} maxLength={password.max} value={form.password} />
-      {
-        errors && (<ErrorForms msgError={errors.password} />)
-      }
-      <label htmlFor="repeat-password-register">Confirmar contraseña</label>
-      <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='repeat-password-register' name='repeatPassword' autoComplete="new-password" type="password" placeholder="Confirmar contraseña" minLength={repeatPassword.min} maxLength={repeatPassword.max} value={form.repeatPassword} />
-      {
-        errors && (<ErrorForms msgError={errors.repeatPassword} />)
-      }
-      <ButtonSubmit disabled={errors && Object.keys(errors).length !== 0}>Registrarse</ButtonSubmit>
+      <div className='flex flex-col gap-4 [&>label]:hidden [&>input]:p-2 [&>input]:border-[1px] [&>input]:border-gray-300 [&>input]:rounded-lg'>
+        <h2 className='font-medium text-lg'>Correo y contraseña</h2>
+        <label htmlFor="email-register">Correo electrónico</label>
+        <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='email-register' name='email' autoComplete='username' type="email" placeholder="Correo electrónico" minLength={email.min} maxLength={email.max} value={form.email} />
+        {
+          errors && (<ErrorForms msgError={errors.email} />)
+        }
+        <label htmlFor="password-register">Contraseña</label>
+        <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='password-register' name='password' autoComplete="new-password" type="password" placeholder="Contraseña" minLength={password.min} maxLength={password.max} value={form.password} />
+        {
+          errors && (<ErrorForms msgError={errors.password} />)
+        }
+        <label htmlFor="repeat-password-register">Confirmar contraseña</label>
+        <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='repeat-password-register' name='repeatPassword' autoComplete="new-password" type="password" placeholder="Confirmar contraseña" minLength={repeatPassword.min} maxLength={repeatPassword.max} value={form.repeatPassword} />
+        {
+          errors && (<ErrorForms msgError={errors.repeatPassword} />)
+        }
+      </div>
+      <ButtonSubmit disabled={errors && Object.keys(errors).length !== 0}>Continuar</ButtonSubmit>
     </form>
   )
 }

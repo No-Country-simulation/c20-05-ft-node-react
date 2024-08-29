@@ -1,4 +1,4 @@
-export const ERROR_STATUS_CODE_DEFAULT = 500
+export const ERROR_STATUS_CODE_DEFAULT = 400;
 
 export const API_REQUEST_MSGS = {
   reviews: {
@@ -18,12 +18,14 @@ export const API_REQUEST_MSGS = {
         message: "La reseña no ha sido creada, por favor intenta nuevamente",
       },
       404: {
-        message: "La reseña no ha sido encontrada, por favor intenta nuevamente",
+        message:
+          "La reseña no ha sido encontrada, por favor intenta nuevamente",
       },
       500: {
-        message: "Problema con el servidor, en un momento resolveremos los inconvenientes",
+        message:
+          "Problema con el servidor, en un momento resolveremos los inconvenientes",
       },
-    }
+    },
   },
   test: {
     successStatus: {
@@ -36,17 +38,23 @@ export const API_REQUEST_MSGS = {
       204: {
         message: "La reseña ha sido eliminada correctamente",
       },
+      400: {
+        message:
+          "Problema con el servidor, en un momento resolveremos los inconvenientes",
+      },
     },
     errorStatus: {
       400: {
         message: "La reseña no ha sido creada, por favor intenta nuevamente",
       },
       404: {
-        message: "La reseña no ha sido encontrada, por favor intenta nuevamente",
+        message:
+          "La reseña no ha sido encontrada, por favor intenta nuevamente",
       },
       500: {
-        message: "Problema con el servidor, en un momento resolveremos los inconvenientes",
+        message:
+          "Problema con el servidor, en un momento resolveremos los inconvenientes",
       },
-    }
-  }
-}
+    },
+  },
+};

@@ -1,15 +1,37 @@
 import ownerWhitDog from '../../assets/images/owner-whit-dog.webp';
 import dogsWalking from '../../assets/images/dogs-walking.webp';
+import { useEffect } from 'react';
+import { reviewsHome } from '../../utils/api/bestReviewsHome';
+import axios from 'axios';
 
 const JoinUsSection = () => {
+    useEffect(() => {
+        const response = axios.post("http://localhost:8080/api/v1/createuser",
+            {
+                first_name: "paolo1suarezch",
+                last_name: "suarez1chavez",
+                email: "paosuachsaaf@gmail.com",
+                address: "calle falsa 246",
+                phone: 12345678,
+                city: "cordoba",
+                zipCode: 4564,
+                role: "owner",
+                password: "suapao234",
+            })
+        response.then(res=> {
+            console.log(res)
+        })
+
+        console.log(response)
+    }, [])
     return (
-        <div className='h-max gap-8 flex flex-col pb-6 text-violet-900 justify-center items-center  md:h-screen md:gap-0
+        <div className='h-max gap-8 flex flex-col pb-6 text-cyan-900 justify-center items-center  md:h-screen md:gap-0
         [&_div]:rounded-lg [&_div]:h-full [&_div]:gap-8 [&_div]:bg-white [&_img]:h-96 [&_img]:rounded-3xl [&_div]:justify-center md:[&_section]:w-1/2  [&_section]:flex [&_section]:items-center [&_section]:flex-col [&_section]:gap-5 [&_button]:sn:w-1/3 overflow-hidden p-2'>
             <div className="flex flex-col items-center md:px-5 md:flex-row-reverse ">
                 <section >
                     <div className='w-full md:size-3/4 flex flex-col'>
                         <button className='w-max' onClick={() => { }}>
-                            <h3 className="text-sm font-bold bg-violet-100 text-violet-950 py-2 px-4 rounded-full text-center transition duration-300 hover:bg-violet-200 cursor-pointer">
+                            <h3 className="text-sm font-bold bg-cyan-100 text-cyan-950 py-2 px-4 rounded-full text-center transition duration-300 hover:bg-cyan-200 cursor-pointer">
                                 Únete como Dueño
                             </h3>
                         </button>
@@ -23,7 +45,7 @@ const JoinUsSection = () => {
                             para tu mascota, asegurando la mayor tranquilidad y confianza.
                         </p>
                         <button>
-                            <p className='text-justify text-sm text-violet-500 font-extrabold' >Únete a nuestra comunidad y deja a tu mascota en buenas manos.</p>
+                            <p className='text-justify text-sm text-cyan-500 font-extrabold' >Únete a nuestra comunidad y deja a tu mascota en buenas manos.</p>
                         </button>
                     </div>
                 </section>
@@ -35,7 +57,7 @@ const JoinUsSection = () => {
                 <section>
                     <div className='w-full md:size-3/4 flex flex-col'>
                         <button className='w-max' onClick={() => { }}>
-                            <h3 className="text-sm font-bold bg-violet-100 text-violet-950 py-2 px-4 rounded-full text-center transition duration-300 hover:bg-violet-200 cursor-pointer">
+                            <h3 className="text-sm font-bold bg-cyan-100 text-cyan-950 py-2 px-4 rounded-full text-center transition duration-300 hover:bg-cyan-200 cursor-pointer">
                                 Únete como Paseador
                             </h3>
                         </button>
@@ -47,7 +69,7 @@ const JoinUsSection = () => {
                             administrar tus horarios y ampliar tu clientela fácilmente.
                         </p>
                         <button>
-                            <p className='text-justify text-sm text-violet-500 font-extrabold' >¡Haz lo que amas
+                            <p className='text-justify text-sm text-cyan-500 font-extrabold' >¡Haz lo que amas
                                 mientras generas ingresos!</p>
                         </button>
                     </div>
