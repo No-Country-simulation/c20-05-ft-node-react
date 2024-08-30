@@ -8,34 +8,24 @@ import Faq from '../../components/FAQSection/Faq'
 const Home = () => {
   return (
     <div className='h-max flex flex-col gap-4 px-4 md:px-20'>
-      {/* se montara la NavBar */}
       <header className='-mx-4 md:-mx-20' >
         <NavBar />
       </header>
 
-      {/* se montara la seccion Hero*/}
-      <div>
-        <CaretakerOrPetContainer />
-
+      <div className='max-w-[1200px] mx-auto'>
+        <div >
+          <CaretakerOrPetContainer />
+        </div>
+        <div className='min-h-max '>
+          <ReviewsHome />
+        </div>
+        <div className='min-h-max'>
+          <Faq />
+        </div>
+        <div className='pb-10'>
+          <JoinUsSection />
+        </div>
       </div>
-
-      {/* se montara la seccion Reviews */}
-      <div className='min-h-max '>
-        <ReviewsHome />
-      </div>
-
-      {/* se montara la seccion FAQ */}
-      <div>
-        <Faq />
-
-      </div>
-
-      {/* se montara la seccion Unirse a la plataforma*/}
-      <div>
-        <JoinUsSection />
-      </div>
-
-      {/* se montara Footer */}
       <footer className='-mx-4 md:-mx-20'>
         <Footer />
       </footer>

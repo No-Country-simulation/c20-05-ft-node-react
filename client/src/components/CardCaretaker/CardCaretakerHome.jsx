@@ -2,12 +2,19 @@ import React from 'react'
 import starTrue from '../../assets/svg/starTrue.svg'
 import starFalse from '../../assets/svg/starFalse.svg'
 import { ratingToStars } from '../../utils/functions/ratingToStars'
-
+import useNavigateHelper from '../../utils/hooks/useNavigateHelper'
 
 
 const CardCaretakerHome = ({ photoCaretaker, photoProfileCaretaker, nameCaretaker, description, location, distance, rating }) => {
+    const userExistIniciadoSesion = false //useselector del estado global user cuando se autentifica
+
+    const { navigateTo } = useNavigateHelper()
     return (
-        <div className='w-72 h-[346px] rounded-xl shadow-xl p-[10px]  hover:scale-[1.01] transition-transform duration-500 overflow-hidden'>
+        <div className='w-72 h-[346px] rounded-xl shadow-xl p-[10px]  hover:scale-[1.01] transition-transform duration-500 overflow-hidden cursor-pointer'
+            onClick={() => {
+                !userExistIniciadoSesion ?
+                navigateTo("/register") : alert("NAVEGO A DETAIL DE CARD")
+            }}>
             <div>
                 <img className='w-[266px] h-[201px] rounded-md object-cover' src={photoCaretaker} alt="" />
             </div>
