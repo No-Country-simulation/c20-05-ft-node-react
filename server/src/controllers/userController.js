@@ -12,7 +12,7 @@ export const createUser = async (req, res, next) => {
     // Validate input
     if (!first_name || !last_name || !email || !password) {
       res.status(400);
-      throw new Error("Email and password are required");
+      throw new Error("All fields are required");
     }
 
     // Check if user already exists
@@ -48,17 +48,16 @@ export const createUser = async (req, res, next) => {
 // @route   POST /api/v1/login
 // @access  Public
 export const login = async (req, res, next) => {
+  const { email, password } = req.body;
   try {
-    const { email, password } = req.body;
-
     // Validate input
     if (!email || !password) {
       res.status(400);
-      throw new Error("Email and password are required");
+      throw new Error("Invalid Credentials");
     }
-
     // Find the user
     const user = await UserModel.findOne({ email });
+    console.log(user);
     if (!user) {
       res.status(401);
       throw new Error("Invalid email or password");
@@ -94,16 +93,16 @@ export const login = async (req, res, next) => {
 // @route   POST /api/v1/logout
 // @access  Public
 export const logout = async (req, res, next) => {
-	try {
-		res.clearCookie("token",{
-			httpOnly: true,
-			secure: entorno.NODE_ENV !== "development",
-			sameSite: "strict",
-			expires: new Date(0),
-			path: "/", 
-		});
-		res.status(200).json({ message: "User logged out successfully" });
-	} catch (error) {
-		next(error);
-	}
+  try {
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: entorno.NODE_ENV !== "development",
+      sameSite: "strict",
+      expires: new Date(0),
+      path: "/",
+    });
+    res.status(200).json({ message: "User logged out successfully" });
+  } catch (error) {
+    next(error);
+  }
 };
