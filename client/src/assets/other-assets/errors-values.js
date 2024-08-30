@@ -11,6 +11,26 @@ export const FORM_ERROR_VALUES = {
     min: 3,
     max: 50
   },
+  preferred_name: {
+    min: 3,
+    max: 50
+  },
+  birthdate: {
+    min: 18,
+    max: 80
+  },
+  province: {
+    min: 3,
+    max: 50
+  },
+  city: {
+    min: 3,
+    max: 50
+  },
+  address: {
+    min: 3,
+    max: 50
+  },
   email: {
     min: 6,
     max: 100

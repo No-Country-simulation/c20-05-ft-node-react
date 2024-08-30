@@ -14,5 +14,12 @@ export const TEXT_CONTENT = {
     linkText: 'Registrate',
     linkTextThirdParty: 'Iniciá sesión con',
     linkPath: '/register'
+  },
+  userInfo: {
+    header: `Terminá de registrarte`,
+    question: '',
+    linkText: '',
+    linkTextThirdParty: '',
+    linkPath: ''
   }
 }
