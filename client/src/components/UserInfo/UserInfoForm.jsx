@@ -1,12 +1,12 @@
-import { FORM_ERROR_VALUES } from '../../../assets/other-assets/errors-values'
-import ErrorForms from '../../ErrorsForms/ErrorForms'
-import { handlerRegisterLoginForm } from '../../../utils/functions/handlerRegisterLoginForm'
-import { useLoginForm } from '../../../utils/hooks/useLoginForm'
-import { handlerSubmitForm } from '../../../utils/functions/handlerSubmitForm'
-import { API_PATH_LOGIN } from '../../../routes/routes'
-import ButtonSubmit from '../../Global/ButtonSubmit'
+import { FORM_ERROR_VALUES } from '../../assets/other-assets/errors-values'
+import ErrorForms from '../ErrorsForms/ErrorForms'
+import { handlerRegisterLoginForm } from '../../utils/functions/handlerRegisterLoginForm'
+import { useLoginForm } from '../../utils/hooks/useLoginForm'
+import { handlerSubmitForm } from '../../utils/functions/handlerSubmitForm'
+import { API_PATH_LOGIN } from '../../routes/routes'
+import ButtonSubmit from '../Global/ButtonSubmit'
 
-const LoginForm = () => {
+const UserInfoForm = () => {
   const { form, setForm, errors } = useLoginForm()
   const { email, password } = FORM_ERROR_VALUES
 
@@ -34,4 +34,4 @@ const LoginForm = () => {
   )
 }
 
-export default LoginForm
+export default UserInfoForm

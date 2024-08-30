@@ -3,24 +3,24 @@ import { hasEmailSpecialCharacters, hasNumbers, hasSpaces, isValidEmailFormat, i
 
 export const registerValidations = (form, setErrors) => {
   const errors = {}
-  const { name, surname, email, password, repeatPassword } = FORM_ERROR_VALUES
+  const { first_name, last_name, email, password, repeatPassword } = FORM_ERROR_VALUES
 
-  if (form.name === '') errors.name = null
+  if (form.first_name === '') errors.first_name = null
   else {
-    if (form.name.trim().length < name.min) errors.name = `El nombre debe tener al menos ${name.min} caracteres`
-    if (form.name.trim().length > name.max) errors.name = `El nombre debe tener menos de ${name.max} caracteres`
-    if (hasNumbers(form.name)) errors.name = 'El nombre no puede contener números'
-    if (!isValidName(form.name)) errors.name = 'El nombre no puede contener caracteres especiales'
-    if (hasSpaces(form.name)) errors.name = 'El nombre no puede tener espacios'
+    if (form.first_name.trim().length < first_name.min) errors.first_name = `El nombre debe tener al menos ${first_name.min} caracteres`
+    if (form.first_name.trim().length > first_name.max) errors.first_name = `El nombre debe tener menos de ${first_name.max} caracteres`
+    if (hasNumbers(form.first_name)) errors.first_name = 'El nombre no puede contener números'
+    if (!isValidName(form.first_name)) errors.first_name = 'El nombre no puede contener caracteres especiales'
+    if (hasSpaces(form.first_name)) errors.first_name = 'El nombre no puede tener espacios'
   }
 
-  if (form.surname === '') errors.surname = null
+  if (form.last_name === '') errors.last_name = null
   else {
-    if (form.surname.trim().length < surname.min) errors.surname = `El apellido debe tener al menos ${surname.min} caracteres`
-    if (form.surname.trim().length > surname.max) errors.surname = `El apellido debe tener menos de ${surname.max} caracteres`
-    if (hasNumbers(form.surname)) errors.surname = 'El apellido no puede contener números'
-    if (!isValidName(form.surname)) errors.surname = 'El apellido no puede contener caracteres especiales'
-    if (hasSpaces(form.surname)) errors.surname = 'El apellido no puede tener espacios'
+    if (form.last_name.trim().length < last_name.min) errors.last_name = `El apellido debe tener al menos ${last_name.min} caracteres`
+    if (form.last_name.trim().length > last_name.max) errors.last_name = `El apellido debe tener menos de ${last_name.max} caracteres`
+    if (hasNumbers(form.last_name)) errors.last_name = 'El apellido no puede contener números'
+    if (!isValidName(form.last_name)) errors.last_name = 'El apellido no puede contener caracteres especiales'
+    if (hasSpaces(form.last_name)) errors.last_name = 'El apellido no puede tener espacios'
   }
 
   if (form.email === '') errors.email = null

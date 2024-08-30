@@ -11,6 +11,7 @@ import NavBar from '../components/NavBar/navbar'
 import Footer from '../components/Footer/Footer'
 import PinValidationEmail from '../components/PinValidationEmail/PinValidationEmail'
 import ProfileCreatedSuccessfully from '../components/ProfileCreatedSuccessfully/ProfileCreatedSuccessfully'
+import UserInfo from '../views/Register/UserInfo'
 
 const routerPathComponents = [
     {
@@ -28,6 +29,10 @@ const routerPathComponents = [
     {
         path: "/register",
         element: <Register />
+    },
+    {
+        path: "/register/user-info",
+        element: <UserInfo />
     },
     {
         path: "/login",
