@@ -5,7 +5,6 @@ import { createHash, generateToken, isValidPassword } from '../utils/utils.js'
 // @route   POST /api/v1/createuser
 // @access  Public
 export const createUser = async (req, res) => {
-
 	const email = req.body.email
 	const password = req.body.password
 	const user = await UserModel.findOne({ email })

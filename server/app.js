@@ -4,7 +4,8 @@ import { entorno } from "./src/config/config.js";
 import { Server } from "socket.io";
 import cors from "cors";
 import routerApp from "./src/routes/userRouter.js";
-const PORT = entorno.port;
+const PORT = 8080;
+// const PORT = entorno.port || 8080;
 const app = express();
 
 app.use(express.json())
