@@ -38,7 +38,7 @@ export const FAQ = [
 ];
 
 export const INITIAL_SATATE_INPUTS = {
-  name: "",
+  full_name: "",
   email: "",
   question: "",
 };

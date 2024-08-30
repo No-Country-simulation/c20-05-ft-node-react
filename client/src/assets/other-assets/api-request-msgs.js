@@ -57,4 +57,34 @@ export const API_REQUEST_MSGS = {
       },
     },
   },
+  register: {
+    successStatus: {
+      200: {
+        message: "Los datos de las reseñas han sido obtenidos correctamente",
+      },
+      201: {
+        message: "La reseña ha sido creada correctamente",
+      },
+      204: {
+        message: "La reseña ha sido eliminada correctamente",
+      },
+      400: {
+        message:
+          "Problema con el servidor, en un momento resolveremos los inconvenientes",
+      },
+    },
+    errorStatus: {
+      400: {
+        message: "La reseña no ha sido creada, por favor intenta nuevamente",
+      },
+      404: {
+        message:
+          "La reseña no ha sido encontrada, por favor intenta nuevamente",
+      },
+      500: {
+        message:
+          "Problema con el servidor, en un momento resolveremos los inconvenientes",
+      },
+    },
+  },
 };

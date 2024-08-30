@@ -1,9 +1,13 @@
 export const FORM_ERROR_VALUES = {
-  name: {
+  full_name: {
     min: 3,
     max: 50
   },
-  surname: {
+  first_name: {
+    min: 3,
+    max: 50
+  },
+  last_name: {
     min: 3,
     max: 50
   },

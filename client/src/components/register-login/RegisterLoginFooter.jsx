@@ -7,7 +7,7 @@ const RegisterLoginFooter = ({ section = 'register' }) => {
   const { question, linkText, linkPath, linkTextThirdParty } = TEXT_CONTENT[section]
 
   return (
-    <div className="flex flex-col items-center gap-4 mt-8">
+    <div className="flex flex-col items-center gap-4 my-8">
       <div className='w-full flex flex-col items-center gap-4 mb-6'>
         <div className='w-full relative text-center before:absolute before:my-auto before:top-1.5 before:bottom-0 before:left-0 before:w-1/2 before:h-[2px] before:bg-gray-light after:absolute after:my-auto after:top-1.5 after:bottom-0 after:w-1/2 after:h-[2px] after:bg-gray-light'>
           <span className='relative bg-white p-2 text-xl'>o</span>
