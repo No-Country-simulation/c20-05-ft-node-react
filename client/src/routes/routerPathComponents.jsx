@@ -6,18 +6,23 @@ import Login from '../views/Login/Login'
 import ReduxTest from '../views/ReduxTest'
 import ApiHandler from '../views/ApiHandler'
 import CalendarComponent from '../components/Calendar/Calendar'
-
-import NavBar from '../components/NavBar/navbar'
+import NavBar from '../components/NavBar/NavBar'
 import Footer from '../components/Footer/Footer'
 import PinValidationEmail from '../components/PinValidationEmail/PinValidationEmail'
 import ProfileCreatedSuccessfully from '../components/ProfileCreatedSuccessfully/ProfileCreatedSuccessfully'
 import UserInfo from '../views/Register/UserInfo'
+import DogCaretakerProfile from '../views/DogCaretakerProfile/DogCaretakerProfile'
 
 const routerPathComponents = [
     {
         path: "/home",
         element: <Home />
     },
+    {
+        path: "/profile",
+        element: <DogCaretakerProfile />
+    },
+
     {
         path: "/calendar",
         element: <CalendarComponent />
@@ -51,16 +56,16 @@ const routerPathComponents = [
         element: <NavBar />
     },
     {
-        path:"/pinValidationEmail",
-        element:<PinValidationEmail/>
+        path: "/pinValidationEmail",
+        element: <PinValidationEmail />
     },
     {
-        path:"/footer",
-        element:<Footer/>
+        path: "/footer",
+        element: <Footer />
     },
     {
-        path:"/perfilcreadoconexito",
-        element:<ProfileCreatedSuccessfully/>
+        path: "/perfilcreadoconexito",
+        element: <ProfileCreatedSuccessfully />
     },
 
     {
