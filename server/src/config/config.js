@@ -1,9 +1,13 @@
-import dotenv from 'dotenv'
+import dotenv from "dotenv";
 
-dotenv.config()
+dotenv.config();
 
 export const entorno = {
-	port: process.env.PORT,
-	DB_URL: process.env.DB_URL,
-	secretJWT: process.env.JWT_SECRET,
-}
+  port: process.env.PORT,
+  DB_URL: process.env.DB_URL,
+  secretJWT: process.env.JWT_SECRET,
+  CLOUD_NAME: process.env.CLOUD_NAME,
+  API_KEY: process.env.API_KEY,
+  API_SECRET: process.env.API_SECRET,
+  NODE_ENV: process.env.NODE_ENV,
+};
