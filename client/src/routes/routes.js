@@ -10,6 +10,7 @@ export const PATHS = {
   home: '/home',
   login: '/login',
   register: '/register',
+  userInfo: '/register/user-info',
 }
 
 // Backend routes

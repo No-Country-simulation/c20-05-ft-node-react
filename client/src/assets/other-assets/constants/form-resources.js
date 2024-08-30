@@ -19,3 +19,8 @@ export const INITIAL_SATATE_LOGIN_INPUTS = {
   password: '',
   remember: false
 }
+
+export const FORM_STATES = {
+  isLoading: false,
+  isSent: false,
+}
