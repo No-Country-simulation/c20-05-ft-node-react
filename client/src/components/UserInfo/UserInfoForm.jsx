@@ -2,8 +2,8 @@ import { FORM_ERROR_VALUES } from '../../assets/other-assets/errors-values'
 import ErrorForms from '../ErrorsForms/ErrorForms'
 import { handlerRegisterLoginForm } from '../../utils/functions/handlerRegisterLoginForm'
 import { handlerSubmitForm } from '../../utils/functions/handlerSubmitForm'
-import { API_PATH_LOGIN } from '../../routes/routes'
-import ButtonSubmit from '../Global/ButtonSubmit'
+import { API_PATH_LOGIN, PATHS } from '../../routes/routes'
+import ButtonGoTo from '../Global/ButtonGoTo'
 import { useUserInfo } from '../../utils/hooks/useUserInfo'
 
 const UserInfoForm = () => {
@@ -48,7 +48,10 @@ const UserInfoForm = () => {
           }
         </div>
       </div>
-      <ButtonSubmit disabled={errors && Object.keys(errors).length !== 0}>Continuar</ButtonSubmit>
+      <div className='flex gap-4'>
+        <ButtonGoTo goToPath={PATHS.home} extraClassName='bg-white text-btn' disabled={errors && Object.keys(errors).length !== 0}>Omitir</ButtonGoTo>
+        <ButtonGoTo goToPath={PATHS.petsForm} disabled={errors && Object.keys(errors).length !== 0}>Continuar</ButtonGoTo>
+      </div>
     </form>
   )
 }
