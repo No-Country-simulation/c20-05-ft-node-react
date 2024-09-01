@@ -1,6 +1,6 @@
 const VisualTabs = ({ section = 'userInfo' }) => {
   const isUserInfoSection = section === 'userInfo'
-  const isPetsSection = section === 'pets'
+  const isPetsSection = section === 'petsForm'
   return (
     <div className='flex flex-col gap-4'>
       <div className='flex gap-12 justify-center text-lg mb-6'>

@@ -21,5 +21,12 @@ export const TEXT_CONTENT = {
     linkText: '',
     linkTextThirdParty: '',
     linkPath: ''
+  },
+  petsForm: {
+    header: `Contanos sobre tu mascota/s`,
+    question: '',
+    linkText: '',
+    linkTextThirdParty: '',
+    linkPath: ''
   }
 }

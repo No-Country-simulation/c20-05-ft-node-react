@@ -25,8 +25,18 @@ export const FORM_STATES = {
   isSent: false,
 }
 
-export const INITIAL_SATATE_INPUTS = {
+export const INITIAL_SATATE_QUESTION_INPUTS = {
   full_name: "",
   email: "",
   question: "",
-};
+}
+
+export const INITIAL_SATATE_PETS_FORM_INPUTS = {
+  photo: '',
+  name: '',
+  type: 'Perro',
+  weight: '1-10kgs',
+  age: '0-6 meses',
+  pathologies: '',
+  medication: '',
+}

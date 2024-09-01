@@ -46,5 +46,21 @@ export const FORM_ERROR_VALUES = {
   repeatPassword: {
     min: 6,
     max: 30
+  },
+  pet_name: {
+    min: 3,
+    max: 50
+  },
+  pet_type: {
+    min: 3,
+    max: 50
+  },
+  pet_pathologies: {
+    min: 5,
+    max: 150
+  },
+  pet_medication: {
+    min: 5,
+    max: 150
   }
 }
