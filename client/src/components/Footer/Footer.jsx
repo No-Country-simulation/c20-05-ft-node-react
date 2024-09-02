@@ -3,6 +3,7 @@ import logoFacebook from '../../assets/svg/facebook-svgrepo-com.svg'
 import logoGmail from '../../assets/svg/mail-svgrepo-com.svg'
 import logoWhatsapp from '../../assets/svg/whatsapp-svgrepo-com.svg'
 import logoInstagram from '../../assets/svg/instagram-svgrepo-com.svg'
+import { Link } from 'react-router-dom';
 
 
 const Footer = () => {
@@ -17,9 +18,9 @@ const Footer = () => {
             </a>
           </li>
           <li className="my-2">
-            <a href="#" className=" hover:underline">
+            <Link to="/register" className=" hover:underline">
               Quiero ser cuidador
-            </a>
+            </Link>
           </li>
 
         </ul>
