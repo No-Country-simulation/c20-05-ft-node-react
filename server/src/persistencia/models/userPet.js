@@ -6,7 +6,7 @@ const PetSchema = new Schema({
 	type: { type: String, required: true },
 	weight: { type: String, required: true },
 	age: { type: String, required: true },
-	image: { type: String, required: true },
+	image: { type: [String], required: true },
 	pathology: { type: String, default: null },
 	medication: { type: String, default: null },
 });
