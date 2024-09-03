@@ -8,7 +8,7 @@ import { useState } from 'react';
 import getCoordsByAddress from '../../utils/functions/getCoordsByAddress';
 import getAddressByCoords from '../../utils/functions/getAddresssByCoords';
 
-const MapComponent = () => {
+const TestMap = () => {
   const [newLocation, setNewLocation] = useState(null);
   const [type, setType] = useState('')
 
@@ -37,13 +37,13 @@ const MapComponent = () => {
     const { lat, lon } = await getCoordsByAddress(`${country}, ${city}, ${road}, ${house_number}`)
     console.log('lat', lat)
     console.log('lon', lon)
-    // setNewLocation([lat, lon])
+    setNewLocation([lat, lon])
   }
 
   return (
     <>
     <div className='flex justify-center w-fit gap-2 absolute top-10 left-0 right-0 mx-auto shadow-md z-30 h-fit'>
-      <input className='w-[300px] border-gray-900 border-2 rounded-lg px-2' type="text" onChange={(e) => setType(e.target.value)} value={type} />
+      <input className='w-[300px] border-gray-900 border-2 rounded-lg px-2' type="text" onChange={(e) => setType(e.target.value)} value={type} placeholder='lat, lon' />
       <button className='bg-black text-white p-2 rounded-lg' onClick={handleClickSearch}>Buscar</button>
     </div>
       <MapContainer className='z-10 relative' center={[-34.614665845310036, -58.472440029009526]} zoom={13} style={{ height: "100vh", width: "100%" }}>
@@ -71,4 +71,4 @@ const MapComponent = () => {
   );
 }
 
-export default MapComponent
+export default TestMap
