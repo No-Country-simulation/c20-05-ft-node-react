@@ -11,9 +11,9 @@ const UserSchema = new Schema({
 	zipCode: { type: Number, required: false },
 	isadmin: { type: Boolean, default: false },
 	role: { type: String, enum: ["owner", "carer"], default: "owner" },
-	// pet: [{ type: Schema.Types.ObjectId, ref: 'pets' }],
 	profilePicture: { type: String, required: false }, // URL de la foto de perfil
 	images: { type: [String], required: false }, // URLs de otras fotos
+	// pet: [{ type: Schema.Types.ObjectId, ref: 'pets' }],
 });
 
 export const UserModel = model("user", UserSchema);

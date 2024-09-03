@@ -4,10 +4,10 @@ import { entorno } from "./src/config/config.js";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import routerApp from './src/routes/index.js'
+import routerApp from "./src/routes/index.js";
 import { errorHandler, notFound } from "./src/middlewares/errorHandler.js";
 
-import { Server } from "socket.io";
+// import { Server } from "socket.io";
 
 const PORT = entorno.port;
 const app = express();
@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
-app.use(routerApp)
+app.use(routerApp);
 
 app.use(errorHandler);
 app.use(notFound);
