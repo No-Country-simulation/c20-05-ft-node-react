@@ -12,6 +12,8 @@ const UserSchema = new Schema({
 	isadmin: { type: Boolean, default: false },
 	role: { type: String, enum: ["owner", "carer"], default: "owner" },
 	// pet: [{ type: Schema.Types.ObjectId, ref: 'pets' }],
+	profilePicture: { type: String, required: false }, // URL de la foto de perfil
+	images: { type: [String], required: false }, // URLs de otras fotos
 });
 
 export const UserModel = model("user", UserSchema);
