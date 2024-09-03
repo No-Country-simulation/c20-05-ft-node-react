@@ -11,6 +11,7 @@ export const PATHS = {
   login: '/login',
   register: '/register',
   userInfo: '/register/user-info',
+  petsForm: '/register/pets-form',
 }
 
 // Backend routes
