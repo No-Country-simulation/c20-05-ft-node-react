@@ -4,11 +4,13 @@ import 'leaflet/dist/leaflet.css';
 import { reviewsData } from '../../assets/other-assets/mocks/mockReviews';
 import CardReviewHome from '../CardReviewHome/CardReviewHome';
 import { caretakersMapMock } from '../../assets/other-assets/mocks/caretakersMapMock'
+import { useState } from 'react';
+import getCoordsByAddress from '../../utils/functions/getCoordsByAddress';
+import getAddressByCoords from '../../utils/functions/getAddresssByCoords';
 
 const MapComponent = () => {
-  // https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png
-  // https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png
-  // https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png
+  const [newLocation, setNewLocation] = useState(null);
+  const [type, setType] = useState('')
 
   const customDivIcon = new L.DivIcon({
     html: '<div class="bg-black text-white text-base font-semibold size-fit py-2 px-4 rounded-full shadow-md">$400</div>',
@@ -26,31 +28,46 @@ const MapComponent = () => {
     })
   }
 
+  const handleClickSearch = async () => {
+    const [latitud, longitud] = type.replace(/ /g, '').split(',')
+    const getAddress = await getAddressByCoords({ lat: latitud, lon: longitud })
+    console.log('getAddress', getAddress)
+    const { country, city, road, house_number } = getAddress
+    // console.log('type', type)
+    const { lat, lon } = await getCoordsByAddress(`${country}, ${city}, ${road}, ${house_number}`)
+    console.log('lat', lat)
+    console.log('lon', lon)
+    // setNewLocation([lat, lon])
+  }
+
   return (
-    <MapContainer center={[-34.614665845310036, -58.472440029009526]} zoom={13} style={{ height: "100vh", width: "100%" }}>
-      <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-        // attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      />
-      <LocationMarker />
-      {
-        caretakersMapMock.map((caretaker, index) => {
-          return (
-            <Marker key={index} position={caretaker.coords} icon={customDivIcon}>
-              <Popup>
-                <CardReviewHome review={reviewsData[index]} />
-              </Popup>
+    <>
+    <div className='flex justify-center w-fit gap-2 absolute top-10 left-0 right-0 mx-auto shadow-md z-30 h-fit'>
+      <input className='w-[300px] border-gray-900 border-2 rounded-lg px-2' type="text" onChange={(e) => setType(e.target.value)} value={type} />
+      <button className='bg-black text-white p-2 rounded-lg' onClick={handleClickSearch}>Buscar</button>
+    </div>
+      <MapContainer className='z-10 relative' center={[-34.614665845310036, -58.472440029009526]} zoom={13} style={{ height: "100vh", width: "100%" }}>
+        <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
+        <LocationMarker />
+        {
+          caretakersMapMock.map((caretaker, index) => {
+            return (
+              <Marker key={index} position={caretaker.coords} icon={customDivIcon}>
+                <Popup>
+                  <CardReviewHome review={reviewsData[index]} />
+                </Popup>
+              </Marker>
+            )
+          })
+        }
+        {
+          newLocation && (
+            <Marker position={newLocation}>
             </Marker>
           )
-        })
-      }
-      {/* <Marker position={[53.505, -0.05]}>
-        <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
-      </Marker>
-      <Marker position={[50.505, -0.01]}>
-        <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
-      </Marker> */}
-    </MapContainer>
+        }
+      </MapContainer>
+    </>
   );
 }
 

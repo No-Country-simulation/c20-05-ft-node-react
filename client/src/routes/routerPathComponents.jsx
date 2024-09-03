@@ -6,6 +6,7 @@ import CalendarComponent from '../components/Calendar/Calendar'
 import ProfileCreatedSuccessfully from '../components/ProfileCreatedSuccessfully/ProfileCreatedSuccessfully'
 import UserInfo from '../views/Register/UserInfo'
 import PetsFormContainer from '../views/Register/PetsFormContainer'
+import Map from '../views/Home/Map/Map'
 
 const routerPathComponents = [
     {
@@ -31,6 +32,10 @@ const routerPathComponents = [
     {
         path: "/login",
         element: <Login />
+    },
+    {
+        path: "/map",
+        element: <Map />
     },
     {
         path:"/perfilcreadoconexito",
