@@ -8,7 +8,7 @@ carerRouter.get("/carers/:cip"); // Obtiene el perfil detallado de un cuidador e
 
 carerRouter.post("/carers/services"); // Solicita un servicio a un cuidador específico.
 
-carerRouter.get("/carers/services"); // Obtiene una lista de servicios solicitados al cuidador autenticado (solo para cuidadores).
+//carerRouter.get("/carers/services"); // Obtiene una lista de servicios solicitados al cuidador autenticado (solo para cuidadores).
 
 carerRouter.put("/carers/services"); //  Actualiza el estado de un servicio solicitado (aceptar, rechazar, completar).
 
