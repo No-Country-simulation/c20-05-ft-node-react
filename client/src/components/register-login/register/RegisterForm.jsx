@@ -14,8 +14,9 @@ const RegisterForm = () => {
 
   const handleFormSubmit = async (e) => {
     setFormState({ ...formState, isLoading: true })
-    const { status } = await handlerSubmitForm(e, form, API_PATHS.register, API_REQUEST_MSGS.register, errors)
+    const { status, message } = await handlerSubmitForm(e, form, API_PATHS.register, API_REQUEST_MSGS.register, errors)
     console.log('status', status)
+    console.log('message', message)
     if (status === 201) setFormState({ ...formState, isLoading: false, isSent: true })
   }
 

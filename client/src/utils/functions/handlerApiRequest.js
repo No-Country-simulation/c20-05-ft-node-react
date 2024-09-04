@@ -12,7 +12,9 @@ export const handlerApiRequest = async (apiRequest, { successStatus, errorStatus
     return isStatusSuccess ? successObj : errorObj
   } catch (error) {
     console.log(error)
-    return { status: ERROR_STATUS_CODE_DEFAULT, message: errorStatus[ERROR_STATUS_CODE_DEFAULT] }
+    const { message } = error?.response?.data || error
+    // return { status: ERROR_STATUS_CODE_DEFAULT, message: errorStatus[ERROR_STATUS_CODE_DEFAULT] }
+    return { status: ERROR_STATUS_CODE_DEFAULT, message }
 
   }
 }
