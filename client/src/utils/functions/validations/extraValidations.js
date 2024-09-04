@@ -5,6 +5,7 @@ export const isValidEmailFormat = (emailToCheck) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 export const hasTwoOrMoreSpaces = (textToCheck) => /\s{2,}/.test(textToCheck)
 export const hasErrors = (errors) => errors && Object.keys(errors).length !== 0
 export const hasSpaces = (textToCheck) => /\s/.test(textToCheck)
+export const isValidValue = (valueToCheck, arrayToSearch) => arrayToSearch.includes(valueToCheck)
 export const getAge = (dateToCheck) => {
   const date = new Date(dateToCheck)
   const today = new Date()
