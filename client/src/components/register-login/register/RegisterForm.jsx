@@ -1,31 +1,22 @@
 import { FORM_ERROR_VALUES } from '../../../assets/other-assets/errors-values'
 import ErrorForms from '../../ErrorsForms/ErrorForms'
 import { useRegisterForm } from '../../../utils/hooks/useRegisterForm'
-import { handlerSubmitForm } from '../../../utils/functions/handlerSubmitForm'
-import { PATHS, API_PATHS } from '../../../routes/routes'
+import { PATHS } from '../../../routes/routes'
 import ButtonSubmit from '../../Global/ButtonSubmit'
-import { API_REQUEST_MSGS } from '../../../assets/other-assets/api-request-msgs'
 import ProfileCreatedSuccessfully from '../../ProfileCreatedSuccessfully/ProfileCreatedSuccessfully'
 import { handlerFormValues } from '../../../utils/functions/handlerFormValues'
+import { handlerSubmitRegisterForm } from '../../../utils/functions/handlerSubmitRegisterForm'
 
 const RegisterForm = () => {
   const { form, setForm, errors, formState, setFormState } = useRegisterForm()
   const { first_name, last_name, email, password, repeatPassword } = FORM_ERROR_VALUES
-
-  const handleFormSubmit = async (e) => {
-    setFormState({ ...formState, isLoading: true })
-    const { status, message } = await handlerSubmitForm(e, form, API_PATHS.register, API_REQUEST_MSGS.register, errors)
-    console.log('status', status)
-    console.log('message', message)
-    if (status === 201) setFormState({ ...formState, isLoading: false, isSent: true })
-  }
 
   return (
     <>
       <div className={formState.isSent ? 'block' : 'hidden'}>
         <ProfileCreatedSuccessfully pathSkip={PATHS.home} pathGoTo={PATHS.userInfo} />
       </div>
-      <form onSubmit={(e) => handleFormSubmit(e)} className="flex flex-col gap-8">
+      <form onSubmit={(e) => handlerSubmitRegisterForm(e, form, formState, setFormState, errors)} className="flex flex-col gap-8">
         <div className="flex flex-col w-full gap-4">
           <h2 className='font-medium text-lg'>Nombre y apellido</h2>
           <div className='flex max-md:flex-col gap-4 w-full [&>div>label]:mt-2 [&>div>label]:font-medium [&>div>input]:p-2 [&>div>input]:border-[1px] [&>div>input]:border-gray-light [&>div>label]:hidden [&>div>input]:rounded-lg'>

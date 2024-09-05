@@ -3,26 +3,45 @@ import { FORM_STATES, INITIAL_SATATE_PETS_FORM_INPUTS } from '../../assets/other
 import { petsFormValidations } from '../functions/validations/petsFormValidations'
 import { EXTRA_INPUTS } from '../../assets/other-assets/constants/pets-form-resources'
 import { useDispatch, useSelector } from 'react-redux'
-import { addPetForm } from '../../state/store/slices/pets/pet-form'
+import { addErrors, addExtraInputs, addPetForm } from '../../state/store/slices/pets/pet-form-slice'
 
-export const usePetsForm = (uid) => {
+export const usePetsForm = (petNumber) => {
   const dispatch = useDispatch()
   const formPetsList = useSelector((state) => state.petForm)
 
-  useEffect(() => console.log(formPetsList), [formPetsList])
+  useEffect(() => {
+    console.log('petForms', formPetsList.forms)
+    console.log('errors', formPetsList.errors)
+  }, [formPetsList])
 
-  const [form, setForm] = useState(INITIAL_SATATE_PETS_FORM_INPUTS)
+  useEffect(() => {
+    console.log('formPetsList.forms[petNumber]', formPetsList.forms[petNumber])
+  }, [])
+
+  const [form, setForm] = useState(formPetsList.forms[petNumber] || INITIAL_SATATE_PETS_FORM_INPUTS)
   const [errors, setErrors] = useState(null)
   const [formState, setFormState] = useState(FORM_STATES)
-  const [extraInputs, setExtraInputs] = useState(EXTRA_INPUTS)
+  const [extraInputs, setExtraInputs] = useState(formPetsList.extraInputs[petNumber] || EXTRA_INPUTS)
 
   // useEffect(() => petsFormValidations(form, setErrors, extraInputs), [form])
   useEffect(() => {
     petsFormValidations(form, setErrors, extraInputs)
-    dispatch(addPetForm({ uid, form }))
+    // dispatch(addPetForm({ petNumber, form }))
   }, [form])
-  useEffect(() => console.log(form), [form])
-  useEffect(() => console.log(errors), [errors])
+  useEffect(() => {
+    const errorsLength = errors ? Object.keys(errors).length : 0
 
-  return { form, setForm, errors, formState, setFormState, extraInputs, setExtraInputs }
+    console.log('errorsLength', errorsLength)
+
+    dispatch(addErrors(errorsLength))
+    console.log(errors && Object.keys(errors))
+  }, [errors])
+
+  useEffect(() => {
+    dispatch(addExtraInputs({ petNumber, extraInputs }))
+  }, [extraInputs])
+  // useEffect(() => console.log(errors), [errors])
+  // useEffect(() => console.log(form), [form])
+
+  return { form, setForm, errors, setErrors, formState, setFormState, extraInputs, setExtraInputs }
 }

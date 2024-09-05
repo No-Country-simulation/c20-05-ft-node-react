@@ -19,14 +19,14 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleLogin} className="flex flex-col gap-8">
-      <div className='flex flex-col gap-4 [&>label]:hidden [&>input]:p-2 [&>input]:border-2 [&>input]:border-gray-300 [&>input]:rounded-lg'>
+      <div className='flex flex-col gap-4 [&>input]:p-2 [&>input]:border-2 [&>input]:border-gray-300 [&>input]:rounded-lg'>
         <h2 className='font-medium text-lg'>Correo y contraseña</h2>
-        <label htmlFor="email-login">Correo electrónico</label>
+        <label className='hidden' htmlFor="email-login">Correo electrónico</label>
         <input onChange={(e) => handlerFormValues(e, setForm)} id='email-login' name='email' autoComplete='username' type="email" placeholder="Correo electrónico" minLength={email.min} maxLength={email.max} value={form.email} />
         {
           errors && (<ErrorForms msgError={errors.email} />)
         }
-        <label htmlFor="password-login">Contraseña</label>
+        <label className='hidden' htmlFor="password-login">Contraseña</label>
         <input onChange={(e) => handlerFormValues(e, setForm)} id='password-login' name='password' autoComplete="new-password" type="password" placeholder="Contraseña" minLength={password.min} maxLength={password.max} value={form.password} />
         {
           errors && (<ErrorForms msgError={errors.password} />)

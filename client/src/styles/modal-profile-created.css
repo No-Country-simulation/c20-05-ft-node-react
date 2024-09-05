@@ -1,0 +1,5 @@
+.custom-box-shadow {
+  box-shadow: 
+  0 0 10px 10px rgba(0, 255, 0, 0.1),  /* Sombra más grande y suave */
+  0 0 5px 3px rgba(0, 255, 0, 0.3);   /* Sombra más pequeña y densa */
+}
