@@ -1,0 +1,8 @@
+.custom-container-pet-forms {
+  /* mask-image: linear-gradient(to right, transparent, #000000 10% 90%, transparent); */
+  /* scroll-snap-type: x mandatory; */
+}
+
+.custom-container-pet-forms > div {
+  /* scroll-snap-align: center; */
+}

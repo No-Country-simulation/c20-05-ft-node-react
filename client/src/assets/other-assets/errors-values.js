@@ -49,7 +49,7 @@ export const FORM_ERROR_VALUES = {
   },
   pet_name: {
     min: 3,
-    max: 50
+    max: 20
   },
   pet_type: {
     min: 3,
