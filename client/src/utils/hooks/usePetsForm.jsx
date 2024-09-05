@@ -3,7 +3,7 @@ import { FORM_STATES, INITIAL_SATATE_PETS_FORM_INPUTS } from '../../assets/other
 import { petsFormValidations } from '../functions/validations/petsFormValidations'
 import { EXTRA_INPUTS } from '../../assets/other-assets/constants/pets-form-resources'
 import { useDispatch, useSelector } from 'react-redux'
-import { addErrors, addExtraInputs, addPetForm } from '../../state/store/slices/pets/pet-form-slice'
+import { addErrors, addExtraInputs } from '../../state/store/slices/pets/pet-form-slice'
 
 export const usePetsForm = (petNumber) => {
   const dispatch = useDispatch()

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { INITIAL_SATATE_PETS_FORM_INPUTS } from '../../../../assets/other-assets/constants/form-resources'
 
 const petFormSlice = createSlice({
   name: 'petForm',
@@ -10,8 +11,22 @@ const petFormSlice = createSlice({
   },
   reducers: {
     addPetForm(state, action) {
-      const { petNumber, form } = action.payload
-      state.forms[petNumber] = form
+      const { petNumber, name, value } = action.payload
+
+      console.log('value', value)
+
+
+      console.log('name', name)
+
+      if (!state.forms[petNumber]) state.forms[petNumber] = INITIAL_SATATE_PETS_FORM_INPUTS
+      state.forms[petNumber] = {
+        ...state.forms[petNumber],
+        [name]: value
+      }
+    },
+    removePetForm(state, action) {
+      const petNumber = action.payload
+      state.forms = state.forms.filter((_, index) => index !== petNumber)
     },
     addErrors(state, action) {
       const errors = action.payload
@@ -27,5 +42,5 @@ const petFormSlice = createSlice({
   },
 })
 
-export const { addPetForm, addErrors, addNumberOfPetForms, addExtraInputs } = petFormSlice.actions
+export const { addPetForm, removePetForm, addErrors, addNumberOfPetForms, addExtraInputs } = petFormSlice.actions
 export default petFormSlice.reducer
