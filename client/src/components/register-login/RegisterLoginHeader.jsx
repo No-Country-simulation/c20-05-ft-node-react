@@ -10,11 +10,11 @@ const RegisterLoginHeader = ({ section = 'register', goToPath = null }) => {
       {
         goToPath && (
           <Link to={goToPath} className="absolute top-4 left-4 [&>img]:hover:-translate-x-1">
-            <img src={chevronIcon} alt="volver" className="size-6 rotate-90 transition-transform duration-300 ease-out" />
+            <img src={chevronIcon} alt="volver" className="size-5 md:size-6 rotate-90 transition-transform duration-300 ease-out" />
           </Link>
         )
       }
-      <h1>{header}</h1>
+      <h1 className="text-sm md:text-base">{header}</h1>
     </div>
   )
 }

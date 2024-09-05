@@ -16,11 +16,11 @@ const PetsForm = ({ petNumber }) => {
   const { pet_name, pet_type, pet_pathologies, pet_medication } = FORM_ERROR_VALUES
 
   return (
-    <form onSubmit={(e) => handlerSubmitForm(e, form, API_PATH_LOGIN, errors)} className="flex flex-col min-w-[560px] gap-8 shadow-md p-6 rounded-lg first:ms-4 last:me-4">
+    <form onSubmit={(e) => handlerSubmitForm(e, form, API_PATH_LOGIN, errors)} className="flex flex-col min-w-[260px] min-[440px]:min-w-[360px] md:min-w-[560px] gap-8 shadow-md p-6 rounded-lg first:ms-4 last:me-4">
       <div className='flex flex-col gap-6'>
         <div className='flex flex-col gap-2 [&>label]:hidden [&>input]:p-2 [&>input]:border-[1px] [&>input]:border-gray-300 [&>input]:rounded-lg'>
-          <h2 className='font-medium text-lg text-primary text-center mb-4'>Mascota {form.name || petNumber + 1}</h2>
-          <h2 className='font-medium text-lg'>Nombre de la mascota</h2>
+          <h2 className='font-medium text-base md:text-lg text-primary text-center mb-4'>Mascota {form.name || petNumber + 1}</h2>
+          <h2 className='font-medium text-base md:text-lg'>Nombre de la mascota</h2>
           <label htmlFor={`pet-name-user-info-${uid}`}>Nombre de la mascota</label>
           <input onChange={(e) => handlerChangeValuesForm(e, form, setForm, setErrors, petNumber, extraInputs, dispatch)} required id={`pet-name-user-info-${uid}`} name='name' type="text" placeholder="Nombre de la mascota" minLength={pet_name.min} maxLength={pet_name.max} value={form.name} />
           {
@@ -28,9 +28,9 @@ const PetsForm = ({ petNumber }) => {
           }
         </div>
         <div className='flex flex-col gap-2 [&>input]:accent-btn'>
-          <h2 className='font-medium text-lg'>Tipo de mascota</h2>
+          <h2 className='font-medium text-base md:text-lg'>Tipo de mascota</h2>
           <div className='flex flex-col gap-6'>
-            <div className='flex gap-4 [&>label]:text-lg [&>label]:font-medium'>
+            <div className='flex gap-4 text-base md:[&>label]:text-lg [&>label]:font-medium'>
               {
                 PET_TYPES.map((petType, index) => (
                   <label key={petType} htmlFor={`${petType}-pets-form-${uid}`} className='flex gap-2 cursor-pointer'>
@@ -53,7 +53,7 @@ const PetsForm = ({ petNumber }) => {
           }
         </div>
         <div className='flex flex-col gap-2 [&>label]:hidden [&>input]:p-2 [&>input]:border-[1px] [&>input]:border-gray-300 [&>input]:rounded-lg'>
-          <h2 className='font-medium text-lg'>Peso</h2>
+          <h2 className='font-medium text-base md:text-lg'>Peso</h2>
           <select onChange={(e) => handlerChangeValuesForm(e, form, setForm, setErrors, petNumber, extraInputs, dispatch)} required name="weight" className='border-[1px] p-2 border-gray-300 rounded-lg' value={form.weight}>
             {
               PET_WEIGHTS.map(petWeight => (
@@ -66,7 +66,7 @@ const PetsForm = ({ petNumber }) => {
           }
         </div>
         <div className='flex flex-col gap-2 [&>label]:hidden [&>input]:p-2 [&>input]:border-[1px] [&>input]:border-gray-300 [&>input]:rounded-lg'>
-          <h2 className='font-medium text-lg'>Edad</h2>
+          <h2 className='font-medium text-base md:text-lg'>Edad</h2>
           <select onChange={(e) => handlerChangeValuesForm(e, form, setForm, setErrors, petNumber, extraInputs, dispatch)} required name="age" className='border-[1px] p-2 border-gray-300 rounded-lg' value={form.age}>
             {
               PET_AGE.map(petAge => (
@@ -79,8 +79,8 @@ const PetsForm = ({ petNumber }) => {
           }
         </div>
         <div className='flex flex-col gap-2 [&>label]:hidden [&>input]:p-2 [&>input]:border-[1px] [&>input]:border-gray-300 [&>input]:rounded-lg'>
-          <h2 className='font-medium text-lg'>¿Tiene alguna patología?</h2>
-          <div className='flex gap-4 [&>label]:text-lg [&>label]:font-medium'>
+          <h2 className='font-medium text-base md:text-lg'>¿Tiene alguna patología?</h2>
+          <div className='flex gap-4 [&>label]:text-base md:[&>label]:text-lg [&>label]:font-medium'>
             {
               PET_HAS_PATHOLOGIES.map((petPathology, index) => (
                 <label key={petPathology.text} htmlFor={`pathologies-${petPathology.text}-pets-form-${uid}`} className='flex gap-2 cursor-pointer'>
@@ -102,8 +102,8 @@ const PetsForm = ({ petNumber }) => {
             }
         </div>
         <div className='flex flex-col gap-2 [&>label]:hidden [&>input]:p-2 [&>input]:border-[1px] [&>input]:border-gray-300 [&>input]:rounded-lg'>
-          <h2 className='font-medium text-lg'>¿Toma medicación o necesita cuidado especial?</h2>
-          <div className='flex gap-4 [&>label]:text-lg [&>label]:font-medium'>
+          <h2 className='font-medium text-base md:text-lg'>¿Toma medicación o necesita cuidado especial?</h2>
+          <div className='flex gap-4 [&>label]:text-base md:[&>label]:text-lg [&>label]:font-medium'>
             {
               PET_HAS_MEDICATION.map((petMedication, index) => (
                 <label key={petMedication.text} htmlFor={`medication-${petMedication.text}-pets-form-${uid}`} className='flex gap-2 cursor-pointer'>
