@@ -7,7 +7,7 @@ import { handlerValuesToFilter } from '../../utils/functions/valuesTofilter';
 import userEvents from '../../assets/other-assets/mocks/calendarMock'; //MOCK para users
 import { USER_ROLE_CALENDAR } from '../../assets/other-assets/constants/calendar-resources';
 
-const CalendarComponent = ({ role = USER_ROLE_CALENDAR.caretaker, sendDates = (value) => { console.log(value) } }) => {
+const CalendarComponent = ({ role = USER_ROLE_CALENDAR.owner, sendDates = (value) => { console.log(value) } }) => {
     const [value, setValue] = useState([new Date(), new Date()]);
     return (
         <div className='bg-gray-darkCalendar text-white flex flex-col items-center w-max p-4 shadow-xl rounded-sm'>

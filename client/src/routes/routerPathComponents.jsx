@@ -8,12 +8,18 @@ import UserInfo from '../views/Register/UserInfo'
 import PetsFormContainer from '../views/Register/PetsFormContainer'
 import Map from '../views/Home/Map/Map'
 import CaretakerList from '../views/CaretakerList/CaretakerList'
+import DogCaretakerProfile from '../views/DogCaretakerProfile/DogCaretakerProfile'
 
 const routerPathComponents = [
     {
         path: "/home",
         element: <Home />
     },
+    {
+        path: "/profile",
+        element: <DogCaretakerProfile />
+    },
+
     {
         path: "/calendar",
         element: <CalendarComponent />
@@ -43,8 +49,8 @@ const routerPathComponents = [
         element: <CaretakerList />
     },
     {
-        path:"/perfilcreadoconexito",
-        element:<ProfileCreatedSuccessfully/>
+        path: "/perfilcreadoconexito",
+        element: <ProfileCreatedSuccessfully />
     },
     {
         path: "*",

@@ -40,3 +40,21 @@ body:hover::-webkit-scrollbar {
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
 }
+
+#containerDropdowns::-webkit-scrollbar {
+  width: 8px;
+}
+
+#containerDropdowns::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+#containerDropdowns::-webkit-scrollbar-thumb {
+  background-color: #333;
+  border-radius: 10px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#containerDropdowns::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
