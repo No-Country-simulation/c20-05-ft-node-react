@@ -11,8 +11,7 @@ export const handlerAddPetForm = (dispatchCallback, numberOfPetForms) => dispatc
 export const handlerRemovePetForm = (currentNumberPetForm, dispatchCallback, numberOfPetForms, setCurrentNumberPetForm) => {
   dispatchCallback(addNumberOfPetForms(numberOfPetForms - 1))
   dispatchCallback(removePetForm(currentNumberPetForm))
-  console.log('numberOfPetForms - 1', numberOfPetForms - 1)
-  setCurrentNumberPetForm(numberOfPetForms - 1)
+  setCurrentNumberPetForm(currentNumberPetForm - 1)
 }
 
 
