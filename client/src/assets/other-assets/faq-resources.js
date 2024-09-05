@@ -36,9 +36,3 @@ export const FAQ = [
       "Una vez que reserves un servicio, podrás chatear directamente con el cuidador a través de la app para coordinar todos los detalles.",
   },
 ];
-
-export const INITIAL_SATATE_INPUTS = {
-  full_name: "",
-  email: "",
-  question: "",
-};

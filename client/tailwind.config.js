@@ -11,7 +11,8 @@ module.exports = {
         "principal-text": "#333333",
         "secondary-text": "#9b9b9b",
         "text-error": "#e94e77",
-        "page-background": "#f5f5f5",
+        "page-background": "#ffffff",
+        // "page-background": "#f5f5f5",
       },
       boxShadow: {
         container: 'rgba(0, 0, 0, 0.15) 0px 0px 3px'

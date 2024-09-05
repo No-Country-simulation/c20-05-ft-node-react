@@ -1,43 +1,35 @@
 import { FORM_ERROR_VALUES } from '../../../assets/other-assets/errors-values'
 import ErrorForms from '../../ErrorsForms/ErrorForms'
-import { handlerRegisterLoginForm } from '../../../utils/functions/handlerRegisterLoginForm'
 import { useRegisterForm } from '../../../utils/hooks/useRegisterForm'
-import { handlerSubmitForm } from '../../../utils/functions/handlerSubmitForm'
-import { PATHS, API_PATHS } from '../../../routes/routes'
+import { PATHS } from '../../../routes/routes'
 import ButtonSubmit from '../../Global/ButtonSubmit'
-import { API_REQUEST_MSGS } from '../../../assets/other-assets/api-request-msgs'
 import ProfileCreatedSuccessfully from '../../ProfileCreatedSuccessfully/ProfileCreatedSuccessfully'
+import { handlerFormValues } from '../../../utils/functions/handlerFormValues'
+import { handlerSubmitRegisterForm } from '../../../utils/functions/handlerSubmitRegisterForm'
 
 const RegisterForm = () => {
   const { form, setForm, errors, formState, setFormState } = useRegisterForm()
   const { first_name, last_name, email, password, repeatPassword } = FORM_ERROR_VALUES
-
-  const handleFormSubmit = async (e) => {
-    setFormState({ ...formState, isLoading: true })
-    const { status } = await handlerSubmitForm(e, form, API_PATHS.register, API_REQUEST_MSGS.register, errors)
-    console.log('status', status)
-    if (status === 201) setFormState({ ...formState, isLoading: false, isSent: true })
-  }
 
   return (
     <>
       <div className={formState.isSent ? 'block' : 'hidden'}>
         <ProfileCreatedSuccessfully pathSkip={PATHS.home} pathGoTo={PATHS.userInfo} />
       </div>
-      <form onSubmit={(e) => handleFormSubmit(e)} className="flex flex-col gap-8">
+      <form onSubmit={(e) => handlerSubmitRegisterForm(e, form, formState, setFormState, errors)} className="flex flex-col gap-8">
         <div className="flex flex-col w-full gap-4">
           <h2 className='font-medium text-lg'>Nombre y apellido</h2>
           <div className='flex max-md:flex-col gap-4 w-full [&>div>label]:mt-2 [&>div>label]:font-medium [&>div>input]:p-2 [&>div>input]:border-[1px] [&>div>input]:border-gray-light [&>div>label]:hidden [&>div>input]:rounded-lg'>
             <div className="flex flex-col w-full gap-2">
               <label htmlFor="first_name-register">Nombre</label>
-              <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='first_name-register' name='first_name' type="text" placeholder="Nombre" minLength={first_name.min} maxLength={first_name.max} value={form.first_name} />
+              <input onChange={(e) => handlerFormValues(e, setForm)} id='first_name-register' name='first_name' type="text" placeholder="Nombre" minLength={first_name.min} maxLength={first_name.max} value={form.first_name} />
               {
                 errors && (<ErrorForms msgError={errors.first_name} />)
               }
             </div>
             <div className="flex flex-col w-full gap-2">
               <label htmlFor="last_name-register">Apellido</label>
-              <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='last_name-register' name='last_name' type="text" placeholder="Apellido" minLength={last_name.min} maxLength={last_name.max} value={form.last_name} />
+              <input onChange={(e) => handlerFormValues(e, setForm)} id='last_name-register' name='last_name' type="text" placeholder="Apellido" minLength={last_name.min} maxLength={last_name.max} value={form.last_name} />
               {
                 errors && (<ErrorForms msgError={errors.last_name} />)
               }
@@ -48,17 +40,17 @@ const RegisterForm = () => {
         <div className='flex flex-col gap-4 [&>label]:hidden [&>input]:p-2 [&>input]:border-[1px] [&>input]:border-gray-300 [&>input]:rounded-lg'>
           <h2 className='font-medium text-lg'>Correo y contraseña</h2>
           <label htmlFor="email-register">Correo electrónico</label>
-          <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='email-register' name='email' autoComplete='username' type="email" placeholder="Correo electrónico" minLength={email.min} maxLength={email.max} value={form.email} />
+          <input onChange={(e) => handlerFormValues(e, setForm)} id='email-register' name='email' autoComplete='username' type="email" placeholder="Correo electrónico" minLength={email.min} maxLength={email.max} value={form.email} />
           {
             errors && (<ErrorForms msgError={errors.email} />)
           }
           <label htmlFor="password-register">Contraseña</label>
-          <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='password-register' name='password' autoComplete="new-password" type="password" placeholder="Contraseña" minLength={password.min} maxLength={password.max} value={form.password} />
+          <input onChange={(e) => handlerFormValues(e, setForm)} id='password-register' name='password' autoComplete="new-password" type="password" placeholder="Contraseña" minLength={password.min} maxLength={password.max} value={form.password} />
           {
             errors && (<ErrorForms msgError={errors.password} />)
           }
           <label htmlFor="repeat-password-register">Confirmar contraseña</label>
-          <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='repeat-password-register' name='repeatPassword' autoComplete="new-password" type="password" placeholder="Confirmar contraseña" minLength={repeatPassword.min} maxLength={repeatPassword.max} value={form.repeatPassword} />
+          <input onChange={(e) => handlerFormValues(e, setForm)} id='repeat-password-register' name='repeatPassword' autoComplete="new-password" type="password" placeholder="Confirmar contraseña" minLength={repeatPassword.min} maxLength={repeatPassword.max} value={form.repeatPassword} />
           {
             errors && (<ErrorForms msgError={errors.repeatPassword} />)
           }
