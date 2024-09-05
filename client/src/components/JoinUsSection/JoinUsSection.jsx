@@ -12,20 +12,20 @@ const JoinUsSection = () => {
                     <div className='w-full md:size-3/4 flex flex-col'>
                         <div className='w-max' >
                             <h3 className="text-sm font-bold bg-cyan-100 text-cyan-950 py-2 px-4 rounded-full text-center transition duration-300 hover:bg-cyan-200 ">
-                                Únete como Dueño
+                                Unite Dueño
                             </h3>
                         </div>
-                        <h4 className='text-2xl md:w-1/2 break-words font-bold'>
+                        <h4 className='text-2xl break-words font-bold'>
                             Conecta con Cuidadores de Confianza
                         </h4>
 
-                        <p className="text-justify text-xs">
+                        <p className="text-balance text-xs md:text-sm">
                             Descubre la mejor manera de conectar con cuidadores expertos y dedicados.
                             Nuestra plataforma te ofrece la posibilidad de encontrar al cuidador ideal
                             para tu mascota, asegurando la mayor tranquilidad y confianza.
                         </p>
                         <Link to="/register">
-                            <p className='text-justify text-sm text-cyan-500 font-extrabold' >Únete a nuestra comunidad y deja a tu mascota en buenas manos.</p>
+                            <p className=' text-xs underline text-cyan-500 font-extrabold' >Únete a nuestra comunidad y deja a tu mascota en buenas manos.</p>
                         </Link>
                     </div>
                 </section>
@@ -38,18 +38,18 @@ const JoinUsSection = () => {
                     <div className='w-full md:size-3/4 flex flex-col self-start'>
                         <div className='w-max' >
                             <h3 className="text-sm font-bold bg-cyan-100 text-cyan-950 py-2 px-4 rounded-full text-center transition duration-300 hover:bg-cyan-200">
-                                Únete como Paseador
+                                Unite Paseador
                             </h3>
                         </div>
-                        <h4 className='text-2xl md:w-1/2 break-words font-bold'>Únete a Nuestra Red de Paseadores Certificados</h4>
-                        <p className="text-justify text-xs">
-                            Únete a nuestra comunidad de paseadores certificados y experimentados.
+                        <h4 className='text-2xl font-bold'>Unite a Nuestra Red de Paseadores Certificados</h4>
+                        <p className="text-balance text-xs md:text-sm">
+                            Ven a nuestra comunidad de paseadores certificados y experimentados.
                             Conéctate con dueños que necesitan tus habilidades y asegúrate de brindarles
                             a sus mascotas la mejor experiencia de paseo. Con nuestra plataforma, podrás
                             administrar tus horarios y ampliar tu clientela fácilmente.
                         </p>
                         <Link to="/register">
-                            <p className='text-justify text-sm text-cyan-500 font-extrabold' >¡Haz lo que amas
+                            <p className='text-justify text-sm md:text-xs text-cyan-500 font-extrabold underline' >¡Haz lo que amas
                                 mientras generas ingresos!</p>
                         </Link >
                     </div>

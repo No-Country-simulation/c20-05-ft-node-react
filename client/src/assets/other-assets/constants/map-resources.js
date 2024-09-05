@@ -1,0 +1,1 @@
+export const BASE_URL_GOOGLE_MAPS = "https://www.google.com/maps?q="
