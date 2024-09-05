@@ -57,9 +57,17 @@ export const login = async (req, res, next) => {
 			res.status(400);
 			throw new Error("Invalid Credentials");
 		}
-		// Find the user
-		const user = await UserModel.findOne({ email });
+		// Find the user in UserModel
+		let user = await UserModel.findOne({ email });
 		console.log(user);
+
+		// If user not found in UserModel, search in UserCuidador
+		if (!user) {
+			user = await UserCuidador.findOne({ email });
+			console.log(user);
+		}
+
+		// If user not found in either model, throw error
 		if (!user) {
 			res.status(401);
 			throw new Error("Invalid email or password");
