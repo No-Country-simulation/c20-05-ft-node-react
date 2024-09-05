@@ -1,11 +1,16 @@
 import { Router } from "express";
-import { createUser, login, logout } from "../controllers/userController.js";
+import {
+	createUser,
+	login,
+	logout,
+	createCuidador,
+} from "../controllers/userController.js";
 
 const userRouter = Router();
 
 userRouter.post("/createuser", createUser);
 
-userRouter.post("/createcuidador", createCuidador);
+userRouter.post("/createcarer", createCuidador);
 
 userRouter.post("/login", login);
 

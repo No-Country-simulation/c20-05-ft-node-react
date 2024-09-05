@@ -3,7 +3,7 @@ import {
 	getCarerProfile,
 	getCarers,
 	requestService,
-} from "../controllers/carerController";
+} from "../controllers/carerController.js";
 
 const carerRouter = Router();
 

@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { Schema, model } from "mongoose";
 
 const UserCuidadorSchema = new Schema({
@@ -11,7 +12,7 @@ const UserCuidadorSchema = new Schema({
 	phone: { type: Number, required: false },
 	zipCode: { type: Number, required: false },
 	isadmin: { type: Boolean, default: false },
-	birthdate: { type: Date, required: true },
+	birthdate: { type: Date, required: false },
 	prefered_name: { type: String, required: false },
 	preferencePet: { type: String, required: false }, // tipo de animal que prefiere cuidar
 	typePreferencePet: { type: String, required: false }, // elegir peso, edad del pet, consultar con leo
