@@ -7,9 +7,11 @@ import ButtonSubmit from '../Global/ButtonSubmit'
 import { handlerFormValues } from '../../utils/functions/handlerFormValues'
 import { PET_AGE, PET_HAS_MEDICATION, PET_HAS_PATHOLOGIES, PET_TYPES, PET_WEIGHTS } from '../../assets/other-assets/constants/pets-form-resources'
 import { usePetsForm } from '../../utils/hooks/usePetsForm'
+import { useMemo } from 'react'
 
 const PetsForm = () => {
-  const { form, setForm, errors, extraInputs, setExtraInputs } = usePetsForm()
+  const uid = useMemo(() => crypto.randomUUID(), [])
+  const { form, setForm, errors, extraInputs, setExtraInputs } = usePetsForm(uid)
   const { pet_name, pet_type, pet_pathologies, pet_medication } = FORM_ERROR_VALUES
 
   const handleChangeOptionRadio = (e) => {
