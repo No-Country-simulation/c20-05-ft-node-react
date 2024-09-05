@@ -33,14 +33,4 @@ const UserCuidadorSchema = new Schema({
     reviews: [{ type: Schema.Types.ObjectId, ref: 'reviews' }] // reviews del cuidador
 });
 
-
-
-
-
-
-
-
-
-
-
 export const UserCuidador = model("UserCuidador", UserCuidadorSchema);

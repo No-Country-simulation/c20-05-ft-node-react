@@ -9,7 +9,7 @@ import { errorHandler, notFound } from "./src/middlewares/errorHandler.js";
 
 // import { Server } from "socket.io";
 
-const PORT = entorno.port;
+const PORT = entorno.port ?? 8080;
 const app = express();
 
 app.use(cors());
