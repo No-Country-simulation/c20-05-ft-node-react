@@ -5,6 +5,8 @@ const userRouter = Router();
 
 userRouter.post("/createuser", createUser);
 
+userRouter.post("/createcuidador", createCuidador);
+
 userRouter.post("/login", login);
 
 userRouter.post("/logout", logout);

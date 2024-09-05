@@ -1,3 +1,4 @@
+import { UserCuidador } from '../persistencia/models/userCuidador.js';
 import { UserModel } from "../persistencia/models/userCliente.js";
 import { createHash, generateToken, isValidPassword } from "../utils/utils.js";
 import { entorno } from "../config/config.js";
@@ -105,4 +106,80 @@ export const logout = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
+
+export const createCuidador = async (req, res) => {
+    try {
+        const {
+            first_name,
+            last_name,
+            email,
+            password,
+            province,
+            city,
+            address,
+            phone,
+            zipCode,
+            birthdate,
+            prefered_name,
+            preferencePet,
+            typePreferencePet,
+            aboutMe,
+            aboutYourHome,
+            typeService,
+            availability,
+            bathroomServicePrice,
+            pricePerVet,
+            specialties,
+            experience,
+            profilePicture,
+            images,
+            networks
+        } = req.body;
+
+        // Verificar que el email no exista previamente
+        const existingUser = await UserCuidador.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ message: 'Email ya está en uso' });
+        }
+
+        // Encriptar la contraseña
+        const hashedPassword = createHash(password);
+
+        // Crear un nuevo cuidador
+        const newCuidador = new UserCuidador({
+            first_name,
+            last_name,
+            email,
+            password: hashedPassword,
+            province,
+            city,
+            address,
+            phone,
+            zipCode,
+            birthdate,
+            prefered_name,
+            preferencePet,
+            typePreferencePet,
+            aboutMe,
+            aboutYourHome,
+            typeService,
+            availability,
+            bathroomServicePrice,
+            pricePerVet,
+            specialties,
+            experience,
+            profilePicture,
+            images,
+            networks
+        });
+
+        // Guardar el nuevo cuidador en la base de datos
+        await newCuidador.save();
+
+        res.status(201).json({ message: 'Cuidador creado con éxito', cuidador: newCuidador });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al crear el cuidador' });
+    }
 };
