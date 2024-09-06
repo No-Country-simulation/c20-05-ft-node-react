@@ -3,6 +3,7 @@ import CalendarComponent from "../../components/Calendar/Calendar";
 import MapIframe from "../../components/Map/MapIframe";
 import { getServicesForOptions } from "../../utils/functions/getServicesForOptions";
 import { caretakerProfileMock } from "../../assets/other-assets/mocks/mockForProfile";
+import { Link } from "react-router-dom";
 
 const CaretakerDateLocationInfo = () => {
 
@@ -25,6 +26,7 @@ const CaretakerDateLocationInfo = () => {
                 </select>
                 <div className="self-center ">
                     <CalendarComponent />
+                    <Link to={`/profile/${23}/hire`} className="bg-blue-500 text-white px-4 py-2 rounded-md self-center">Contratar</Link>
                 </div>
             </div>
             <div className="grow flex flex-col gap-5 rounded-xl border-2 shadow-md p-3 overflow-hidden">
