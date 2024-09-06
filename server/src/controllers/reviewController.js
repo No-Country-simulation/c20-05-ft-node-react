@@ -75,3 +75,37 @@ export const deleteReview = async (req, res) => {
         res.status(500).json({ message: "Error al eliminar la reseña." });
     }
 };
+
+// Actualizar una reseña
+// @route   PUT /api/v1/reviews/:eid
+// @access  Private (solo el autor de la reseña)
+export const updateReview = async (req, res) => {
+    try {
+        const { eid } = req.params;
+        const userId = req.user.id; // Supone que hay autenticación y req.user contiene al usuario autenticado
+        const { rating, comment } = req.body;
+
+        // Buscar la reseña por ID
+        const review = await ReviewModel.findById(eid);
+        if (!review) {
+            return res.status(404).json({ message: "Reseña no encontrada." });
+        }
+
+        // Verificar si el usuario es el autor de la reseña
+        if (review.userId.toString() !== userId) {
+            return res.status(403).json({ message: "No tienes permiso para actualizar esta reseña." });
+        }
+
+        // Actualizar los campos de la reseña
+        if (rating) review.rating = rating;
+        if (comment) review.comment = comment;
+
+        // Guardar la reseña actualizada
+        const updatedReview = await review.save();
+
+        res.status(200).json({ message: "Reseña actualizada con éxito.", review: updatedReview });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error al actualizar la reseña." });
+    }
+};
