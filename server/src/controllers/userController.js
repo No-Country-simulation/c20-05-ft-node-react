@@ -65,6 +65,14 @@ export const login = async (req, res, next) => {
 		if (!user) {
 			user = await UserCuidador.findOne({ email });
 		}
+
+		// If user not found in UserModel, search in UserCuidador
+		if (!user) {
+			user = await UserCuidador.findOne({ email });
+			console.log(user);
+		}
+
+		// If user not found in either model, throw error
 		if (!user) {
 			res.status(401);
 			throw new Error("Invalid email or password");
