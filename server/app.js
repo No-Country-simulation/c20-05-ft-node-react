@@ -27,3 +27,20 @@ const server = app.listen(PORT, () => {
 });
 
 MongoSingleton.getInstance();
+
+// Configuracion de swagger
+
+const swaggerOptions = {
+	definition: {
+		openapi: "3.0.1",
+		info: {
+			title: "API de cuidadores de mascotas ",
+			description: "API de cuidadores de mascotas",
+		},
+	},
+	apis: [`${__dirname}/docs/**/*.yaml`],
+};
+
+const specs = swaggerJSDoc(swaggerOptions);
+
+app.use("/apidocs", swaggerUiExpress.serve, swaggerUiExpress.setup(specs));

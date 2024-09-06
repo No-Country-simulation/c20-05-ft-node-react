@@ -9,7 +9,7 @@ const carerRouter = Router();
 
 carerRouter.get("/carers", getCarers); //  Obtiene una lista de cuidadores según filtros (ubicación, tipo de mascota preferida, servicios ofrecidos, etc.)
 
-carerRouter.get("/carers/:cip", getCarerProfile); // Obtiene el perfil detallado de un cuidador específico.
+carerRouter.get("/carers/:cid", getCarerProfile); // Obtiene el perfil detallado de un cuidador específico.
 
 carerRouter.post("/carers/services", requestService); // Solicita un servicio a un cuidador específico.
 
