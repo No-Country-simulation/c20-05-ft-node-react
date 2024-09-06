@@ -6,8 +6,9 @@ export const useRegisterForm = () => {
   const [form, setForm] = useState(INITIAL_SATATE_REGISTER_INPUTS)
   const [errors, setErrors] = useState(null)
   const [formState, setFormState] = useState(FORM_STATES)
+  const [showPassword, setShowPassword] = useState(false)
 
   useEffect(() => registerValidations(form, setErrors), [form])
 
-  return { form, setForm, errors, formState, setFormState }
+  return { form, setForm, errors, formState, setFormState, showPassword, setShowPassword }
 }

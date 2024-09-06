@@ -6,9 +6,11 @@ import ButtonSubmit from '../../Global/ButtonSubmit'
 import ProfileCreatedSuccessfully from '../../ProfileCreatedSuccessfully/ProfileCreatedSuccessfully'
 import { handlerFormValues } from '../../../utils/functions/handlerFormValues'
 import { handlerSubmitRegisterForm } from '../../../utils/functions/handlerSubmitRegisterForm'
+import eyeIcon from '../../../assets/svg/eye-icon.svg'
+import slashedEyeIcon from '../../../assets/svg/slashed-eye-icon.svg'
 
 const RegisterForm = () => {
-  const { form, setForm, errors, formState, setFormState } = useRegisterForm()
+  const { form, setForm, errors, formState, setFormState, showPassword, setShowPassword } = useRegisterForm()
   const { first_name, last_name, email, password, repeatPassword } = FORM_ERROR_VALUES
 
   return (
@@ -44,13 +46,23 @@ const RegisterForm = () => {
           {
             errors && (<ErrorForms msgError={errors.email} />)
           }
-          <label htmlFor="password-register">Contraseña</label>
-          <input onChange={(e) => handlerFormValues(e, setForm)} id='password-register' name='password' autoComplete="new-password" type="password" placeholder="Contraseña" minLength={password.min} maxLength={password.max} value={form.password} />
+          <div className='relative [&>label]:hidden [&>input]:p-2 [&>input]:border-[1px] [&>input]:border-gray-300 [&>input]:rounded-lg [&>input]:w-full'>
+            <label htmlFor="password-register">Contraseña</label>
+            <input onChange={(e) => handlerFormValues(e, setForm)} id='password-register' name='password' autoComplete="new-password" type={!showPassword ? 'password' : 'text'} placeholder="Contraseña" minLength={password.min} maxLength={password.max} value={form.password} />
+            <button onClick={() => setShowPassword(!showPassword)} className='absolute top-0 bottom-0 right-2' type='button'>
+              <img src={!showPassword ? eyeIcon : slashedEyeIcon } alt={!showPassword ? 'mostrar contraseña' : 'ocultar contraseña'} />
+            </button>
+          </div>
           {
             errors && (<ErrorForms msgError={errors.password} />)
           }
-          <label htmlFor="repeat-password-register">Confirmar contraseña</label>
-          <input onChange={(e) => handlerFormValues(e, setForm)} id='repeat-password-register' name='repeatPassword' autoComplete="new-password" type="password" placeholder="Confirmar contraseña" minLength={repeatPassword.min} maxLength={repeatPassword.max} value={form.repeatPassword} />
+          <div className='relative [&>label]:hidden [&>input]:p-2 [&>input]:border-[1px] [&>input]:border-gray-300 [&>input]:rounded-lg [&>input]:w-full'>
+            <label htmlFor="repeat-password-register">Confirmar contraseña</label>
+            <input onChange={(e) => handlerFormValues(e, setForm)} id='repeat-password-register' name='repeatPassword' autoComplete="new-password" type={!showPassword ? 'password' : 'text'} placeholder="Confirmar contraseña" minLength={repeatPassword.min} maxLength={repeatPassword.max} value={form.repeatPassword} />
+            <button onClick={() => setShowPassword(!showPassword)} className='absolute top-0 bottom-0 right-2' type='button'>
+              <img src={!showPassword ? eyeIcon : slashedEyeIcon } alt={!showPassword ? 'mostrar contraseña' : 'ocultar contraseña'} />
+            </button>
+          </div>
           {
             errors && (<ErrorForms msgError={errors.repeatPassword} />)
           }
