@@ -1,26 +1,25 @@
 import { useSelector } from "react-redux"
 import { APP_NAME } from "../../assets/other-assets/constants/app-info"
-import { formatPrice, formattedDatesWithSlashes, getNigthsDifference, getResultAndFormattedPrice } from "../../utils/functions/handlerHireCareTakers"
-import { useEffect, useMemo } from "react"
+import { formatPrice, formattedDatesWithSlashes, getNightsDifference, getResultAndFormattedPrice } from "../../utils/functions/handlerHireCareTakers"
+import { useMemo } from "react"
+import { isPlural } from "../../utils/functions/validations/extraValidations"
 
 const PRICE_PER_PET_PET_NIGHT = 15000
 const COMMISSION = 1000
 
 const HireSummaryAside = () => {
-  const { selectedPets, confirmServices } = useSelector(state => state.hireCareTaker)
+  const { selectedPets, confirmServices, extraServices } = useSelector(state => state.hireCareTaker)
   const [startWithSlashes, endWithSlashes] = useMemo(() => formattedDatesWithSlashes(confirmServices.date), [confirmServices.date])
-  const nigthsDifference = useMemo(() => getNigthsDifference(confirmServices.date), [confirmServices.date])
+  const nightsDifference = useMemo(() => getNightsDifference(confirmServices.date), [confirmServices.date])
   const { formattedPrice: formattedPricePerAllPrice } = useMemo(() => getResultAndFormattedPrice('*', PRICE_PER_PET_PET_NIGHT, selectedPets.length), [selectedPets])
-  const { formattedPrice: formattedPricePerAllNights } = useMemo(() => getResultAndFormattedPrice('*', PRICE_PER_PET_PET_NIGHT, nigthsDifference), [nigthsDifference])
-  const { result: serviciePrice, formattedPrice: formattedServicePrice } = useMemo(() => getResultAndFormattedPrice('*', PRICE_PER_PET_PET_NIGHT, selectedPets.length, nigthsDifference), [selectedPets, nigthsDifference])
-  const { formattedPrice: formattedTotalPrice } = useMemo(() => getResultAndFormattedPrice('+', serviciePrice, COMMISSION), [serviciePrice])
-
-
-  console.log('serviciePrice', serviciePrice)
-
-  useEffect(() => {
-    console.log('confirmServices', confirmServices)
-  }, [confirmServices])
+  const { formattedPrice: formattedPricePerAllNights } = useMemo(() => getResultAndFormattedPrice('*', PRICE_PER_PET_PET_NIGHT, nightsDifference), [nightsDifference])
+  const { result: servicePrice, formattedPrice: formattedServicePrice } = useMemo(() => getResultAndFormattedPrice('*', PRICE_PER_PET_PET_NIGHT, selectedPets.length, nightsDifference), [selectedPets, nightsDifference])
+  const { result: extraServicePrice, formattedPrice: formattedExtraServicePrice } = useMemo(() => {
+    if (extraServices.length === 0) return { result: 0, formattedPrice: '0' }
+    return getResultAndFormattedPrice('+', ...extraServices.map(service => service.price))
+  }, [extraServices])
+  const { formattedPrice: formattedTotalPrice } = useMemo(() => getResultAndFormattedPrice('+', servicePrice, extraServicePrice, COMMISSION), [servicePrice, extraServicePrice])
+  const pricePerPetPetNightFormatted = useMemo(() => formatPrice(PRICE_PER_PET_PET_NIGHT), [])
 
   return (
     <div className="w-full sm:min-w-[370px] flex-1 min-[1100px]:px-6">
@@ -46,22 +45,48 @@ const HireSummaryAside = () => {
           </div>
         </div>
         <div className="border-b-2 border-gray-200 pb-6">
-          <ul className="flex flex-col gap-4 [&>li]:flex [&>li]:flex-col [&>li]:gap-2 [&>li>div>span]:font-medium">
-            <li>
+          <ul className="flex flex-col gap-4">
+            <li className="flex flex-col gap-2 [&>div>span]:font-medium">
               <div className="flex justify-between">
                 <span>Servicio</span>
                 <small className="font-semibold text-base">{formattedServicePrice}</small>
               </div>
-              <div className={`${selectedPets.length < 1 ? 'hidden' : ''} flex justify-between`}>
-                <span className="ps-4 text-gray-400 text-sm">x{selectedPets.length} mascotas</span>
-                <small className="text-gray-400 text-sm font-medium">{formattedPricePerAllPrice}</small>
+              <div className={`${selectedPets.length < 1 ? 'hidden' : ''} flex flex-col gap-2`}>
+                <div className='flex justify-between'>
+                  <span className="ps-2 text-sm">Mascotas</span>
+                  <small className="text-gray-400 text-sm font-medium">{formattedPricePerAllPrice}</small>
+                </div>
+                <div className='flex justify-between'>
+                  <span className="ps-4 text-gray-400 text-sm">x{selectedPets.length} mascota{isPlural(selectedPets.length)}</span>
+                  <small className="text-gray-400 text-sm font-medium">{pricePerPetPetNightFormatted}</small>
+                </div>
               </div>
-              <div className={`${!nigthsDifference ? 'hidden' : ''} flex justify-between`}>
-                <span className="ps-4 text-gray-400 text-sm">x{nigthsDifference} noche{nigthsDifference !== 1 ? 's' : ''}</span>
-                <small className="text-gray-400 text-sm font-medium">{formattedPricePerAllNights}</small>
+              <div className={`${!nightsDifference ? 'hidden' : ''} flex flex-col gap-2`}>
+                <div className='flex justify-between'>
+                  <span className="ps-2 text-sm">Noches</span>
+                  <small className="text-gray-400 text-sm font-medium">{formattedPricePerAllNights}</small>
+                </div>
+                <div className='flex justify-between'>
+                  <span className="ps-4 text-gray-400 text-sm">x{nightsDifference} noche{isPlural(nightsDifference)}</span>
+                  <small className="text-gray-400 text-sm font-medium">{pricePerPetPetNightFormatted}</small>
+                </div>
               </div>
             </li>
-            <li>
+            <li className={`${extraServices.length < 1 ? 'hidden' : ''} flex flex-col gap-2 [&>div>span]:font-medium`}>
+              <div className='flex justify-between'>
+                <span>Servicios extra</span>
+                <small className="text-gray-400 text-sm font-medium">{formattedExtraServicePrice}</small>
+              </div>
+                {
+                  extraServices.length > 0 && extraServices.map((service) => (
+                    <div key={service.id} className='flex justify-between'>
+                      <span className="ps-4 text-gray-400 text-sm">{service.name}</span>
+                      <small className="text-gray-400 text-sm font-medium">{formatPrice(service.price)}</small>
+                    </div>
+                  ))
+                }
+            </li>
+            <li className="flex flex-col gap-2 [&>div>span]:font-medium">
               <div className="flex justify-between">
                 <span>Comisión {APP_NAME}</span>
                 <small className="font-semibold text-base">{formatPrice(COMMISSION)}</small>

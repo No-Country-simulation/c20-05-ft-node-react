@@ -36,7 +36,13 @@ const hireSlice = createSlice({
       state.confirmServices.services = action.payload
     },
     addExtraServices: (state, action) => {
-      state.extraServices = action.payload
+      const { isServiceChecked, service } = action.payload
+
+      console.log('isServiceChecked', isServiceChecked)
+
+      isServiceChecked
+        ? state.extraServices.push(service)
+        : state.extraServices.splice(state.extraServices.indexOf(service), 1)
     },
   }
 })

@@ -1,6 +1,10 @@
 import { addServices, addStartAndEndDate } from "../../state/store/slices/hire/hire-slice"
 
 const getResult = (operation = '*', ...values) => {
+
+  console.log('operation', operation)
+  console.log('values', values)
+
   const defaultValues = operation ===  '*' || operation === '/' ? 1 : 0
   return values.reduce((acc, value) => {
     value === 0 && operation === '*' || operation === '/' ? value = 1 : value
@@ -63,7 +67,7 @@ export const formattedDatesWithSlashes = (dates) => {
   return Object.values(dates).map(date => new Date(date).toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric' }))
 }
 
-export const getNigthsDifference = (dates) => {
+export const getNightsDifference = (dates) => {
   if (dates.start === '' || dates.end === '') return null
   const { start: startDate, end: endDate } = dates
   // Convertir las fechas a milisegundos
@@ -73,5 +77,5 @@ export const getNigthsDifference = (dates) => {
   const differenceInTime = end - start // La diferencia en milisegundos
   // Convertir de milisegundos a días (1 día = 24 * 60 * 60 * 1000 milisegundos)
   const differenceInDays = differenceInTime / (1000 * 60 * 60 * 24)
-  return differenceInDays + 1
+  return differenceInDays - 1
 }
