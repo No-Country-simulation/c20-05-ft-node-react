@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { INITIAL_SATATE_PETS_FORM_INPUTS } from '../../../../assets/other-assets/constants/form-resources'
 
 const userInfoFormSlice = createSlice({
-  name: 'petForm',
+  name: 'userInfoForm',
   initialState: {
     forms: [],
     errors: 0,

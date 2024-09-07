@@ -4,7 +4,7 @@ const DropdownPrices = ({ service, isOpen, onToggle }) => {
     return (
         <div className="relative flex flex-col rounded-lg shadow-md border bg-white text-black text-[11px] pt-1">
             <button onClick={onToggle} className="w-full flex justify-between items-center p-2 rounded-2xl focus:outline-none">
-                <p>{service.careType}</p>
+                <h4 className="tsmd">{service.careType}</h4>
                 <div className="flex items-center">
                     <p>${service.price}</p>
                     <ChevronIcon isOpen={isOpen} />

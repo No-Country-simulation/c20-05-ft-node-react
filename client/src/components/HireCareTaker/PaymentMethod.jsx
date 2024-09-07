@@ -11,8 +11,12 @@ const PaymentMethod = () => {
         </div>
         <div className="flex flex-col [&>div>input]:p-2 [&>div>input]:border-gray-300">
           <div className="[&>input]:w-full">
+            <label className="hidden" htmlFor="card-owner">Nombre y apellido</label>
+            <input className="rounded-lg rounded-b-none border-b-0 border" type="text" id="card-owner" name="card-owner" placeholder="Nombre y apellido" />
+          </div>
+          <div className="[&>input]:w-full">
             <label className="hidden" htmlFor="card-number">Número de tarjeta</label>
-            <input className="rounded-lg rounded-b-none border" type="text" id="card-number" name="card-number" placeholder="Número de tarjeta" />
+            <input className="rounded-lg rounded-b-none rounded-t-none border" type="text" id="card-number" name="card-number" placeholder="Número de tarjeta" />
           </div>
           <div className="flex [&>input]:w-full [&>label]:hidden">
             <label htmlFor="card-expiration">Fecha de vencimiento</label>
