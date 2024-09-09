@@ -1,8 +1,9 @@
 import { Router } from "express";
+import {createReviews, deleteReview, getTopRatedReviews} from "../controllers/reviewController.js";
 
 const reviewRouter = Router();
 
-reviewRouter.post("/reviews"); //  Crea una nueva reseña para un cuidador.
+reviewRouter.post("/reviews" ,createReviews); //  Crea una nueva reseña para un cuidador.
 
 //reviewRouter.get("/reviews/carer/"); // Obtiene todas las reseñas de un cuidador específico. (la e es de estrella)
 
@@ -10,6 +11,16 @@ reviewRouter.post("/reviews"); //  Crea una nueva reseña para un cuidador.
 
 reviewRouter.put("/reviews/:eid"); // Actualiza una reseña específica (solo por el autor de la reseña).
 
-reviewRouter.delete("/reviews/:eid"); // Elimina una reseña específica (solo por el autor de la reseña o administrador).
+reviewRouter.delete("/reviews/:eid", createReviews); // Elimina una reseña específica (solo por el autor de la reseña o administrador).
+
+reviewRouter.get("/reviews/top-rated", getTopRatedReviews); // Obtiene solo las reseñas con mejores calificaciones.
 
 export default reviewRouter;
+
+
+
+// ruta nueva de mejores calificaciones de cuidadores
+// reviews recientes 
+// crear los usuarios cuidador con reseñas 30 y ver img 
+// descripción req status rechazo por exceso, ver caracteres 
+
