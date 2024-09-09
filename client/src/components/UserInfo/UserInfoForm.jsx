@@ -48,7 +48,7 @@ const UserInfoForm = () => {
           }
         </div>
       </div>
-      <div className='flex gap-4'>
+      <div className='flex max-md:flex-col gap-4'>
         <ButtonGoTo goToPath={PATHS.home} className='w-full bg-white text-btn font-medium text-center rounded-lg py-2 border-[1px] border-btn transition-transform ease-out duration-300 hover:scale-90 hover:shadow-lg disabled:opacity-30' disabled={errors && Object.keys(errors).length !== 0}>Omitir</ButtonGoTo>
         <ButtonGoTo goToPath={PATHS.petsForm} disabled={errors && Object.keys(errors).length !== 0}>Continuar</ButtonGoTo>
       </div>
