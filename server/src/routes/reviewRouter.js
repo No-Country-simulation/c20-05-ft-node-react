@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {createReviews , deleteReview} from "../controllers/reviewController.js";
+import {createReviews, deleteReview, getTopRatedReviews} from "../controllers/reviewController.js";
 
 const reviewRouter = Router();
 
@@ -12,6 +12,8 @@ reviewRouter.post("/reviews" ,createReviews); //  Crea una nueva reseña para un
 reviewRouter.put("/reviews/:eid"); // Actualiza una reseña específica (solo por el autor de la reseña).
 
 reviewRouter.delete("/reviews/:eid", createReviews); // Elimina una reseña específica (solo por el autor de la reseña o administrador).
+
+reviewRouter.get("/reviews/top-rated", getTopRatedReviews); // Obtiene solo las reseñas con mejores calificaciones.
 
 export default reviewRouter;
 

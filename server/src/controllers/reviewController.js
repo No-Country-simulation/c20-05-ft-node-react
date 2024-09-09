@@ -42,6 +42,24 @@ export const createReview = async (req, res) => {
     }
 };
 
+
+// Obtener reseñas con mejores calificaciones
+export const getTopRatedReviews = async (req, res) => {
+    try {
+        // Obtener todas las reseñas con calificación máxima (5)
+        const topRatedReviews = await ReviewModel.find({ rating: 5 }).populate("cuidadorId", "first_name last_name profilePicture");
+
+        if (topRatedReviews.length === 0) {
+            return res.status(404).json({ message: "No hay reseñas con calificación máxima." });
+        }
+
+        res.status(200).json({ reviews: topRatedReviews });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error al obtener las reseñas mejor calificadas." });
+    }
+};
+
 // Eliminar una reseña
 export const deleteReview = async (req, res) => {
     try {
