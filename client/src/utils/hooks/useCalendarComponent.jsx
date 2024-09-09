@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { addStartAndEndDate } from "../../state/store/slices/hire/hire-slice";
+import { useDispatch } from "react-redux";
 
-export const useCalendarComponent = (section) => {
-  const [value, setValue] = useState([new Date(), new Date()])
+export const useCalendarComponent = (section, setService) => {
+  const [value, setValue] = useState(section === 'hire' ? [] : [new Date(), new Date()])
   const dispatch = useDispatch()
 
   useEffect(() => {
+    if (value.length === 0) return
     const [start, end] = value
     const newDate = { start: start.toDateString(), end: end.toDateString() }
-    section === 'hire' && dispatch(addStartAndEndDate(newDate))
+    setService
+      ? setService(prev => ({ ...prev, serviceDate: newDate }))
+      : dispatch(addStartAndEndDate(newDate))
   }, [value])
 
   return { value, setValue }

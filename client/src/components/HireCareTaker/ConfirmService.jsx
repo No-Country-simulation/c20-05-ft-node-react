@@ -11,6 +11,8 @@ const ConfirmService = () => {
 
   const handlerShowCalendarAndSelect = (valueToShow) => setCalendarAndSelect({ ...calendarAndSelect, [valueToShow]: !calendarAndSelect[valueToShow] })
 
+  const handlerConfirmEdit = () => setCalendarAndSelect({ calendar: false, select: false })
+
   return (
     <section className="relative flex flex-col gap-6">
       <h2>2. Confirmar servicio</h2>
@@ -25,6 +27,7 @@ const ConfirmService = () => {
               calendarAndSelect.calendar && (
                 <div className="absolute top-0 right-0">
                   <CalendarComponent section='hire' />
+                  <button onClick={handlerConfirmEdit} className="bg-btn text-white font-semibold rounded-lg p-2 w-full">Confirmar</button>
                 </div>
               )
             }

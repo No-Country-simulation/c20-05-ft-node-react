@@ -36,9 +36,18 @@ export const handlerChangeDate = (value, setValue, section, dispatch) => {
   section === 'hire' && dispatch(addStartAndEndDate(newDate))
 }
 
-export const handlerChangeServiceValue = (e, dispatch) => {
+export const handlerChangeServiceValue = (e, setErrors, setService) => {
   const service = e.target.value
-  dispatch(addServices(service))
+  // serviceCareTakerValidations(service, setErrors)
+  // dispatch(addServices(service))
+  setService(prev => ({ ...prev, serviceName: service }))
+}
+
+export const handlerServiceNameAndDate = (service, dispatch, goToNextStep) => {
+  const { serviceName, serviceDate } = service
+  dispatch(addServices(serviceName))
+  dispatch(addStartAndEndDate(serviceDate))
+  goToNextStep()
 }
 
 export const getFormattedServiceDate = (dates) => {
