@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 export const useAllPetsForm = () => {
   const dispatch = useDispatch()
-  const { numberOfPetForms } = useSelector((state) => state.petForm)
+  const { numberOfPetForms, forms } = useSelector((state) => state.petForm)
   const [currentNumberPetForm, setCurrentNumberPetForm] = useState(0)
 
   useEffect(() => {
@@ -14,6 +14,7 @@ export const useAllPetsForm = () => {
 
   return {
     dispatch,
+    forms,
     numberOfPetForms,
     currentNumberPetForm,
     setCurrentNumberPetForm,
