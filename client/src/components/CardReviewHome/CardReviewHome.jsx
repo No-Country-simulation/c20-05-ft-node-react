@@ -1,5 +1,6 @@
 import CheckVerified from '../CheckVerified/CheckVerified';
 import petsIcon from '../../assets/svg/pets.svg'
+
 const CardReviewHome = ({ review }) => {
     const { caretakerName, caretakerPhoto, reviewDescription, userName, userPhoto, petName } = review;
 

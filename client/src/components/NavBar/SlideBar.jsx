@@ -14,7 +14,7 @@ const SlideBar = () =>{
     return(
         <>
         <div className="flex items-center">
-            <button id="btn-perfil" className="border-none bg-cyan-600  rounded-full" onClick={handleToggleProfileMenu}>
+            <button id="btn-perfil" className="border-none bg-cyan-600 p-1 rounded-full" onClick={handleToggleProfileMenu}>
               <img
                 className="size-7"
                 src={icon1NavBar}
@@ -22,6 +22,7 @@ const SlideBar = () =>{
               />
             </button>
         </div>
+        
         <div
               id="overlay"
               className={`fixed top-0 left-0 bg-[#00000033] w-full h-full z-[5] cursor-pointer ${profileMenuVisible ? "block" : "hidden"}`}

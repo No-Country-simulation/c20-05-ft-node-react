@@ -37,12 +37,12 @@ const NavBar = () => {
         </button>
       </div>
       <div className="flex gap-4  items-center">
-        <button className="hidden font-semibold text-cyan-800 sm:block min-w-[70px] rounded-md p-2 hover:font-bold">
+        <button className="hidden font-semibold text-cyan-800 border border-cyan-800  sm:block min-w-[70px] rounded-md px-3 py-1 hover:font-bold">
           Ayuda
         </button>
         <span className="hidden w-px bg-black h-[40px] sm:h-[50px] sm:block"></span>
 
-        <button className="border-none  h-7 rounded-full bg-cyan-600">
+        <button className="border-none p-1 rounded-full bg-cyan-600">
           <img className="size-7" src={icon2NavBar} alt="notifications-icon" />
         </button>
 

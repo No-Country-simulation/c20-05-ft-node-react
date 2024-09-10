@@ -8,6 +8,9 @@ import UserInfo from '../views/Register/UserInfo'
 import PetsFormContainer from '../views/Register/PetsFormContainer'
 import Map from '../views/Home/Map/Map'
 import CaretakerList from '../views/CaretakerList/CaretakerList'
+import FilteForCaretaker from '../components/FilterForCaretaker/FilterForCaretaker'
+import SelectDateBar from '../components/SelectDateBar/SelectDateBar'
+import CaretakerFilterDropdown from '../components/FilterForCaretaker/CaretakerFilterDropdown'
 
 const routerPathComponents = [
     {
@@ -45,6 +48,18 @@ const routerPathComponents = [
     {
         path:"/perfilcreadoconexito",
         element:<ProfileCreatedSuccessfully/>
+    },
+    {
+        path:"/filterforcaretaker",
+        element:<FilteForCaretaker/>
+    },
+    {
+        path:"/fdd",
+        element:<CaretakerFilterDropdown/>
+    },
+    {
+        path:"/datebar",
+        element:<SelectDateBar/>
     },
     {
         path: "*",
