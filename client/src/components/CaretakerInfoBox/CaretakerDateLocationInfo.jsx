@@ -1,20 +1,12 @@
-import { useEffect } from "react";
 import CalendarComponent from "../../components/Calendar/Calendar";
 import MapIframe from "../../components/Map/MapIframe";
-import { getServicesForOptions } from "../../utils/functions/getServicesForOptions";
-import { caretakerProfileMock } from "../../assets/other-assets/mocks/mockForProfile";
 import { handlerChangeServiceValue, handlerServiceNameAndDate } from "../../utils/functions/handlerHireCareTakers";
 import ButtonSubmit from "../../components/Global/ButtonSubmit.jsx";
 import ErrorForms from "../ErrorsForms/ErrorForms.jsx";
 import { useCaretakerProfileToHire } from "../../utils/hooks/useCaretakerProfileToHire.jsx";
 
 const CaretakerDateLocationInfo = () => {
-  const { serviceType, coordinates } = caretakerProfileMock
-  const { servicesOptions, setServicesOptions, service, setService, errors, setErrors, dispatch, goToNextStep } = useCaretakerProfileToHire()
-
-  useEffect(() => {
-    setServicesOptions(getServicesForOptions(serviceType))
-  }, [])
+  const { servicesOptions, service, setService, errors, setErrors, dispatch, goToNextStep, coordinates } = useCaretakerProfileToHire()
 
   return (
     <div className="flex flex-col [&>div]:w-full gap-5">
@@ -34,7 +26,7 @@ const CaretakerDateLocationInfo = () => {
           }
         </div>
         <div className="self-center">
-          <div>
+          <div className="flex flex-col gap-2 items-center mb-2">
             <CalendarComponent section='hire' setService={setService} />
             {
               errors && (<ErrorForms msgError={errors.serviceDate} />)
