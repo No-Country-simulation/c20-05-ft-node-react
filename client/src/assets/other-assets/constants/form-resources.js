@@ -40,3 +40,8 @@ export const INITIAL_SATATE_PETS_FORM_INPUTS = {
   pathologies: '',
   medication: '',
 }
+
+export const SERVICE_NAME_AND_DATE_VALUES = {
+  serviceName: '',
+  serviceDate: ''
+}

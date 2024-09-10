@@ -6,9 +6,11 @@ import { API_PATHS } from '../../../routes/routes'
 import ButtonSubmit from '../../Global/ButtonSubmit'
 import { handlerFormValues } from '../../../utils/functions/handlerFormValues'
 import { API_REQUEST_MSGS } from '../../../assets/other-assets/api-request-msgs'
+import eyeIcon from '../../../assets/svg/eye-icon.svg'
+import slashedEyeIcon from '../../../assets/svg/slashed-eye-icon.svg'
 
 const LoginForm = () => {
-  const { form, setForm, errors } = useLoginForm()
+  const { form, setForm, errors, showPassword, setShowPassword } = useLoginForm()
   const { email, password } = FORM_ERROR_VALUES
 
   const handleLogin = async (e) => {
@@ -26,13 +28,18 @@ const LoginForm = () => {
         {
           errors && (<ErrorForms msgError={errors.email} />)
         }
-        <label className='hidden' htmlFor="password-login">Contraseña</label>
-        <input onChange={(e) => handlerFormValues(e, setForm)} id='password-login' name='password' autoComplete="new-password" type="password" placeholder="Contraseña" minLength={password.min} maxLength={password.max} value={form.password} />
+        <div className='relative [&>label]:hidden [&>input]:p-2 [&>input]:border-[1px] [&>input]:border-gray-300 [&>input]:rounded-lg [&>input]:w-full'>
+          <label className='hidden' htmlFor="password-login">Contraseña</label>
+          <input onChange={(e) => handlerFormValues(e, setForm)} id='password-login' name='password' autoComplete="new-password" type={!showPassword ? 'password' : 'text'} placeholder="Contraseña" minLength={password.min} maxLength={password.max} value={form.password} />
+          <button onClick={() => setShowPassword(!showPassword)} className='absolute top-0 bottom-0 right-2' type='button'>
+            <img src={!showPassword ? eyeIcon : slashedEyeIcon} alt={!showPassword ? 'mostrar contraseña' : 'ocultar contraseña'} />
+          </button>
+        </div>
         {
           errors && (<ErrorForms msgError={errors.password} />)
         }
-        <label htmlFor="checkbox-login" className='flex gap-2 items-center'>
-          <input onChange={(e) => handlerFormValues(e, setForm)} type="checkbox" name="remember" id="checkbox-login" className='[&+span]:checked:font-semibold' />
+        <label htmlFor="checkbox-login" className='flex gap-2 items-center cursor-pointer'>
+          <input onChange={(e) => handlerFormValues(e, setForm)} type="checkbox" name="remember" id="checkbox-login" className='[&+span]:checked:font-semibold cursor-pointer' />
           <span className='font-normal'>Recuérdame</span>
         </label>
       </div>

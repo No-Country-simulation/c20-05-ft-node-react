@@ -16,3 +16,4 @@ export const getAge = (dateToCheck) => {
   if (month < 0 || (month === 0 && day)) return age - 1
   return age
 }
+export const isPlural = (valueToCheck) => { valueToCheck !== 1 ? 's' : '' }
