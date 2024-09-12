@@ -165,6 +165,11 @@ export const createCuidador = async (req, res) => {
 			networks,
 		} = req.body;
 
+		// Verificar la longitud de aboutMe (máximo 300 caracteres)
+		if (aboutMe && aboutMe.length > 300) {
+			return res.status(400).json({ message: "El campo no puede exceder los 300 caracteres." });
+		}
+
 		// Buscar los servicios en la base de datos
 		const serviceIds = await serviceType
 			.find({ nombre: { $in: typeService } })
