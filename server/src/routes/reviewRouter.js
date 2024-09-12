@@ -19,8 +19,8 @@ export default reviewRouter;
 
 
 
-// ruta nueva de mejores calificaciones de cuidadores
-// reviews recientes 
+
+// reviews recientes (2 opciónes) consultar
 // crear los usuarios cuidador con reseñas 30 y ver img 
 // descripción req status rechazo por exceso, ver caracteres 
 
