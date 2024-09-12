@@ -3,6 +3,7 @@ import { caretakerProfileMock } from "../../assets/other-assets/mocks/mockForPro
 import DropdownContainer from "../../components/DropdownContainerPrices/ContainerPrices";
 import ButtonSubmit from "../../components/Global/ButtonSubmit";
 import ContainerReviews from "../CardReviewHome/ContainerReviewProfile";
+import InfoProfileFixed from "./InfoProfileFixed";
 
 const InfoProfile = () => {
     const { first_Name, last_Name, location, reviews, serviceType, photos } = caretakerProfileMock; // copiar esto Marcos para pasarselo a tu componente navbar y tambien su importacion
@@ -10,7 +11,8 @@ const InfoProfile = () => {
 
     return (
         <div className="h-full w-full md:max-h-[50vh] md:size-full flex-col gap-4 md:gap-1 [&>div]:w-full [&>div]:h-max justify-center items-center overflow-hidden">
-            <div className="gap-5  items-center ">
+            <InfoProfileFixed/>
+            <div id="scrollReference" className="gap-5  items-center ">
                 <div className="mb-4">
                     <img className="rounded-full size-24 object-cover" src={photos.profilePhoto} alt={first_Name} />
                 </div>

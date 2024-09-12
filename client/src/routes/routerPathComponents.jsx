@@ -8,6 +8,7 @@ import PetsFormContainer from '../views/Register/PetsFormContainer'
 import CaretakerList from '../views/CaretakerList/CaretakerList'
 import DogCaretakerProfile from '../views/DogCaretakerProfile/DogCaretakerProfile'
 import HireCareTaker from '../views/HireCareTaker/HireCareTaker.jsx'
+import InfoProfileFixed from '../components/ContainerInfoProfile/InfoProfileFixed.jsx'
 
 const routerPathComponents = [
   {
@@ -45,6 +46,10 @@ const routerPathComponents = [
   {
     path: "/search-caretakers",
     element: <CaretakerList />
+  },
+  {
+    path: "/fixedprofile",
+    element: <InfoProfileFixed />
   },
   {
     path: "*",
