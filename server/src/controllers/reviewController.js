@@ -60,6 +60,52 @@ export const getTopRatedReviews = async (req, res) => {
     }
 };
 
+// Obtener las reseñas más recientes de cada cuidador
+export const getRecentReviewsByCarer = async (req, res) => {
+    try {
+        const recentReviews = await ReviewModel.aggregate([
+            {
+                $sort: { createdAt: -1 }, // Ordenar las reseñas por fecha de creación (más recientes primero)
+            },
+            {
+                $group: {
+                    _id: "$cuidadorId", // Agrupar por el cuidador
+                    latestReview: { $first: "$$ROOT" }, // Obtener la reseña más reciente de cada cuidador
+                },
+            },
+            { //$lookup: Hace una consulta en la colección UserCuidador para obtener los datos del cuidador.
+                $lookup: {
+                    from: "usercuidadors", // Nombre de la colección de cuidadores
+                    localField: "_id", // `cuidadorId` del review
+                    foreignField: "_id", // ID del cuidador
+                    as: "cuidador", // Nombre del campo en el que queremos los datos del cuidador
+                },
+            },
+            {
+                $unwind: "$cuidador", // Desglosar el array de cuidadores para tener un solo objeto
+            },
+            {
+                $project: { // $project: Selecciona los campos que queremos devolver, incluyendo los detalles de la reseña y los datos del cuidador.
+                    _id: 0, // No queremos el _id generado
+                    cuidador: { first_name: 1, last_name: 1, profilePicture: 1 }, // Solo los campos del cuidador que necesitamos
+                    rating: "$latestReview.rating",
+                    comment: "$latestReview.comment",
+                    createdAt: "$latestReview.createdAt",
+                },
+            },
+        ]);
+
+        if (recentReviews.length === 0) {
+            return res.status(404).json({ message: "No se encontraron reseñas recientes." });
+        }
+
+        res.status(200).json({ recentReviews });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error al obtener las reseñas recientes." });
+    }
+};
+
 // Eliminar una reseña
 export const deleteReview = async (req, res) => {
     try {
