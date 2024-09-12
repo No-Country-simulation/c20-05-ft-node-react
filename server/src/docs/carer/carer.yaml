@@ -1,8 +1,14 @@
 openapi: 3.0.1
 info:
-  title: API de Cuidadores de Mascotas
-  description: API para la gestión de cuidadores de mascotas.
+  title: User API
+  description: API para la gestión de usuarios y cuidadores en la plataforma.
   version: 1.0.0
+
+servers:
+  - url: http://localhost:8080
+    description: Servidor local de desarrollo
+
+
 paths:
   api/v2/carers:
     get:
