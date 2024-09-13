@@ -16,10 +16,12 @@ export const PATHS = {
 
 // Backend routes
 const API_PATH = '/api/v1'
+const API_PATH_V2 = '/api/v2'
 
 export const API_PATHS = {
   bestReviews: `${API_PATH}/bestReviews`,
   sendQuestion: `${API_PATH}/question`,
   register: `${API_PATH}/createuser`,
-  login: `${API_PATH}/login`
+  login: `${API_PATH}/login`,
+  caretakers: `${API_PATH_V2}/carers`,
 }
