@@ -184,7 +184,7 @@ export const createCuidador = async (req, res) => {
 		// Buscar los servicios en la base de datos
 		const services = await serviceType
 			.find({ nombre: { $in: uniqueServices } })
-			.select("_id nombre");
+			.select("nombre");
 
 		if (services.length === 0) {
 			return res
@@ -192,12 +192,10 @@ export const createCuidador = async (req, res) => {
 				.json({ message: "Los servicios seleccionados no son válidos" });
 		}
 		// Obtener solo los IDs únicos de los servicios para guardarlos en la base de datos
-		const serviceIds = [...new Set(services.map((service) => service._id))];
+		//const serviceIds = [...new Set(services.map((service) => service._id))];
 
 		// Obtener los nombres únicos de los servicios para devolverlos en la respuesta
-		const serviceNames = [
-			...new Set(services.map((service) => service.nombre)),
-		];
+		const serviceNames = services.map(service => service.nombre);
 
 		// Verificar que el email no exista previamente
 		const existingUser = await UserCuidador.findOne({ email });
@@ -225,7 +223,7 @@ export const createCuidador = async (req, res) => {
 			typePreferencePet,
 			aboutMe,
 			aboutYourHome,
-			typeService: serviceIds,
+			typeService: serviceNames,
 			availability,
 			bathroomServicePrice,
 			pricePerVet,
@@ -241,10 +239,7 @@ export const createCuidador = async (req, res) => {
 
 		res.status(201).json({
 			message: "Cuidador creado con éxito",
-			cuidador: {
-				...newCuidador.toObject(), // Convertir el documento de Mongo a un objeto JavaScript
-				typeService: serviceNames, // Reemplazar los ObjectId por los nombres
-			},
+			cuidador: newCuidador.toObject(),
 		});
 	} catch (error) {
 		console.error(error);
