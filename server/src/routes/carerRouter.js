@@ -3,11 +3,14 @@ import {
 	getCarerProfile,
 	getCarers,
 	requestService,
+	getCarersWithRatings,
 } from "../controllers/carerController.js";
 
 const carerRouter = Router();
 
 carerRouter.get("/carers", getCarers); //  Obtiene una lista de cuidadores según filtros (ubicación, tipo de mascota preferida, servicios ofrecidos, etc.)
+
+carerRouter.get("/carers/ratings", getCarersWithRatings); // Obtener los perfiles de todos los cuidadores con sus ratings.
 
 carerRouter.get("/carers/:cip", getCarerProfile); // Obtiene el perfil detallado de un cuidador específico.
 
