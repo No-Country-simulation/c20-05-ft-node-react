@@ -167,19 +167,37 @@ export const createCuidador = async (req, res) => {
 
 		// Verificar la longitud de aboutMe (máximo 300 caracteres)
 		if (aboutMe && aboutMe.length > 300) {
-			return res.status(400).json({ message: "El campo no puede exceder los 300 caracteres." });
+			return res
+				.status(400)
+				.json({ message: "El campo no puede exceder los 300 caracteres." });
+		}
+		// Verificar que los servicios sean un array válido
+		if (!Array.isArray(typeService) || typeService.length === 0) {
+			return res
+				.status(400)
+				.json({ message: "Debe proporcionar al menos un servicio." });
 		}
 
-		// Buscar los servicios en la base de datos
-		const serviceIds = await serviceType
-			.find({ nombre: { $in: typeService } })
-			.select("_id");
+		// Eliminar duplicados en typeService
+		const uniqueServices = [...new Set(typeService)];
 
-		if (serviceIds.length === 0) {
+		// Buscar los servicios en la base de datos
+		const services = await serviceType
+			.find({ nombre: { $in: uniqueServices } })
+			.select("_id nombre");
+
+		if (services.length === 0) {
 			return res
 				.status(400)
 				.json({ message: "Los servicios seleccionados no son válidos" });
 		}
+		// Obtener solo los IDs únicos de los servicios para guardarlos en la base de datos
+		const serviceIds = [...new Set(services.map((service) => service._id))];
+
+		// Obtener los nombres únicos de los servicios para devolverlos en la respuesta
+		const serviceNames = [
+			...new Set(services.map((service) => service.nombre)),
+		];
 
 		// Verificar que el email no exista previamente
 		const existingUser = await UserCuidador.findOne({ email });
@@ -207,7 +225,7 @@ export const createCuidador = async (req, res) => {
 			typePreferencePet,
 			aboutMe,
 			aboutYourHome,
-			typeService: serviceIds.map((service) => service._id),
+			typeService: serviceIds,
 			availability,
 			bathroomServicePrice,
 			pricePerVet,
@@ -221,9 +239,13 @@ export const createCuidador = async (req, res) => {
 		// Guardar el nuevo cuidador en la base de datos
 		await newCuidador.save();
 
-		res
-			.status(201)
-			.json({ message: "Cuidador creado con éxito", cuidador: newCuidador });
+		res.status(201).json({
+			message: "Cuidador creado con éxito",
+			cuidador: {
+				...newCuidador.toObject(), // Convertir el documento de Mongo a un objeto JavaScript
+				typeService: serviceNames, // Reemplazar los ObjectId por los nombres
+			},
+		});
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({ message: "Error al crear el cuidador" });
