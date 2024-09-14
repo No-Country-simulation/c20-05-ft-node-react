@@ -122,21 +122,21 @@ export const logout = async (req, res, next) => {
 	}
 };
 
-const createServices = async () => {
-	const services = [
-		{ nombre: "guardería", precio: 100, duracion: "1 hora" },
-		{ nombre: "hospedaje", precio: 200, duracion: "12 horas" },
-		{ nombre: "cuidado a domicilio", precio: 200, duracion: "12 horas" },
-		{ nombre: "alimentación de mascotas", precio: 200, duracion: "2 horas" },
-		{ nombre: "paseo de mascotas", precio: 200, duracion: "2 horas" },
-	];
+// const createServices = async () => {
+// 	const services = [
+// 		{ nombre: "guardería", precio: 100, duracion: "1 hora" },
+// 		{ nombre: "hospedaje", precio: 200, duracion: "12 horas" },
+// 		{ nombre: "cuidado a domicilio", precio: 200, duracion: "12 horas" },
+// 		{ nombre: "alimentación de mascotas", precio: 200, duracion: "2 horas" },
+// 		{ nombre: "paseo de mascotas", precio: 200, duracion: "2 horas" },
+// 	];
 
-	await serviceType.insertMany(services);
-};
+// 	await serviceType.insertMany(services);
+// };
 
-createServices();
+// createServices();
 
-export const createCuidador = async (req, res) => {
+export const createCuidador = async (req, res, next) => {
 	try {
 		const {
 			first_name,
@@ -165,51 +165,41 @@ export const createCuidador = async (req, res) => {
 			networks,
 		} = req.body;
 
-		// Verificar la longitud de aboutMe (máximo 300 caracteres)
-		if (aboutMe && aboutMe.length > 300) {
-			return res
-				.status(400)
-				.json({ message: "El campo no puede exceder los 300 caracteres." });
-		}
-		// Verificar que los servicios sean un array válido
-		if (!Array.isArray(typeService) || typeService.length === 0) {
-			return res
-				.status(400)
-				.json({ message: "Debe proporcionar al menos un servicio." });
+		// Validate input
+		if (!first_name || !last_name || !email || !password || !profilePicture) {
+			res.status(400);
+			throw new Error(
+				"First name, last name, email, password, and profile picture are required",
+			);
 		}
 
-		// Eliminar duplicados en typeService
-		const uniqueServices = [...new Set(typeService)];
-
-		// Buscar los servicios en la base de datos
-		const services = await serviceType
-			.find({ nombre: { $in: uniqueServices } })
-			.select("_id nombre");
-
-		if (services.length === 0) {
-			return res
-				.status(400)
-				.json({ message: "Los servicios seleccionados no son válidos" });
-		}
-		// Obtener solo los IDs únicos de los servicios para guardarlos en la base de datos
-		// const serviceIds = [...new Set(services.map((service) => service._id))];
-
-		// Obtener los nombres únicos de los servicios para devolverlos en la respuesta
-		const serviceNames = [
-			...new Set(services.map((service) => service.nombre)),
-		];
-
-		// Verificar que el email no exista previamente
+		// Check if user already exists
 		const existingUser = await UserCuidador.findOne({ email });
 		if (existingUser) {
-			return res.status(400).json({ message: "Email ya está en uso" });
+			res.status(400);
+			throw new Error("User already exists");
 		}
 
-		// Encriptar la contraseña
+		// Validate aboutMe character limit
+		if (aboutMe && aboutMe.length > 300) {
+			res.status(400);
+			throw new Error("The 'aboutMe' field cannot exceed 300 characters");
+		}
+		// Buscar todos los servicios seleccionados por nombre
+		const services = await serviceType.find({ nombre: { $in: typeService } });
+		if (services.length === 0) {
+			res.status(400);
+			throw new Error("No services found");
+		}
+
+		// Obtener los ObjectId de los servicios encontrados
+		const serviceIds = services.map((service) => service._id);
+
+		// Hash the password
 		const hashedPassword = createHash(password);
 
-		// Crear un nuevo cuidador
-		const newCuidador = new UserCuidador({
+		// Create the new carer (cuidador)
+		const newCuidador = await UserCuidador.create({
 			first_name,
 			last_name,
 			email,
@@ -236,18 +226,13 @@ export const createCuidador = async (req, res) => {
 			networks,
 		});
 
-		// Guardar el nuevo cuidador en la base de datos
-		await newCuidador.save();
+		// Generate token
+		const userWithoutPassword = newCuidador.toObject();
+		delete userWithoutPassword.password;
 
-		res.status(201).json({
-			message: "Cuidador creado con éxito",
-			cuidador: {
-				...newCuidador.toObject(), // Convertir el documento de Mongo a un objeto JavaScript
-				typeService: serviceNames, // Reemplazar los ObjectId por los nombres
-			},
-		});
+		// Send response
+		res.status(201).json({ user: userWithoutPassword });
 	} catch (error) {
-		console.error(error);
-		res.status(500).json({ message: "Error al crear el cuidador" });
+		next(error);
 	}
 };
