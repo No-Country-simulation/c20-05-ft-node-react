@@ -11,7 +11,7 @@ const UserSchema = new Schema({
 	phone: { type: Number, required: false },
 	zipCode: { type: Number, required: false },
 	isadmin: { type: Boolean, default: false },
-	//birthdate: { type: Date, required: true},
+	birthdate: { type: Date, required: true },
 	prefered_name: { type: String, required: false },
 	role: { type: String, enum: ["owner", "carer"], default: "owner" },
 	profilePicture: { type: String, required: false }, // URL de la foto de perfil
