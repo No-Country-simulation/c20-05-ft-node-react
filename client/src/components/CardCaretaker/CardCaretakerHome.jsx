@@ -1,4 +1,3 @@
-import React from 'react'
 import starTrue from '../../assets/svg/starTrue.svg'
 import starFalse from '../../assets/svg/starFalse.svg'
 import { ratingToStars } from '../../utils/functions/ratingToStars'
@@ -22,6 +21,7 @@ const CardCaretakerHome = ({ photoCaretaker, photoProfileCaretaker, nameCaretake
                 <div className='flex gap-1'>
                     {Array.from({ length: 5 }, (_, index) => (
                         <img
+                            key={index}
                             src={index < ratingToStars(rating) ? starTrue : starFalse}
                             alt='rating'
                             className='size-4'

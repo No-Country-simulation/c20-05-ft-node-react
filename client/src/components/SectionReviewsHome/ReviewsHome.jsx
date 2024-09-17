@@ -10,10 +10,10 @@ const ReviewsHome = () => {
     const [errorReviews, setErrorReviews] = useState(null);
     const [startIndex, setStartIndex] = useState(0);
 
-    useEffect(() => {
-        // Handler de llamada a la API para obtener reseñas
-        loadReviews(setDataReviews, setErrorReviews);
-    }, []);
+    // useEffect(() => {
+    //     // Handler de llamada a la API para obtener reseñas
+    //     loadReviews(setDataReviews, setErrorReviews);
+    // }, []);
 
     const reviewsToShow = reviewsData.slice(startIndex, startIndex + 6);
 

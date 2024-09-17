@@ -1,26 +1,46 @@
-import icon1NavBar from '../../assets/images/iconamoon--profile-fill.png'
-import React, { useState } from "react";
+// import icon1NavBar from '../../assets/images/iconamoon--profile-fill.png'
+import { useState } from "react";
 import { NAV_ITEMS } from '../../assets/other-assets/nav-items';
-
+import { PATHS } from '../../routes/routes';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logOutCurrentUser } from '../../state/store/slices/users/users-slice';
+import logout from '../../assets/svg/logout-icon.svg'
 
 const SlideBar = () =>{
-
-    const [profileMenuVisible, setProfileMenuVisible] = useState(false);
+  const [profileMenuVisible, setProfileMenuVisible] = useState(false);
+  const { currentUser } = useSelector((state) => state.user)
+  const dispatch = useDispatch()
 
   const handleToggleProfileMenu = () => {
     setProfileMenuVisible(!profileMenuVisible);
-   }
+  }
+  
+  const handleLogOut = () => dispatch(logOutCurrentUser())
 
     return(
         <>
         <div className="flex items-center">
-            <button id="btn-perfil" className="border-none bg-cyan-600  rounded-full" onClick={handleToggleProfileMenu}>
-              <img
-                className="size-7"
-                src={icon1NavBar}
-                alt="profile-icon" 
-              />
-            </button>
+          {
+            currentUser !== null
+              ? (
+                <div className="flex gap-2 items-center">
+                  {/* <div id="btn-perfil" className="border-none bg-cyan-600  rounded-full">
+                    <img
+                      className="size-7"
+                      src={icon1NavBar}
+                      alt="profile-icon"
+                    />
+                  </div> */}
+                  <span>{currentUser?.first_name}</span>
+                  <button onClick={handleLogOut}><img className="size-6" src={logout} alt="cerrar sesión" /></button>
+                </div>
+              ) : (
+                <Link to={PATHS.login} className="hidden font-semibold text-cyan-800 sm:block min-w-[70px] rounded-md p-2 hover:font-bold">
+                  Iniciar Sesión
+                </Link>
+              )
+          }
         </div>
         <div
               id="overlay"

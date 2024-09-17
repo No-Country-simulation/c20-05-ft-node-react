@@ -2,21 +2,31 @@ import { FORM_ERROR_VALUES } from '../../../assets/other-assets/errors-values'
 import ErrorForms from '../../ErrorsForms/ErrorForms'
 import { useLoginForm } from '../../../utils/hooks/useLoginForm'
 import { handlerSubmitForm } from '../../../utils/functions/handlerSubmitForm'
-import { API_PATHS } from '../../../routes/routes'
+import { API_PATHS, PATHS } from '../../../routes/routes'
 import ButtonSubmit from '../../Global/ButtonSubmit'
 import { handlerFormValues } from '../../../utils/functions/handlerFormValues'
 import { API_REQUEST_MSGS } from '../../../assets/other-assets/api-request-msgs'
 import eyeIcon from '../../../assets/svg/eye-icon.svg'
 import slashedEyeIcon from '../../../assets/svg/slashed-eye-icon.svg'
+import { useDispatch } from 'react-redux'
+import { setCurrentUser } from '../../../state/store/slices/users/users-slice'
+import useNavigateHelper from '../../../utils/hooks/useNavigateHelper'
 
 const LoginForm = () => {
   const { form, setForm, errors, showPassword, setShowPassword } = useLoginForm()
   const { email, password } = FORM_ERROR_VALUES
+  const dispatch = useDispatch()
+  const { navigateTo } = useNavigateHelper()
 
   const handleLogin = async (e) => {
-    const { status, message } = await handlerSubmitForm(e, form, API_PATHS.login, API_REQUEST_MSGS.login, errors)
+    const { data, status, message } = await handlerSubmitForm(e, form, API_PATHS.login, API_REQUEST_MSGS.login, errors)
+    console.log('data', data)
     console.log('message', message)
-    console.log('status', status)    
+    console.log('status', status)
+    // Por ahora se hace así hasta tener JWT en el backend  
+    if (status !== 200 || !data?.user) return
+    dispatch(setCurrentUser(data.user))
+    navigateTo(PATHS.home)
   }
 
   return (
