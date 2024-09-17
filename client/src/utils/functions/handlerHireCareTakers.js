@@ -86,5 +86,5 @@ export const getNightsDifference = (dates) => {
   const differenceInTime = end - start // La diferencia en milisegundos
   // Convertir de milisegundos a días (1 día = 24 * 60 * 60 * 1000 milisegundos)
   const differenceInDays = differenceInTime / (1000 * 60 * 60 * 24)
-  return differenceInDays - 1
+  return differenceInDays
 }

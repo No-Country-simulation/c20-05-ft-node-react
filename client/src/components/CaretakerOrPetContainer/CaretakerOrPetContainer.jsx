@@ -29,6 +29,7 @@ const CaretakerOrPetContainer = () => {
             {caretaker.map((caretaker, index) => (
                 <CardCaretakerHome
                     key={index}
+                    idCaretaker={caretaker._id}
                     nameCaretaker={`${caretaker.first_name} ${caretaker.last_name}`}
                     photoCaretaker={caretaker[CARETAKER_ATTRIBUTES.photoCaretaker]}
                     photoProfileCaretaker={caretaker.profilePicture}

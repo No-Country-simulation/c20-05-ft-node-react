@@ -2,17 +2,19 @@ import starTrue from '../../assets/svg/starTrue.svg'
 import starFalse from '../../assets/svg/starFalse.svg'
 import { ratingToStars } from '../../utils/functions/ratingToStars'
 import useNavigateHelper from '../../utils/hooks/useNavigateHelper'
+import { useSelector } from 'react-redux'
+import { PATHS } from '../../routes/routes'
 
 
-const CardCaretakerHome = ({ photoCaretaker, photoProfileCaretaker, nameCaretaker, description, location, distance, rating }) => {
-    const userExistIniciadoSesion = false //useselector del estado global user cuando se autentifica
-
+const CardCaretakerHome = ({ idCaretaker, photoCaretaker, photoProfileCaretaker, nameCaretaker, description, location, distance, rating }) => {
+      const { currentUser } = useSelector((state) => state.user)
     const { navigateTo } = useNavigateHelper()
     return (
         <div className='w-72 h-[346px] rounded-xl shadow-xl p-[10px]  hover:scale-[1.01] transition-transform duration-500 overflow-hidden cursor-pointer'
             onClick={() => {
-                !userExistIniciadoSesion ?
-                navigateTo("/register") : alert("NAVEGO A DETAIL DE CARD")
+                currentUser
+                ? navigateTo(`/profile/${idCaretaker}`)
+                : navigateTo("/register")
             }}>
             <div>
                 <img className='w-[266px] h-[201px] rounded-md object-cover' src={photoCaretaker} alt="" />
