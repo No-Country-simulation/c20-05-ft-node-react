@@ -24,7 +24,7 @@ const CalendarComponent = ({ role = USER_ROLE_CALENDAR.owner, sendDates = (value
         <span className='font-bold'>Inicio:</span> {value.length > 0 ? value[0].toDateString() : 'Sin seleccionar'}
         <span className='font-bold'>Finaliza:</span> {value.length > 0 ? value[1].toDateString() : 'Sin seleccionar'}
       </p>
-      <button onClick={sendDates(handlerValuesToFilter(value))} className='text-xs font-bold bg-white text-black rounded-lg mt-2 px-2 py-1 hover:scale-105'>CONTINUAR</button>
+      {/* <button onClick={sendDates(handlerValuesToFilter(value))} className='text-xs font-bold bg-white text-black rounded-lg mt-2 px-2 py-1 hover:scale-105'>CONTINUAR</button> */}
     </div>
   );
 }

@@ -42,7 +42,7 @@ export const userInfoValidations = (form, setErrors) => {
   else {
     if (form.address.trim().length < address.min) errors.address = `La dirección debe tener al menos ${address.min} caracteres`
     if (form.address.trim().length > address.max) errors.address = `La dirección debe tener menos de ${address.max} caracteres`
-    if (hasNumbers(form.address)) errors.address = 'El dirección no puede contener números'
+    // if (hasNumbers(form.address)) errors.address = 'El dirección no puede contener números'
     if (!isValidName(form.address)) errors.address = 'El dirección no puede contener caracteres especiales'
     if (hasTwoOrMoreSpaces(form.address)) errors.address = 'El dirección no puede tener espacios'
   }

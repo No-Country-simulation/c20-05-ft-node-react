@@ -25,7 +25,7 @@ const InfoProfile = () => {
                             }
                         </div>
                     </div>
-                    <ButtonSubmit children={"Contactar"} extraClassName={"h-max px-2"} />
+                    {/* <ButtonSubmit children={"Contactar"} extraClassName={"h-max px-2"} /> */}
                 </div>
 
             </div>
