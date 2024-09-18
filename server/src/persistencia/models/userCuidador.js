@@ -9,6 +9,10 @@ const UserCuidadorSchema = new Schema({
 	province: { type: String, required: false },
 	city: { type: String, required: false },
 	address: { type: String, required: false },
+	coordinates: {
+		type: { type: String, default: "Point" },
+		coordinates: { type: [Number], required: false }, // [longitud, latitud]
+	},
 	phone: { type: Number, required: false },
 	zipCode: { type: Number, required: false },
 	isadmin: { type: Boolean, default: false },
@@ -34,5 +38,8 @@ const UserCuidadorSchema = new Schema({
 	networks: { type: String, required: false }, // redes sociales del cuidador
 	reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }], // reviews del cuidador
 });
+
+// Crear un índice geoespacial para búsquedas de ubicación
+UserCuidadorSchema.index({ coordinates: "2dsphere" });
 
 export const UserCuidador = model("UserCuidador", UserCuidadorSchema);
