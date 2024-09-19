@@ -1,9 +1,33 @@
 export const FORM_ERROR_VALUES = {
-  name: {
+  full_name: {
     min: 3,
     max: 50
   },
-  surname: {
+  first_name: {
+    min: 3,
+    max: 50
+  },
+  last_name: {
+    min: 3,
+    max: 50
+  },
+  preferred_name: {
+    min: 3,
+    max: 50
+  },
+  birthdate: {
+    min: 18,
+    max: 80
+  },
+  province: {
+    min: 3,
+    max: 50
+  },
+  city: {
+    min: 3,
+    max: 50
+  },
+  address: {
     min: 3,
     max: 50
   },
@@ -22,5 +46,21 @@ export const FORM_ERROR_VALUES = {
   repeatPassword: {
     min: 6,
     max: 30
+  },
+  pet_name: {
+    min: 3,
+    max: 20
+  },
+  pet_type: {
+    min: 3,
+    max: 50
+  },
+  pet_pathologies: {
+    min: 5,
+    max: 150
+  },
+  pet_medication: {
+    min: 5,
+    max: 150
   }
 }

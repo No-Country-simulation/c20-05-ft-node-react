@@ -1,13 +1,15 @@
 // create a store for redux toolkit
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import usersReducer from './slices/users/users-slice'
-
-const rootReducer = combineReducers({
-  users: usersReducer
-}) 
+import { configureStore } from '@reduxjs/toolkit'
+import petFormReducer from './slices/pets/pet-form-slice'
+import hireCareTakerReducer from './slices/hire/hire-slice'
+import userReducer from './slices/users/users-slice'
 
 export const store = configureStore({
-  reducer: rootReducer
+  reducer: {
+    user: userReducer,
+    petForm: petFormReducer,
+    hireCareTaker: hireCareTakerReducer,
+  }
 })
 
 export default store

@@ -7,7 +7,7 @@ const Login = () => {
     <main className="flex flex-col gap-4">
       <div className="flex flex-col gap-8">
         <RegisterLoginHeader section='login' />
-        <div className="max-w-[800px] w-full mx-auto px-6">
+        <div className="max-w-[600px] w-full mx-auto px-6">
           <LoginForm />
           <RegisterLoginFooter section='login' />
         </div>

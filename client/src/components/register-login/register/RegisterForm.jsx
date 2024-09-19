@@ -1,50 +1,75 @@
 import { FORM_ERROR_VALUES } from '../../../assets/other-assets/errors-values'
 import ErrorForms from '../../ErrorsForms/ErrorForms'
-import { handlerRegisterLoginForm } from '../../../utils/functions/handlerRegisterLoginForm'
 import { useRegisterForm } from '../../../utils/hooks/useRegisterForm'
-import { handlerSubmitForm } from '../../../utils/functions/handlerSubmitForm'
-import { API_PATH_REGISTER } from '../../../routes/routes'
+import { PATHS } from '../../../routes/routes'
 import ButtonSubmit from '../../Global/ButtonSubmit'
+import ProfileCreatedSuccessfully from '../../ProfileCreatedSuccessfully/ProfileCreatedSuccessfully'
+import { handlerFormValues } from '../../../utils/functions/handlerFormValues'
+import { handlerSubmitRegisterForm } from '../../../utils/functions/handlerSubmitRegisterForm'
+import eyeIcon from '../../../assets/svg/eye-icon.svg'
+import slashedEyeIcon from '../../../assets/svg/slashed-eye-icon.svg'
 
 const RegisterForm = () => {
-  const { form, setForm, errors } = useRegisterForm()
-  const { name, surname, email, password, repeatPassword } = FORM_ERROR_VALUES
+  const { form, setForm, errors, formState, setFormState, showPassword, setShowPassword } = useRegisterForm()
+  const { first_name, last_name, email, password, repeatPassword } = FORM_ERROR_VALUES
 
   return (
-    <form onSubmit={(e) => handlerSubmitForm(e, form, API_PATH_REGISTER, errors)} className="flex flex-col gap-2 [&>label]:mt-2 [&>label]:font-medium [&>input]:p-2 [&>input]:border-2 [&>input]:border-gray-300 [&>input]:rounded-lg">
-      <div className="flex max-sm:flex-col w-full items-center gap-4 [&>div>label]:mt-2 [&>div>label]:font-medium [&>div>input]:p-2 [&>div>input]:border-2 [&>div>input]:border-gray-300 [&>div>input]:rounded-lg">
-        <div className="flex flex-col w-full gap-2">
-          <label htmlFor="name-register">Nombre</label>
-          <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='name-register' name='name' type="text" placeholder="Ej: María" minLength={name.min} maxLength={name.max} value={form.name} />
-        </div>
-        <div className="flex flex-col w-full gap-2">
-          <label htmlFor="surname-register">Apellido</label>
-          <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='surname-register' name='surname' type="text" placeholder="Ej: López" minLength={surname.min} maxLength={surname.max} value={form.surname} />
-        </div>
+    <>
+      <div className={formState.isSent ? 'block' : 'hidden'}>
+        <ProfileCreatedSuccessfully pathSkip={PATHS.home} pathGoTo={PATHS.userInfo} />
       </div>
-      {
-        errors && (<ErrorForms msgError={errors.name} />)
-      }
-      {
-        errors && (<ErrorForms msgError={errors.surname} />)
-      }
-      <label htmlFor="email-register">Correo electrónico</label>
-      <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='email-register' name='email' autoComplete='username' type="email" placeholder="Ej: marialopez@gmail.com" minLength={email.min} maxLength={email.max} value={form.email} />
-      {
-        errors && (<ErrorForms msgError={errors.email} />)
-      }
-      <label htmlFor="password-register">Contraseña</label>
-      <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='password-register' name='password' autoComplete="new-password" type="password" placeholder="Contraseña" minLength={password.min} maxLength={password.max} value={form.password} />
-      {
-        errors && (<ErrorForms msgError={errors.password} />)
-      }
-      <label htmlFor="repeat-password-register">Confirmar contraseña</label>
-      <input onChange={(e) => handlerRegisterLoginForm(e, setForm)} id='repeat-password-register' name='repeatPassword' autoComplete="new-password" type="password" placeholder="Confirmar contraseña" minLength={repeatPassword.min} maxLength={repeatPassword.max} value={form.repeatPassword} />
-      {
-        errors && (<ErrorForms msgError={errors.repeatPassword} />)
-      }
-      <ButtonSubmit disabled={errors && Object.keys(errors).length !== 0}>Registrarse</ButtonSubmit>
-    </form>
+      <form onSubmit={(e) => handlerSubmitRegisterForm(e, form, formState, setFormState, errors)} className="flex flex-col gap-8">
+        <div className="flex flex-col w-full gap-4">
+          <h2 className='font-medium text-lg'>Nombre y apellido</h2>
+          <div className='flex max-md:flex-col gap-4 w-full [&>div>label]:mt-2 [&>div>label]:font-medium [&>div>input]:p-2 [&>div>input]:border-[1px] [&>div>input]:border-gray-light [&>div>label]:hidden [&>div>input]:rounded-lg'>
+            <div className="flex flex-col w-full gap-2">
+              <label htmlFor="first_name-register">Nombre</label>
+              <input onChange={(e) => handlerFormValues(e, setForm)} id='first_name-register' name='first_name' type="text" placeholder="Nombre" minLength={first_name.min} maxLength={first_name.max} value={form.first_name} />
+              {
+                errors && (<ErrorForms msgError={errors.first_name} />)
+              }
+            </div>
+            <div className="flex flex-col w-full gap-2">
+              <label htmlFor="last_name-register">Apellido</label>
+              <input onChange={(e) => handlerFormValues(e, setForm)} id='last_name-register' name='last_name' type="text" placeholder="Apellido" minLength={last_name.min} maxLength={last_name.max} value={form.last_name} />
+              {
+                errors && (<ErrorForms msgError={errors.last_name} />)
+              }
+            </div>
+          </div>
+          <p className='text-sm text-secondary-text'>Asegúrate que tu nombre coincida con el que figura en tu DNI. (Luego podrás elegir tu nombre preferido).</p>
+        </div>
+        <div className='flex flex-col gap-4 [&>label]:hidden [&>input]:p-2 [&>input]:border-[1px] [&>input]:border-gray-300 [&>input]:rounded-lg'>
+          <h2 className='font-medium text-lg'>Correo y contraseña</h2>
+          <label htmlFor="email-register">Correo electrónico</label>
+          <input onChange={(e) => handlerFormValues(e, setForm)} id='email-register' name='email' autoComplete='username' type="email" placeholder="Correo electrónico" minLength={email.min} maxLength={email.max} value={form.email} />
+          {
+            errors && (<ErrorForms msgError={errors.email} />)
+          }
+          <div className='relative [&>label]:hidden [&>input]:p-2 [&>input]:border-[1px] [&>input]:border-gray-300 [&>input]:rounded-lg [&>input]:w-full'>
+            <label htmlFor="password-register">Contraseña</label>
+            <input onChange={(e) => handlerFormValues(e, setForm)} id='password-register' name='password' autoComplete="new-password" type={!showPassword ? 'password' : 'text'} placeholder="Contraseña" minLength={password.min} maxLength={password.max} value={form.password} />
+            <button onClick={() => setShowPassword(!showPassword)} className='absolute top-0 bottom-0 right-2' type='button'>
+              <img src={!showPassword ? eyeIcon : slashedEyeIcon } alt={!showPassword ? 'mostrar contraseña' : 'ocultar contraseña'} />
+            </button>
+          </div>
+          {
+            errors && (<ErrorForms msgError={errors.password} />)
+          }
+          <div className='relative [&>label]:hidden [&>input]:p-2 [&>input]:border-[1px] [&>input]:border-gray-300 [&>input]:rounded-lg [&>input]:w-full'>
+            <label htmlFor="repeat-password-register">Confirmar contraseña</label>
+            <input onChange={(e) => handlerFormValues(e, setForm)} id='repeat-password-register' name='repeatPassword' autoComplete="new-password" type={!showPassword ? 'password' : 'text'} placeholder="Confirmar contraseña" minLength={repeatPassword.min} maxLength={repeatPassword.max} value={form.repeatPassword} />
+            <button onClick={() => setShowPassword(!showPassword)} className='absolute top-0 bottom-0 right-2' type='button'>
+              <img src={!showPassword ? eyeIcon : slashedEyeIcon } alt={!showPassword ? 'mostrar contraseña' : 'ocultar contraseña'} />
+            </button>
+          </div>
+          {
+            errors && (<ErrorForms msgError={errors.repeatPassword} />)
+          }
+        </div>
+        <ButtonSubmit disabled={errors && Object.keys(errors).length !== 0}>{!formState.isLoading ? 'Continuar' : 'Cargando...'}</ButtonSubmit>
+      </form>
+    </>
   )
 }
 

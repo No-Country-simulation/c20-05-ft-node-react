@@ -1,61 +1,55 @@
 import Home from '../views/Home/Home'
 import NotFound from '../views/NotFound/NotFound'
-import Faq from '../components/FAQSection/Faq'
 import Register from '../views/Register/Register'
 import Login from '../views/Login/Login'
-import ReduxTest from '../views/ReduxTest'
-import ApiHandler from '../views/ApiHandler'
 import CalendarComponent from '../components/Calendar/Calendar'
-
-import NavBar from '../components/NavBar/navbar'
-import Footer from '../components/Footer/Footer'
-import PinValidationEmail from '../components/PinValidationEmail/PinValidationEmail'
+import UserInfo from '../views/Register/UserInfo'
+import PetsFormContainer from '../views/Register/PetsFormContainer'
+import CaretakerList from '../views/CaretakerList/CaretakerList'
+import DogCaretakerProfile from '../views/DogCaretakerProfile/DogCaretakerProfile'
+import HireCareTaker from '../views/HireCareTaker/HireCareTaker.jsx'
 
 const routerPathComponents = [
-    {
-        path: "/home",
-        element: <Home />
-    },
-    {
-        path: "/calendar",
-        element: <CalendarComponent />
-    },
-    {
-        path: "/faq",
-        element: <Faq />
-    },
-    {
-        path: "/register",
-        element: <Register />
-    },
-    {
-        path: "/login",
-        element: <Login />
-    },
-    {
-        path: "/redux",
-        element: <ReduxTest />
-    },
-    {
-        path: "/apiHandler",
-        element: <ApiHandler />
-    },
-    {
-        path: "/navbar",
-        element: <NavBar />
-    },
-    {
-        path:"/pinValidationEmail",
-        element:<PinValidationEmail/>
-    },
-    {
-        path:"/footer",
-        element:<Footer/>
-    },
-    {
-        path: "*",
-        element: <NotFound />
-    },
+  {
+    path: "/",
+    element: <Home />
+  },
+  {
+    path: "/profile/:id",
+    element: <DogCaretakerProfile />
+  },
+  {
+    path: "/profile/:id/hire",
+    element: <HireCareTaker />
+  },
+  {
+    path: "/calendar",
+    element: <CalendarComponent />
+  },
+  {
+    path: "/register",
+    element: <Register />
+  },
+  {
+    path: "/register/user-info",
+    element: <UserInfo />
+  },
+  {
+    path: "/register/pets-form",
+    element: <PetsFormContainer />
+  },
+  {
+    path: "/login",
+    element: <Login />
+  },
+  {
+    path: "/search-caretakers",
+    element: <CaretakerList />
+  },
+  {
+    path: "*",
+    element: <NotFound />
+  },
 ]
 
 export default routerPathComponents;
