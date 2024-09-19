@@ -2,6 +2,20 @@ import { useState } from "react";
 import { FILTERS_HOME } from "../../assets/other-assets/filters-resources";
 import filterIcon from "../../assets/images/filters-icon.png";
 
+import trustIcon from '../../assets/images/trust-icon.png';
+import suitcaseIcon from '../../assets/images/suitcase-icon.png';
+import dogHouseIcon from '../../assets/images/dog-house-icon.png';
+import dogBowlIcon from '../../assets/images/dog-bowl-icon.png';
+import dogWalkingIcon from '../../assets/images/dog-walking-icon.png';
+
+const icons = {
+  trust: trustIcon,
+  suitcase: suitcaseIcon,
+  'dog-house': dogHouseIcon,
+  'dog-bowl': dogBowlIcon,
+  'dog-walking': dogWalkingIcon,
+};
+
 const Filters = () => {
   const [showFilters, setShowFilters] = useState(false)
 
@@ -16,7 +30,7 @@ const Filters = () => {
           FILTERS_HOME.map((filter) => (
             <div key={filter.id} className="flex flex-col items-center cursor-pointer hover:opacity-35 transition-opacity duration-300 ease-out">
               <div className="p-2 rounded-full">
-                <img src={`src/assets/images/${filter.icon}-icon.png`} alt={filter.name} className="w-10" />
+                <img src={icons[filter.icon]} alt={filter.name} className="w-10" />
               </div>
               <p className="text-sm">{filter.name}</p>
             </div>
