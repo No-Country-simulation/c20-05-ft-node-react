@@ -11,8 +11,8 @@ const CaretakerList = () => {
   const handleShowMap = () => setShowMap(!showMap)
 
   return (
-    <main>
-      <h1>CaretakerList</h1>
+    <main className="max-w-[1200px] mx-auto px-4">
+      <h1 className="font-semibold text-2xl mt-6 max-sm:text-center">CaretakerList</h1>
       <div className='relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 py-4 sm:py-8 justify-items-center items-center z-10'>
         {mockCaretakers.map((caretaker, index) => (
           <CardCaretakerHome
@@ -26,12 +26,13 @@ const CaretakerList = () => {
             rating={caretaker[CARETAKER_ATTRIBUTES.rating]}
           />
         ))}
-        <button onClick={handleShowMap} className="flex gap-2 items-center fixed bottom-8 left-0 right-0 mx-auto bg-black text-white w-fit rounded-full font-semibold py-2 px-6">
+        <button onClick={handleShowMap} className="flex gap-2 items-center fixed bottom-8 left-0 right-0 mx-auto bg-btn text-white w-fit rounded-full font-semibold py-2 px-6">
           <img className="size-6" src={MapIcon} alt="mapa icono" />
           Ver mapa
         </button>
       </div>
       <div className={`${showMap ? '' : 'opacity-0 -z-[1px] pointer-events-none'}`}>
+        <button onClick={() => setShowMap(false)} className='absolute top-4 right-4 size-8 flex justify-center items-center p-2 bg-white rounded-full shadow-lg z-20'>x</button>
         <CaretakersMap caretakersList={mockCaretakers} />
       </div>
     </main>

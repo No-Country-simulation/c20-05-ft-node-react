@@ -6,6 +6,8 @@ import { CARETAKER_ATTRIBUTES } from '../../assets/other-assets/constants/careta
 // import { handlerApiRequest } from '../../utils/functions/handlerApiRequest'
 // import { useEffect, useState } from 'react';
 import { mockCaretakers } from '../../assets/other-assets/mocks/mockCaretakerHome';
+import { Link } from 'react-router-dom';
+import { PATHS } from '../../routes/routes';
 
 
 const CaretakerOrPetContainer = () => {
@@ -27,19 +29,22 @@ const CaretakerOrPetContainer = () => {
   // }, [])
 
     return (
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 py-4 sm:py-8 justify-items-center items-center'>
-            {mockCaretakers.map((caretaker, index) => (
-              <CardCaretakerHome
-                key={index}
-                nameCaretaker={caretaker[CARETAKER_ATTRIBUTES.nameCaretaker]}
-                photoCaretaker={caretaker[CARETAKER_ATTRIBUTES.photoCaretaker]}
-                photoProfileCaretaker={caretaker[CARETAKER_ATTRIBUTES.photoProfile]}
-                description={caretaker[CARETAKER_ATTRIBUTES.description]}
-                distance={caretaker[CARETAKER_ATTRIBUTES.distance]}
-                location={caretaker[CARETAKER_ATTRIBUTES.location]}
-                rating={caretaker[CARETAKER_ATTRIBUTES.rating]}
-              />
-            ))}
+        <div className='flex flex-col items-center'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 py-4 sm:py-8 justify-items-center items-center'>
+              {mockCaretakers.map((caretaker, index) => (
+                <CardCaretakerHome
+                  key={index}
+                  nameCaretaker={caretaker[CARETAKER_ATTRIBUTES.nameCaretaker]}
+                  photoCaretaker={caretaker[CARETAKER_ATTRIBUTES.photoCaretaker]}
+                  photoProfileCaretaker={caretaker[CARETAKER_ATTRIBUTES.photoProfile]}
+                  description={caretaker[CARETAKER_ATTRIBUTES.description]}
+                  distance={caretaker[CARETAKER_ATTRIBUTES.distance]}
+                  location={caretaker[CARETAKER_ATTRIBUTES.location]}
+                  rating={caretaker[CARETAKER_ATTRIBUTES.rating]}
+                />
+              ))}
+          </div>
+            <Link to={PATHS.searchCaretakers} className='w-fit bg-btn py-2 px-4 text-white rounded-lg font-medium hover:bg-white hover:text-btn border-2 border-btn transition duration-300 ease-out mb-4'>Ver más</Link>
             {/* {caretaker.map((caretaker, index) => (
                 <CardCaretakerHome
                     key={index}
