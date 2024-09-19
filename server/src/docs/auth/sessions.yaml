@@ -1,0 +1,266 @@
+openapi: 3.0.0
+info:
+  title: User API
+  description: API para la gestión de usuarios y cuidadores en la plataforma.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080
+    description: Servidor local de desarrollo
+
+paths:
+  /createuser:
+    post:
+      summary: Crear un nuevo usuario
+      tags:
+        - Usuarios
+      requestBody:
+        description: Datos necesarios para crear un usuario
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: "John"
+                last_name:
+                  type: string
+                  example: "Doe"
+                email:
+                  type: string
+                  example: "john@example.com"
+                password:
+                  type: string
+                  format: password
+                  example: "mysecurepassword"
+      responses:
+        201:
+          description: Usuario creado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+        400:
+          description: Error de validación o usuario existente
+        500:
+          description: Error interno del servidor
+
+  /createcarer:
+    post:
+      summary: Crear un nuevo cuidador
+      tags:
+        - Cuidadores
+      requestBody:
+        description: Datos necesarios para registrar un cuidador
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: "Jane"
+                last_name:
+                  type: string
+                  example: "Doe"
+                email:
+                  type: string
+                  example: "jane@example.com"
+                password:
+                  type: string
+                  format: password
+                  example: "mypassword"
+                province:
+                  type: string
+                  example: "Buenos Aires"
+                city:
+                  type: string
+                  example: "La Plata"
+                address:
+                  type: string
+                  example: "Calle 123"
+                phone:
+                  type: string
+                  example: "123456789"
+                zipCode:
+                  type: string
+                  example: "1900"
+                birthdate:
+                  type: string
+                  format: date
+                  example: "1990-01-01"
+                prefered_name:
+                  type: string
+                  example: "Jane"
+                preferencePet:
+                  type: string
+                  example: "Dogs"
+                typePreferencePet:
+                  type: string
+                  example: "Medium"
+                aboutMe:
+                  type: string
+                  example: "I love taking care of pets!"
+                aboutYourHome:
+                  type: string
+                  example: "Spacious house with a backyard"
+                typeService:
+                  type: array
+                  items:
+                    type: string
+                    example: "guardería"
+                availability:
+                  type: boolean
+                  example: true
+                bathroomServicePrice:
+                  type: number
+                  example: 150
+                pricePerVet:
+                  type: number
+                  example: 100
+                specialties:
+                  type: string
+                  example: "Caring for senior pets"
+                experience:
+                  type: string
+                  example: "5 years"
+                profilePicture:
+                  type: string
+                  example: "/images/profile.jpg"
+                images:
+                  type: array
+                  items:
+                    type: string
+                    example: "/images/pet1.jpg"
+                networks:
+                  type: string
+                  example: "@jane_petcarer"
+      responses:
+        201:
+          description: Cuidador creado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cuidador:
+                    $ref: '#/components/schemas/Cuidador'
+        400:
+          description: Error de validación o email ya existente
+        500:
+          description: Error interno del servidor
+
+  /login:
+    post:
+      summary: Iniciar sesión de un usuario
+      tags:
+        - Autenticación
+      requestBody:
+        description: Credenciales para iniciar sesión
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "user@example.com"
+                password:
+                  type: string
+                  format: password
+                  example: "mypassword"
+      responses:
+        200:
+          description: Sesión iniciada exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+        400:
+          description: Credenciales inválidas
+        401:
+          description: Error de autenticación
+        500:
+          description: Error interno del servidor
+
+  /logout:
+    post:
+      summary: Cerrar sesión
+      tags:
+        - Autenticación
+      responses:
+        200:
+          description: Usuario desconectado exitosamente
+        500:
+          description: Error interno del servidor
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        province:
+          type: string
+        city:
+          type: string
+        address:
+          type: string
+        phone:
+          type: string
+        zipCode:
+          type: string
+        role:
+          type: string
+          enum: ["owner", "carer"]
+        profilePicture:
+          type: string
+        images:
+          type: array
+          items:
+            type: string
+
+    Cuidador:
+      allOf:
+        - $ref: '#/components/schemas/User'
+        - type: object
+          properties:
+            preferencePet:
+              type: string
+            typePreferencePet:
+              type: string
+            aboutMe:
+              type: string
+            aboutYourHome:
+              type: string
+            typeService:
+              type: array
+              items:
+                type: string
+            availability:
+              type: boolean
+            bathroomServicePrice:
+              type: number
+            pricePerVet:
+              type: number
+            specialties:
+              type: string
+            experience:
+              type: string
+            networks:
+              type: string

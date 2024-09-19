@@ -11,7 +11,7 @@ import HireCareTaker from '../views/HireCareTaker/HireCareTaker.jsx'
 
 const routerPathComponents = [
   {
-    path: "/home",
+    path: "/",
     element: <Home />
   },
   {

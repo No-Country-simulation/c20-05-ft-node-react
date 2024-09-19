@@ -3,11 +3,9 @@ import starFalse from '../../assets/svg/starFalse.svg'
 import { ratingToStars } from '../../utils/functions/ratingToStars'
 import useNavigateHelper from '../../utils/hooks/useNavigateHelper'
 import { useSelector } from 'react-redux'
-import { PATHS } from '../../routes/routes'
 
-
-const CardCaretakerHome = ({ idCaretaker, photoCaretaker, photoProfileCaretaker, nameCaretaker, description, location, distance, rating }) => {
-      const { currentUser } = useSelector((state) => state.user)
+const CardCaretakerHome = ({ idCaretaker = 23, photoCaretaker, photoProfileCaretaker, nameCaretaker, description, location, distance, rating }) => {
+    const { currentUser } = useSelector((state) => state.user)
     const { navigateTo } = useNavigateHelper()
     return (
         <div className='w-72 h-[346px] rounded-xl shadow-xl p-[10px]  hover:scale-[1.01] transition-transform duration-500 overflow-hidden cursor-pointer'

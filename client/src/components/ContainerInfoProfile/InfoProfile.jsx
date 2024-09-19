@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { caretakerProfileMock } from "../../assets/other-assets/mocks/mockForProfile";// importacion que debes copiar Marcos
 import DropdownContainer from "../../components/DropdownContainerPrices/ContainerPrices";
-import ButtonSubmit from "../../components/Global/ButtonSubmit";
 import ContainerReviews from "../CardReviewHome/ContainerReviewProfile";
 
-const InfoProfile = () => {
+const InfoProfile = ({ setShowMsgModal }) => {
     const { first_Name, last_Name, location, reviews, serviceType, photos } = caretakerProfileMock; // copiar esto Marcos para pasarselo a tu componente navbar y tambien su importacion
     const [openReviews, setOpenReviews] = useState(false)
 
@@ -18,11 +17,14 @@ const InfoProfile = () => {
                     <div className="flex-col">
                         <h4 className="text-xl">{first_Name} {last_Name}</h4>
                         <div className="flex-col p-2 gap-1 ">
-                            <h4 className="text-lg">{location.city}, {location.country}</h4>
-                            <button className="cursor-pointer py-1 rounded-md bg-blue-500 text-white" onClick={() => setOpenReviews(true)}>Reseñas</button>
-                            {
-                                openReviews && <ContainerReviews reviews={reviews} onClose={() => setOpenReviews(false)} />
-                            }
+                            <h4 className="text-lg">Recoleta, Buenos Aires</h4>
+                            <div className="flex gap-4">
+                              <button className="w-fit px-4 cursor-pointer py-1 rounded-md bg-blue-500 text-white" onClick={() => setShowMsgModal(true)}>Contactar</button>
+                              <button className="cursor-pointer py-1 rounded-md underline" onClick={() => setOpenReviews(true)}>Reseñas</button>
+                              {
+                                  openReviews && <ContainerReviews reviews={reviews} onClose={() => setOpenReviews(false)} />
+                              }
+                            </div>
                         </div>
                     </div>
                     {/* <ButtonSubmit children={"Contactar"} extraClassName={"h-max px-2"} /> */}
