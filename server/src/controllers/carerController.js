@@ -1,6 +1,7 @@
 import { UserCuidador } from "../persistencia/models/userCuidador.js";
 import { UserModel } from "../persistencia/models/userCliente.js";
 import { ServiceRequest } from "../persistencia/models/servicesRequest.js";
+import { ReviewModel } from "../persistencia/models/reviews.js";
 
 export const getCarers = async (req, res) => {
 	try {
@@ -92,23 +93,27 @@ export const requestService = async (req, res) => {
 };
 
 export const getCarersWithRatings = async (req, res) => {
-    try {
-        // Buscar todos los cuidadores y sus reseñas
-        const carers = await UserCuidador.find()
-            .populate("typeService", "nombre precio duracion") // Información del servicio
-            .populate({
-                path: "reviews",
-                select: "rating comment",
-                model: "reviews", // Nombre del modelo Review
-            })
-            .select("first_name last_name city profilePicture experience reviews aboutMe");
+	try {
+		// Buscar todos los cuidadores y sus reseñas
+		const carers = await UserCuidador.find()
+			.populate("typeService", "nombre precio duracion") // Información del servicio
+			.populate({
+				path: "reviews",
+				select: "rating comment",
+				model: "Review", // Nombre del modelo Review
+				options: { strictPopulate: false },
+			})
+			.select(
+				"first_name last_name city profilePicture experience reviews aboutMe images",
+			);
 
-        if (!carers.length) {
-            return res.status(404).json({ message: "No carers found" });
-        }
+		if (!carers.length) {
+			return res.status(404).json({ message: "No carers found" });
+		}
 
-        res.status(200).json(carers);
-    } catch (error) {
-        res.status(500).json({ error: "Error fetching carers with ratings" });
-    }
+		res.status(200).json(carers);
+	} catch (error) {
+		console.error("Error fetching carers with ratings:", error);
+		res.status(500).json({ error: "Error fetching carers with ratings" });
+	}
 };

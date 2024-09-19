@@ -36,7 +36,7 @@ const UserCuidadorSchema = new Schema({
 	// dni: { type: [String], required: true }, foto del dni ambos lados cuidador
 	// numberDni: { type: Number, required: true }, // n° del dni cuidador
 	networks: { type: String, required: false }, // redes sociales del cuidador
-	reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }], // reviews del cuidador
+	reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }], // reviews del cuidador
 });
 
 // Crear un índice geoespacial para búsquedas de ubicación
