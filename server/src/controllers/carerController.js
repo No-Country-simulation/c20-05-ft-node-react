@@ -90,3 +90,26 @@ export const requestService = async (req, res) => {
 		res.status(500).json({ error: "Error requesting service" });
 	}
 };
+
+export const getCarersWithRatings = async (req, res) => {
+    try {
+        // Buscar todos los cuidadores y sus reseñas
+        const carers = await UserCuidador.find()
+            .populate("typeService", "nombre precio duracion") // Información del servicio
+            .populate({
+                path: "reviews",
+                select: "rating comment",
+                model: "reviews", // Nombre del modelo Review
+                options: { strictPopulate: false },
+            })
+            .select("first_name last_name city profilePicture experience reviews aboutMe");
+
+        if (!carers.length) {
+            return res.status(404).json({ message: "No carers found" });
+        }
+
+        res.status(200).json(carers);
+    } catch (error) {
+        res.status(500).json({ error: "Error fetching carers with ratings" });
+    }
+};

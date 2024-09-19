@@ -2,7 +2,7 @@ import { Calendar } from '@natscale/react-calendar';
 import '@natscale/react-calendar/dist/main.css';
 import { isHighlightDays } from '../../utils/functions/daysHighlight';
 import { isDisabledDays } from '../../utils/functions/daysDisabled';
-import { handlerValuesToFilter } from '../../utils/functions/valuesTofilter';
+// import { handlerValuesToFilter } from '../../utils/functions/valuesTofilter';
 import userEvents from '../../assets/other-assets/mocks/calendarMock'; //MOCK para users
 import { USER_ROLE_CALENDAR } from '../../assets/other-assets/constants/calendar-resources';
 import { useCalendarComponent } from '../../utils/hooks/useCalendarComponent';

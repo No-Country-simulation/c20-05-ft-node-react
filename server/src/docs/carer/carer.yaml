@@ -1,0 +1,128 @@
+openapi: 3.0.1
+info:
+  title: User API
+  description: API para la gestión de usuarios y cuidadores en la plataforma.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080
+    description: Servidor local de desarrollo
+
+
+paths:
+  api/v2/carers:
+    get:
+      summary: Obtener todos los cuidadores
+      description: Devuelve una lista con todos los cuidadores registrados en el sistema.
+      responses:
+        '200':
+          description: Lista de cuidadores obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Carer'
+        '500':
+          description: Error del servidor
+  api/v2/carers/{cip}:
+    get:
+      summary: Obtener un cuidador por ID
+      description: Devuelve la información de un cuidador específico.
+      parameters:
+        - name: cip
+          in: path
+          required: true
+          description: ID único del cuidador
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Información del cuidador obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carer'
+        '404':
+          description: Cuidador no encontrado
+        '500':
+          description: Error del servidor
+  api/v2/carers/services:
+    post:
+      summary: Crear un nuevo servicio de cuidador
+      description: Crea un nuevo servicio para un cuidador.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarerService'
+      responses:
+        '201':
+          description: Servicio creado exitosamente
+        '400':
+          description: Error en la solicitud (datos inválidos)
+        '500':
+          description: Error del servidor
+
+components:
+  schemas:
+    Carer:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID único del cuidador
+        first_name:
+          type: string
+          description: Nombre del cuidador
+        last_name:
+          type: string
+          description: Apellido del cuidador
+        email:
+          type: string
+          description: Correo electrónico del cuidador
+        preferencePet:
+          type: string
+          description: Preferencia de mascotas que el cuidador prefiere cuidar
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/CarerService'
+        availability:
+          type: string
+          description: Disponibilidad del cuidador
+        specialties:
+          type: string
+          description: Especialidades del cuidador
+        experience:
+          type: number
+          description: Años de experiencia del cuidador
+        reviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/Review'
+    CarerService:
+      type: object
+      properties:
+        serviceType:
+          type: string
+          description: Tipo de servicio ofrecido (ej. alojamiento, guardería)
+        price:
+          type: number
+          description: Precio del servicio
+        description:
+          type: string
+          description: Descripción del servicio
+    Review:
+      type: object
+      properties:
+        user:
+          type: string
+          description: Usuario que hizo la reseña
+        rating:
+          type: number
+          description: Calificación del cuidador
+        comment:
+          type: string
+          description: Comentario del usuario sobre el cuidador

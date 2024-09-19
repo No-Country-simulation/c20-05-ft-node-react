@@ -1,0 +1,149 @@
+openapi: 3.0.0
+info:
+  title: User API
+  description: API para la gestión de usuarios y cuidadores en la plataforma.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080
+    description: Servidor local de desarrollo
+
+tags:
+  - name: "Reseñas"
+    description: "Operaciones relacionadas con reseñas de cuidadores de mascotas"
+
+paths:
+  /reviews:
+    post:
+      tags:
+        - "Reseñas"
+      summary: "Crear una nueva reseña"
+      description: "Permite a un usuario crear una nueva reseña para un cuidador."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                  description: "ID del usuario que escribe la reseña"
+                cuidadorId:
+                  type: string
+                  description: "ID del cuidador que recibe la reseña"
+                rating:
+                  type: integer
+                  description: "Calificación de la reseña (1-5)"
+                comment:
+                  type: string
+                  description: "Comentario de la reseña"
+              required:
+                - userId
+                - cuidadorId
+                - rating
+      responses:
+        201:
+          description: "Reseña creada con éxito"
+        400:
+          description: "Faltan datos necesarios"
+        404:
+          description: "Usuario o cuidador no encontrado"
+        500:
+          description: "Error en el servidor"
+
+  /reviews/{eid}:
+    delete:
+      tags:
+        - "Reseñas"
+      summary: "Eliminar una reseña"
+      description: "Elimina una reseña específica. Solo el autor de la reseña o un administrador pueden eliminarla."
+      parameters:
+        - in: path
+          name: eid
+          required: true
+          schema:
+            type: string
+          description: "ID de la reseña a eliminar"
+      responses:
+        200:
+          description: "Reseña eliminada con éxito"
+        403:
+          description: "No tienes permiso para eliminar esta reseña"
+        404:
+          description: "Reseña no encontrada"
+        500:
+          description: "Error en el servidor"
+
+  /reviews/top-rated:
+    get:
+      tags:
+        - "Reseñas"
+      summary: "Obtener reseñas mejor calificadas"
+      description: "Obtiene todas las reseñas con la calificación máxima (5 estrellas)."
+      responses:
+        200:
+          description: "Lista de reseñas mejor calificadas"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    userId:
+                      type: string
+                    rating:
+                      type: integer
+                    comment:
+                      type: string
+                    cuidador:
+                      type: object
+                      properties:
+                        first_name:
+                          type: string
+                        last_name:
+                          type: string
+                        profilePicture:
+                          type: string
+        404:
+          description: "No hay reseñas con calificación máxima"
+        500:
+          description: "Error en el servidor"
+
+  /reviews/recent:
+    get:
+      tags:
+        - "Reseñas"
+      summary: "Obtener reseñas más recientes por cuidador"
+      description: "Obtiene las reseñas más recientes de cada cuidador."
+      responses:
+        200:
+          description: "Lista de reseñas más recientes por cuidador"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    cuidador:
+                      type: object
+                      properties:
+                        first_name:
+                          type: string
+                        last_name:
+                          type: string
+                        profilePicture:
+                          type: string
+                    rating:
+                      type: integer
+                    comment:
+                      type: string
+                    createdAt:
+                      type: string
+                      format: date-time
+        404:
+          description: "No se encontraron reseñas recientes"
+        500:
+          description: "Error en el servidor"
