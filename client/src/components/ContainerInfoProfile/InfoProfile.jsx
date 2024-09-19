@@ -4,7 +4,7 @@ import DropdownContainer from "../../components/DropdownContainerPrices/Containe
 import ContainerReviews from "../CardReviewHome/ContainerReviewProfile";
 
 const InfoProfile = ({ setShowMsgModal }) => {
-    const { first_Name, last_Name, location, reviews, serviceType, photos } = caretakerProfileMock; // copiar esto Marcos para pasarselo a tu componente navbar y tambien su importacion
+    const { first_Name, last_Name, reviews, serviceType, photos } = caretakerProfileMock; // copiar esto Marcos para pasarselo a tu componente navbar y tambien su importacion
     const [openReviews, setOpenReviews] = useState(false)
 
     return (

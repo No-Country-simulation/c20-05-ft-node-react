@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css';
 
 const CaretakersMap = ({ caretakersList }) => {
   const customDivIcon = (price) =>  new L.DivIcon({
-    html: `<div class="bg-black text-white text-base font-semibold size-fit py-2 px-4 rounded-full shadow-md">$${price}</div>`,
+    html: `<div class="bg-btn text-white text-base font-semibold size-fit py-2 px-4 rounded-full shadow-md">$${price}</div>`,
     className: 'custom-div-icon', // Clase CSS para el contenedor
     iconSize: [30, 42], // Tamaño del ícono (puedes ajustarlo)
     iconAnchor: [15, 42], // Punto del ícono que apunta a la ubicación en el mapa
@@ -12,7 +12,7 @@ const CaretakersMap = ({ caretakersList }) => {
   })
 
   return (
-    <MapContainer className='z-10 absolute top-0 left-0' center={[-34.614665845310036, -58.472440029009526]} zoom={13} style={{ height: "100vh", width: "100%" }}>
+    <MapContainer className='z-10 fixed top-0 left-0' center={[-34.614665845310036, -58.472440029009526]} zoom={13} style={{ height: "100vh", width: "100%" }}>
       <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
       {
         caretakersList.map((caretaker, index) => {

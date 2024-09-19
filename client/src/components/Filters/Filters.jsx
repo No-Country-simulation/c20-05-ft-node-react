@@ -22,6 +22,10 @@ const Filters = () => {
             </div>
           ))
         }
+        <button className="flex gap-2 items-center border border-black py-2 px-4 rounded-lg w-fit max-lg:hidden">
+          <img src={filterIcon} alt="mostrar filtros" className="w-5" />
+          <span>Filtros</span>
+        </button>
       </div>
     </>
   )
