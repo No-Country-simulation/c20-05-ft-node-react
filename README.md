@@ -43,5 +43,5 @@
 ## Enlaces del Proyecto:
 - **Repositorio:** https://github.com/No-Country-simulation/20-05-node-react/
 - **Link de la app** https://pawsafe-no-country.vercel.app/
-- **Links Testing** https://docs.google.com/spreadsheets/d/1JYg8ScWHK-mGHL_MhKiTMhbfy0caj3hNhQZ0LdwZ7SU/edit?gid=1406468829#gid=1406468829
--                   https://docs.google.com/document/d/1dHDY__3c6Mi59BePsZircWeH5kRw1deosRHWlRofzKI/edit
+- **Link Testing** https://docs.google.com/spreadsheets/d/1JYg8ScWHK-mGHL_MhKiTMhbfy0caj3hNhQZ0LdwZ7SU/edit?gid=1406468829#gid=1406468829
+- **Link Testing** https://docs.google.com/document/d/1dHDY__3c6Mi59BePsZircWeH5kRw1deosRHWlRofzKI/edit
